@@ -1,0 +1,41 @@
+#mw-head{
+    padding: 0;
+}
+
+#p-logo{
+    position: static;
+}
+
+#p-logo a{
+    width: auto;
+    margin-bottom: 10px;
+}
+
+#p-personal,
+#p-search{
+    display: none;
+}
+
+#sitenav {
+	padding-top: 80px;
+}
+
+#sitenav .links {
+	padding: 0;
+}
+
+nav{
+    padding: 10px 0px;
+}
+
+nav li{
+    display: block !important;
+    padding: 10px;
+    margin: 5px;
+    text-align: center;
+}
+
+nav a{
+    display: block;
+}
+

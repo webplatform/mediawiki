@@ -1,0 +1,202 @@
+@font-face {
+	font-family: 'WPSymbols';
+	src:url('fonts/WPSymbols.eot');
+	src:url('fonts/WPSymbols.eot?#iefix') format('embedded-opentype'),
+		url('fonts/WPSymbols.svg#WPSymbols') format('svg'),
+		url('fonts/WPSymbols.woff') format('woff'),
+		url('fonts/WPSymbols.ttf') format('truetype');
+}
+
+#hierarchy-menu {
+	float: left;
+}
+
+#tool-area{
+    padding: 10px 0;
+}
+
+.toolbar {
+	float: right;
+}
+
+.toolbar .button {
+    display: inline-block;
+    position: relative;
+    min-width: 7em;
+    padding: .6em .8em;
+    background-image: -webkit-linear-gradient(hsla(0,0%,100%,.5), hsla(0,0%,100%,0));
+    background-image: -moz-linear-gradient(hsla(0,0%,100%,.5), hsla(0,0%,100%,0));
+    background-image: -o-linear-gradient(hsla(0,0%,100%,.5), hsla(0,0%,100%,0));
+    background-image: linear-gradient(hsla(0,0%,100%,.5), hsla(0,0%,100%,0));
+    box-shadow: 0px 2px 2px -1px rgba(0,0,0,.1);
+    color: black;
+    font-size: 80%;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.toolbar .button:hover,
+.toolbar .button:focus {
+	color: black !important;
+}
+
+.toolbar .button:active {
+	box-shadow: 0 0 0 999px rgba(0,0,0,.03) inset, 1px 1px 5px rgba(0,0,0,.3) inset;
+	padding-top: .7em;
+	padding-bottom: .5em;
+}
+	
+.toolbar .button,
+.dropdown > ul {
+	background-color: #F0EBDD;
+	background-repeat: no-repeat;
+	border: 1px solid #cfc6b0;
+	border-radius: .5em;
+	text-shadow: 0 1px 1px white;
+}
+
+.toolbar .button,
+.dropdown > ul a {
+	color: #74663e !important;
+}
+
+.dropdown {
+	float: right;
+	margin-left: .3em;
+	position: relative;
+	z-index: 1;
+}
+
+	.dropdown > a.button {
+		position: relative;
+		z-index: 2;
+		min-width: 4.4em;
+		padding-right: 2.7em;
+	}
+	
+	.dropdown > a:after {
+		content: '▾';
+		position: absolute;
+		right: 0;
+		top: .6em;
+		bottom: .6em;
+		padding: .4em 1em .4em .8em;
+		box-shadow: 1px 0 0 rgba(0,0,0,.2) inset, 2px 0 0 white inset;
+		font: 80%/1.05 serif;
+	}
+	
+	.dropdown > a,
+	.dropdown > ul {
+		background-color: #F0EBDD;
+	}
+	
+	.dropdown > ul {
+		position: absolute;
+		z-index: 1;
+		min-width: 100%;
+		max-height: 0;
+		padding: 0;
+		border: 0 solid rgba(0,0,0,.2);
+		border-radius: .5em;
+		border-top-left-radius: 0;
+		overflow: hidden;
+		box-shadow: 0px 2px 2px -1px rgba(0,0,0,.1);
+		margin-top: -1px;
+		list-style: none;
+		text-transform: uppercase;
+		
+		-webkit-transition: .2s;
+		-moz-transition: .2s;
+		-o-transition: .2s;
+		transition: .2s;
+	}
+	
+		.dropdown > ul > li {
+			margin: 0;
+			list-style: none;
+			white-space: nowrap;
+			border-width: 1px 0;
+			border-style: solid;
+			border-color: hsla(0,0%,100%,.5) transparent rgba(0,0,0,.1);
+		}
+		
+		.dropdown > ul > li:first-child {
+			border-top: 0;
+		}
+		
+		.dropdown > ul > li:last-child {
+			border-bottom: 0;
+		}
+		
+			.dropdown li > a {
+				display: block;
+				padding: .5em;
+				-webkit-transition: 0s !important;
+			}
+			
+			.dropdown li > a:hover,
+			.dropdown li > a:focus {
+				position: relative;
+				background: #4e408a;
+				color: white !important;
+				text-shadow: 0 -1px 2px black;
+				border-radius: .2em;
+				box-shadow: 0 0 0 2px #4e408a;
+			}
+	
+	.dropdown:hover > ul,
+	.dropdown > a:focus + ul,
+	.dropdown.focus > ul {
+		max-height: 20em;
+		padding: .6em;
+		border-width: 1px;
+	}
+	
+	.dropdown:hover > a.button,
+	.dropdown > a.button:focus {
+		border-bottom-color: transparent;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+	
+	.dropdown:hover > a.button:not(:active),
+	.dropdown > a.button:focus:not(:active) {
+		box-shadow: none;
+	}
+	
+.highlighted.button,
+.highlighted.button + ul {
+	background-color: #B4E1E4;
+	border-color: hsl(184, 50%, 65%);
+}
+
+.highlighted.button,
+.highlighted.button + ul a {
+	color: hsl(184, 60%, 20%) !important;
+}
+
+	.toolbar .highlighted.button:before,
+	.toolbar .button.watch:before,
+	.toolbar .button.tools:before {
+		margin-right: .5em;
+		font: 100% WPSymbols, serif;
+		opacity: .6;
+	}
+	
+	.dropdown > .highlighted.button:after {
+		box-shadow: 1px 0 0 hsl(184, 50%, 65%) inset, 2px 0 0 hsla(0,0%,100%,.6) inset;
+	}
+		
+	.toolbar .highlighted.button:before {
+		content: "\270e";
+	}
+	
+	.toolbar .button.watch:before {
+		content: "\1f440";
+	}
+	
+	.toolbar .button.tools:before {
+		content: "\2699";
+	}
