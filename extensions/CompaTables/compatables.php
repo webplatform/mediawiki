@@ -82,10 +82,26 @@ function renderCompaTables($input, array $args) {
 
     $browserinfo = $result['agents'];
 
+
+    //////////////////////
+    // TEMPORARY!!!!
+    // hardcoded value not in dataset
+    //////////////////////
+    $browserinfo['ie_mob']['browser'] = 'IE Mobile';
+
+
+
+
+
     // format tables for desktops and mobiles
     $out = '';
+    if ( $input ) {
+        $out .= '<p class="compat-label">' . $input . '</p>';
+    }
         // $trace = '1 Trace:';
         // $trace .= '<p>'.implode(", ", $browserinfo );
+
+    $allsupport = array();
 
     $finalitem = end($devices[0]['uas']);
     foreach ($devices as $device) {
@@ -98,7 +114,7 @@ function renderCompaTables($input, array $args) {
             $out .= '<h3>' . $device['title'] . '</h3>';
             $out .= '<table class="compat-table">';
             $out .= $device['thead'];
-            $out .= '<tbody><tr><td>Basic Support</td>';
+            $out .= '<tbody><tr><th>Basic Support</th>';
         }
 
         $uas = $device['uas'];
@@ -113,6 +129,22 @@ function renderCompaTables($input, array $args) {
                     if ($newvalue != $value) {
                         $newvalue = $value;
                         switch ($value) {
+                            case 'u':
+                                $supporthistory .= '<div>' . $v . ' <i>?</i></div>';
+                                $supportclass = 'Unknown';
+                                continue; 
+                            case 'u p':
+                                $supporthistory .= '<div>' . $v . ' <i>?, polyfill available</i></div>';
+                                $supportclass = 'Unknown';
+                                continue; 
+                            // case 'n':
+                            //     $supporthistory .= '<div>' . $v . ' <i>unsupported</i></div>';
+                            //     $supportclass = 'Unsupported';
+                            //     continue; 
+                            case 'p':
+                                $supporthistory .= '<div>' . $v . ' <i>unsupported, polyfill available</i></div>';
+                                $supportclass = 'Partial';
+                                continue; 
                             case 'a':
                                 $supporthistory .= '<div>' . $v . ' <span class="partial-support">partial</span></div>';
                                 $supportclass = 'Partial';
@@ -129,18 +161,6 @@ function renderCompaTables($input, array $args) {
                                 $supporthistory .= '<div>' . $v . '</div>';
                                 $supportclass = 'Supported';
                                 break;
-                            case 'p':
-                                $supporthistory .= '<div>' . $v . ' <i>unsupported, polyfill available</i></div>';
-                                $supportclass = 'Partial';
-                                continue; 
-                            case 'u':
-                                $supporthistory .= '<div>' . $v . ' <i>?</i></div>';
-                                $supportclass = 'Unknown';
-                                continue; 
-                            case 'u p':
-                                $supporthistory .= '<div>' . $v . ' <i>?, polyfill available</i></div>';
-                                $supportclass = 'Unknown';
-                                continue; 
                         }
                     }
                 }
@@ -148,10 +168,12 @@ function renderCompaTables($input, array $args) {
                 // $newvalue = '';
             } else {
                 $support = '?';
+                $supportclass = 'Unknown';
             }
 
             if ('list' == $format ) {
                 $out .= '<dt class="' . $supportclass . ' ' . $ua . '"><span>' . $browserinfo[$ua]['browser'] . '</span></dt><dd class="' . $supportclass . '">' . $supportclass . '</dd>';
+                $allsupport[] = $supportclass;
             } else {
                 $out .= '<td>' . $support . '</td>';
             }
@@ -168,10 +190,19 @@ function renderCompaTables($input, array $args) {
         }
     }
 
-    // determine mobile support and replace placeholder
-    $mobilesupport  = 'Partial';
-    $out = preg_replace('/MOBILE_SUPPORT/', $mobilesupport, $out);
+    // determine overall mobile support and replace placeholder
+    if ('list' == $format ) {
+        $mobilesupport  = 'Unknown';
+        if ( 1 == count(array_unique($allsupport)) ) {
+            $mobilesupport = $allsupport[0];
+        } elseif ( in_array('Supported', $allsupport) ) {
+            $mobilesupport  = 'Partial';
+        }
+
+        $out = preg_replace('/MOBILE_SUPPORT/', $mobilesupport, $out);
+    }
 
     // $out .= '<p>' . $trace . '</p>';
     return $out;
 }            
+
