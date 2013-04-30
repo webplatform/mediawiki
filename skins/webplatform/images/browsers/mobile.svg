@@ -7,7 +7,7 @@
 	<circle cx="30" cy="83" r="8" />
 </mask>
 
-<rect width="60" height="100" rx="15" mask="url(#controls)" />
+<rect width="60" height="100" rx="15" fill="black" mask="url(#controls)" />
 	
 	
 	

@@ -319,7 +319,7 @@ td.diff-context {
  */
 table.wikitable,
 table.mw_metadata {
-	margin: 1em 1em 1em 0;
+	margin: 1em 0;
 	border: 1px #aaa solid;
 	background: white;
 	border-collapse: collapse;
@@ -384,12 +384,4 @@ p {
 .catlinks li:first-child {
 	padding-left: .2em;
 	border-left: none;
-}
-
-@media print {
-	nav#sitenav,
-	.tool-area,
-	ul.stewards {
-		display: none !important;
-	}
 }

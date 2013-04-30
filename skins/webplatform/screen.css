@@ -1941,12 +1941,12 @@ pre[data-line] {
 		width: 100%;
 		padding: 0;
 		margin: 0;
-		background: #F99D1C;
 	}
 	
 		.topics-nav > ul > li {
 			display: table-cell;
 			width: 12.5%;
+			margin: 0;
 			list-style: none;
 			text-align: center;
 		}
@@ -2054,6 +2054,17 @@ pre[data-line] {
 				.topics-nav > ul > li:nth-child(5n + 4) > a:focus:before {
 					border-left-color: #ad6705; /* hsl(35, 94%, 35%) */
 				}
+				
+@media (max-width: 660px) {
+	.topics-nav > ul {
+		display: block;
+	}
+	
+		.topics-nav > ul > li {
+			display: block;
+			width: auto;
+		}
+}
 				
 /**
  * Compat lists
