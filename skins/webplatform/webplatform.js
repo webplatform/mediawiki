@@ -59,3 +59,82 @@ function init() {
 }
 
 $(document).ready(init);
+
+document.addEventListener && document.addEventListener('DOMContentLoaded', function(){
+	var page = document.getElementById('mw-content-text');
+	var headings = Array.prototype.slice.apply(page.querySelectorAll('h2, h3, h4, h5, h6'));
+	
+	var ol = document.createElement('ol'), li, rootOl = ol;
+	
+	for (var i=0, h; h=headings[i++];) {
+		var level = hLevel(h);
+		
+		if (level > previousLevel) {
+			ol = li.appendChild(document.createElement('ol'));
+		}
+		else if (level < previousLevel) {
+			ol = ol.parentNode.parentNode;
+		}
+		
+		li = tocItem(h);
+		
+		if (li) {
+			ol.appendChild(li);
+		}
+		
+		var previousLevel = level;
+	}
+	
+	function tocItem(h) {
+		var li = document.createElement('li'),
+		    a = document.createElement('a');
+		
+		var id, text;
+		
+		var headline = h.querySelector('.mw-headline[id]');
+			
+		if (headline) {
+			id = headline.id;
+			text = headline.textContent;
+		}
+		else {
+			id = h.id;
+			text = h.firstChild.textContent || h.textContent;
+			
+			if (!id) {
+				id = text.replace(/\s+/g, '-');
+				
+				if (document.getElementById(id)) {
+					// Id already exists
+					id += '-2';
+				}
+				
+				h.id = id;
+			}
+		}
+		
+		a.textContent = text;
+		a.href = '#' + id;
+		
+		li.appendChild(a);
+		
+		return li;
+	}
+	
+	function hLevel(h) {
+		return +h.nodeName.match(/h(\d)/i)[1];
+	}
+	
+	var toc = document.createElement('aside');
+	toc.id = 'sidebar';
+	toc.className = 'custom-toc';
+	
+	var tocH = document.createElement('h2');
+	tocH.id = 'sidebar-title';
+	tocH.innerHTML = 'Contents';
+	
+	toc.appendChild(tocH);
+	toc.appendChild(rootOl);
+	
+	page.insertBefore(toc, page.firstChild);
+});
