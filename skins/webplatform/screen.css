@@ -1147,7 +1147,7 @@ ol.breadcrumbs > li > a:not(:only-child):focus {
 }
 
 .custom-toc > ol > li {
-	padding: 1em 0;
+	padding: .6em 0;
 	margin-bottom: 0;
 	list-style: none;
 	border-top: 1px solid hsla(0,0%,100%,.5);
@@ -1166,10 +1166,12 @@ ol.breadcrumbs > li > a:not(:only-child):focus {
 .custom-toc > ol > li li {
 	list-style: disc;
 	margin-bottom: 0;
-	padding: .5em 0;
+	padding: .3em 0;
 }
 
-
+.custom-toc > ol > li li:last-child {
+	padding-bottom: .2em;
+}
 
 .mw-prefs-buttons{
 	padding-top: 20px;
