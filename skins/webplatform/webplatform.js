@@ -60,13 +60,23 @@ function init() {
 
 $(document).ready(init);
 
-document.addEventListener && document.addEventListener('DOMContentLoaded', function(){
+$(document).ready(function(){
 	var page = document.getElementById('mw-content-text');
 	var headings = Array.prototype.slice.apply(page.querySelectorAll('h2, h3, h4, h5, h6'));
 	
+	if (!headings.length) {
+		return;
+	}
+	
 	var ol = document.createElement('ol'), li, rootOl = ol;
 	
+	var exclude = document.querySelector('#toc h2');
+	
 	for (var i=0, h; h=headings[i++];) {
+		if (h == exclude) {
+			continue;
+		}
+		
 		var level = hLevel(h);
 		
 		if (level > previousLevel) {
