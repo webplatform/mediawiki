@@ -1520,7 +1520,7 @@ p > br:only-child {
 /* Tables */
 
 table, table.wikitable{
-	width: 100%;
+	max-width: 100%;
 }
 
 td, th {
