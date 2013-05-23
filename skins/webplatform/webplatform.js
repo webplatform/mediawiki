@@ -148,6 +148,8 @@ $(document).ready(function(){
 	window.onscroll = function(evt) {
 		var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
 		
-		toc.style.marginTop = Math.max(0, scrollTop - initialTop) + 'px';
+		var maxMargin = page.offsetHeight - toc.offsetHeight;
+		
+		toc.style.marginTop = Math.min(Math.max(0, scrollTop - initialTop), maxMargin) + 'px';
 	};
 });
