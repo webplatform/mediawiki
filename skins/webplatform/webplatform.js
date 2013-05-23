@@ -64,19 +64,13 @@ $(document).ready(function(){
 	var page = document.getElementById('mw-content-text');
 	var headings = Array.prototype.slice.apply(page.querySelectorAll('h2, h3, h4, h5, h6'));
 	
-	if (!headings.length) {
+	if (headings.length < 2) {
 		return;
 	}
 	
 	var ol = document.createElement('ol'), li, rootOl = ol;
 	
-	var exclude = document.querySelector('#toc h2');
-	
 	for (var i=0, h; h=headings[i++];) {
-		if (h == exclude) {
-			continue;
-		}
-		
 		var level = hLevel(h);
 		
 		if (level > previousLevel) {
@@ -146,5 +140,6 @@ $(document).ready(function(){
 	toc.appendChild(tocH);
 	toc.appendChild(rootOl);
 	
-	page.insertBefore(toc, page.firstChild);
+	page.parentNode.insertBefore(toc, page);
+	page.style.marginRight = toc.offsetWidth + 'px';
 });
