@@ -1130,11 +1130,12 @@ ol.breadcrumbs > li > a:not(:only-child):focus {
 	position: absolute;
 	top: -10px;
 	left: 50%;
-	width: 21px;
-	height: 21px;
+	width: 9px;
+	height: 9px;
+	border: 6px solid #e7ddcb;
+	border-radius: 50%;
 	margin-left: -10px;
-	background: url(skins/webplatform/images/sidebar-top.png) no-repeat center;
-	background: rgba(0,0,0,0) url(skins/webplatform/images/sidebar-top.svg) no-repeat center;
+	background: #B4E1E4;
 }
 
 .custom-toc > ol {
