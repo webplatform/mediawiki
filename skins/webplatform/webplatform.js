@@ -145,9 +145,9 @@ $(document).ready(function(){
 	
 	var initialTop = $(toc).offset();
 	
-	window.addEventListener('scroll', function(evt) {
+	window.onscroll = function(evt) {
 		var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
 		
 		toc.style.marginTop = Math.max(0, scrollTop - initialTop) + 'px';
-	});
+	};
 });
