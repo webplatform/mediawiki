@@ -141,7 +141,7 @@ $(document).ready(function(){
 	toc.appendChild(rootOl);
 	
 	page.parentNode.insertBefore(toc, page);
-	page.style.marginRight = toc.offsetWidth + 'px';
+//	page.style.marginRight = toc.offsetWidth + 'px';
 	
 	var initialTop = $(toc).offset().top;
 	
@@ -149,7 +149,7 @@ $(document).ready(function(){
 		var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
 		
 		var maxMargin = page.offsetHeight - toc.offsetHeight;
-		
+
 		toc.style.marginTop = Math.min(Math.max(0, scrollTop - initialTop), maxMargin) + 'px';
 	};
 });
