@@ -143,7 +143,7 @@ $(document).ready(function(){
 	page.parentNode.insertBefore(toc, page);
 	page.style.marginRight = toc.offsetWidth + 'px';
 	
-	var initialTop = $(toc).offset();
+	var initialTop = $(toc).offset().top;
 	
 	window.onscroll = function(evt) {
 		var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
