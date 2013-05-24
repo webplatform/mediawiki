@@ -1081,10 +1081,10 @@ ol.breadcrumbs > li > a:not(:only-child):focus {
 /*	border: 10px solid #f9f7f3;*/
 	box-shadow: inset 0px 0px 5px #81c7e1;
 	border-radius: 6px;
-	-webkit-transition: .3s margin-top;
-	-moz-transition: .3s margin-top;
-	-o-transition: .3s margin-top;
-	transition: .3s margin-top;
+	-webkit-transition: .5s top;
+	-moz-transition: .5s top;
+	-o-transition: .5s top;
+	transition: .5s top;
 }
 
 	#sidebar a {
