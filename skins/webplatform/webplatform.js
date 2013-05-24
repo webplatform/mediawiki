@@ -153,8 +153,8 @@ $(document).ready(function(){
 	window.onscroll = function(evt) {
 		var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
 		
-		var maxMargin = page.offsetHeight - toc.offsetHeight + 20;
+		var maxMargin = page.offsetHeight - toc.offsetHeight;
 
-		toc.style.marginTop = Math.min(Math.max(0, scrollTop - initialTop - 10), maxMargin) + 'px';
+		toc.style.marginTop = Math.min(Math.max(-10, scrollTop - initialTop), maxMargin) + 'px';
 	};
 });
