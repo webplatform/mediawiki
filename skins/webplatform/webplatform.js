@@ -61,7 +61,11 @@ function init() {
 $(document).ready(init);
 
 $(document).ready(function(){
-	var page = document.getElementById('mw-content-text');
+	if (location.hostname.indexOf('docs.') !== 0) {
+		return;
+	}
+	
+	var page = document.getElementById('main-content');
 	var headings = Array.prototype.slice.apply(page.querySelectorAll('h2, h3, h4, h5, h6'));
 	
 	if (headings.length < 2) {
