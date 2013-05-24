@@ -72,6 +72,8 @@ $(document).ready(function(){
 		return;
 	}
 	
+	$(document.documentElement).addClass('with-toc');
+	
 	var ol = document.createElement('ol'), li, rootOl = ol;
 	
 	for (var i=0, h; h=headings[i++];) {
@@ -153,9 +155,9 @@ $(document).ready(function(){
 	var adjustTop = function(evt) {
 		var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
 		
-		var maxMargin = page.offsetHeight - toc.offsetHeight;
+		var maxTop = page.offsetHeight - toc.offsetHeight;
 
-		toc.style.marginTop = Math.min(Math.max(-17, scrollTop - initialTop), maxMargin) + 'px';
+		toc.style.top = Math.min(Math.max(0, scrollTop - initialTop), maxTop) + 'px';
 	};
 	
 	window.addEventListener('scroll', adjustTop);
