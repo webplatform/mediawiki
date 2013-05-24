@@ -1075,7 +1075,7 @@ ol.breadcrumbs > li > a:not(:only-child):focus {
 	position: absolute;
 	left: 100%;
 	padding: 14px;
-	margin: -10px -240px 0px 10px;
+	margin: 0 0 0 10px;
 	width: 182px;
 	background-color: #B4E1E4;
 /*	border: 10px solid #f9f7f3;*/
@@ -1119,7 +1119,7 @@ ol.breadcrumbs > li > a:not(:only-child):focus {
 		font-family: Gudea, Arial, sans-serif;
 		font-size: 14px;
 		font-weight: normal;
-		margin-top: 11px;
+		margin-top: 14px;
 		margin-bottom: 0;
 		padding: 6px 0;
 		text-align: center;
