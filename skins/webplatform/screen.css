@@ -1058,7 +1058,7 @@ ol.breadcrumbs > li > a:not(:only-child):focus {
 	padding: 18px;
 }
 
-#sidebar + #main-content {
+body:not(.mediawiki) #sidebar + #main-content {
 	padding-right: 230px;
 }
 
