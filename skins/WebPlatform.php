@@ -239,19 +239,6 @@ class WebPlatformTemplate extends BaseTemplate {
 										  <!-- /dataAfterContent -->
 										  <?php endif; ?>
 										  
-										  <div class="topics-nav">
-												<ul>
-													<li><a href="http://docs.webplatform.org/wiki/beginners">Beginners</a></li>
-													<li><a href="http://docs.webplatform.org/wiki/concepts">Concepts</a></li>
-													<li><a href="http://docs.webplatform.org/wiki/html">HTML</a></li>
-													<li><a href="http://docs.webplatform.org/wiki/css">CSS</a></li>
-													<li><a href="http://docs.webplatform.org/wiki/concepts/accessibility">Accessibility</a></li>
-													<li><a href="http://docs.webplatform.org/wiki/javascript">JavaScript</a></li>
-													<li><a href="http://docs.webplatform.org/wiki/dom">DOM</a></li>
-													<li><a href="http://docs.webplatform.org/wiki/svg">SVG</a></li>
-												</ul>
-										  </div>
-										  
 										  <div class="visualClear"></div>
 										  
 										  <!-- debughtml -->
@@ -260,6 +247,20 @@ class WebPlatformTemplate extends BaseTemplate {
 									 </div>
 									 <!-- /bodyContent -->
 								</div>
+								
+								<div class="topics-nav">
+										<ul>
+											<li><a href="http://docs.webplatform.org/wiki/beginners">Beginners</a></li>
+											<li><a href="http://docs.webplatform.org/wiki/concepts">Concepts</a></li>
+											<li><a href="http://docs.webplatform.org/wiki/html">HTML</a></li>
+											<li><a href="http://docs.webplatform.org/wiki/css">CSS</a></li>
+											<li><a href="http://docs.webplatform.org/wiki/concepts/accessibility">Accessibility</a></li>
+											<li><a href="http://docs.webplatform.org/wiki/javascript">JavaScript</a></li>
+											<li><a href="http://docs.webplatform.org/wiki/dom">DOM</a></li>
+											<li><a href="http://docs.webplatform.org/wiki/svg">SVG</a></li>
+										</ul>
+								</div>
+								
 								<!-- /main content -->
 								<div class="clear"></div>
 						  </div>
