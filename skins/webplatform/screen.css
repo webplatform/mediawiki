@@ -1150,7 +1150,7 @@ html.with-doc #main-content {
 }
 	
 @media (max-width: 1400px) {
-	html.with-doc #main-content {
+	html.with-toc #main-content {
 		padding-right: 220px;
 	}
 	
@@ -1167,7 +1167,7 @@ html.with-doc #main-content {
 }
 
 @media (max-width: 700px) {
-	html.with-doc #main-content {
+	html.with-toc #main-content {
 		padding-right: 0;
 	}
 	
