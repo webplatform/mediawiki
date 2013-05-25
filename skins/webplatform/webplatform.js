@@ -147,7 +147,6 @@ $(document).ready(function(){
 	toc.appendChild(rootOl);
 	
 	page.parentNode.insertBefore(toc, page);
-	page.style.paddingRight = '0';
 //	page.style.marginRight = toc.offsetWidth + 'px';
 	
 	var initialTop = $(toc).offset().top;
@@ -155,7 +154,7 @@ $(document).ready(function(){
 	var adjustTop = function(evt) {
 		var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
 		
-		var maxTop = page.offsetHeight - toc.offsetHeight;
+		var maxTop = page.offsetHeight - toc.offsetHeight - 40;
 
 		toc.style.top = Math.min(Math.max(0, scrollTop - initialTop), maxTop) + 'px';
 	};

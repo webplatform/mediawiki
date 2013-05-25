@@ -1145,14 +1145,18 @@ ol.breadcrumbs > li > a:not(:only-child):focus {
 		font-family: Arial, sans-serif;
 	}
 	
+html.with-doc #main-content {
+	padding-right: 0;
+}
+	
 @media (max-width: 1400px) {
 	html.with-doc #main-content {
-		margin-right: 210px;
+		padding-right: 220px;
 	}
 	
 	#sidebar {
 		left: auto;
-		right: 20px;
+		right: 18px;
 		margin-top: 18px;
 		border-radius: 0;
 	}
