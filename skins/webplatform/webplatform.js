@@ -152,11 +152,16 @@ $(document).ready(function(){
 	var initialTop = $(toc).offset().top;
 	
 	var adjustTop = function(evt) {
-		var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-		
-		var maxTop = page.offsetHeight - toc.offsetHeight - 40;
-
-		toc.style.top = Math.min(Math.max(0, scrollTop - initialTop), maxTop) + 'px';
+		if (window.innerWidth > 700) {
+			var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+			
+			var maxTop = page.offsetHeight - toc.offsetHeight - 40;
+	
+			toc.style.top = Math.min(Math.max(0, scrollTop - initialTop), maxTop) + 'px';
+		}
+		else {
+			toc.style.top = '0';
+		}
 	};
 	
 	window.addEventListener('scroll', adjustTop);

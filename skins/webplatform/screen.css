@@ -1166,6 +1166,32 @@ html.with-doc #main-content {
 		}
 }
 
+@media (max-width: 700px) {
+	html.with-doc #main-content {
+		padding-right: 0;
+	}
+	
+	#sidebar {
+		position: relative;
+		width: 100%;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		margin-top: 0;
+	}
+}
+
+@media (max-width: 700px) and (min-width: 500px) {
+	#sidebar {
+		-webkit-column-count: 2;
+		column-count: 2;
+	}
+	
+		#sidebar-title {
+			-webkit-column-span: all;
+			column-span: all;
+		}
+}
+
 .custom-toc > ol {
 	margin: 0;
 	padding-left: 0;
