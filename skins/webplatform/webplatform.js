@@ -147,9 +147,8 @@ $(document).ready(function(){
 	toc.appendChild(rootOl);
 	
 	page.parentNode.insertBefore(toc, page);
-//	page.style.marginRight = toc.offsetWidth + 'px';
 	
-	var initialTop = $(toc).offset().top;
+	/*var initialTop = $(toc).offset().top;
 	
 	var adjustTop = function(evt) {
 		if (window.innerWidth > 700) {
@@ -166,5 +165,5 @@ $(document).ready(function(){
 	
 	window.addEventListener('scroll', adjustTop);
 	
-	adjustTop();
+	adjustTop();*/
 });
