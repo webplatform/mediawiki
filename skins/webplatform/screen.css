@@ -1074,6 +1074,7 @@ body:not(.mediawiki) #sidebar + #main-content {
 #sidebar{
 	position: absolute;
 	left: 100%;
+	top: 0;
 	padding: 14px;
 	margin: 0 0 0 10px;
 	width: 182px;
