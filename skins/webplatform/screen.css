@@ -514,10 +514,6 @@ table.floatleft {
 	clear: both;
 }
 
-.cleared{
-	clear: left !important;
-}
-
 .profile-info{
 	background: transparent !important;
 }
