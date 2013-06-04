@@ -260,26 +260,6 @@ input#wpSummary {
 }
 
 /**
- * Image captions
- */
-/* @noflip */
-.mw-content-ltr .thumbcaption {
-	text-align: left;
-}
-/* @noflip */
-.mw-content-rtl .thumbcaption {
-	text-align: right;
-}
-/* @noflip */
-.mw-content-ltr .magnify {
-	float: right;
-}
-/* @noflip */
-.mw-content-rtl .magnify {
-	float: left;
-}
-
-/**
  * Categories
  */
 #catlinks {
@@ -1004,27 +984,6 @@ ol:lang(or) li {
 #mw-revision-nav {
 	direction: ltr;
 	display: inline;
-}
-
-/* Images */
-
-/* @noflip */ div.tright,
-div.floatright,
-table.floatright {
-	clear: right;
-	float: right;
-}
-/* @noflip */ div.tleft,
-div.floatleft,
-table.floatleft {
-	float: left;
-	clear: left;
-}
-div.floatright,
-table.floatright,
-div.floatleft,
-table.floatleft {
-	position: relative;
 }
 
 /* bug 12205 */

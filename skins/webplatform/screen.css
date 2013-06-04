@@ -92,7 +92,7 @@ h1, h2, h3, h4, h5{
 	font-weight: bold;
 	margin: 0;
 	margin-bottom: 14px;
-	font-family: Bitter, Georgia, serif;
+	font-family: Bitter, Cambria, Georgia, serif;
 }
 
 h1, #firstHeading{
@@ -223,7 +223,7 @@ fieldset > legend{
 	border-bottom: 1px solid #e2e3e4;
 	color: #58595b;
 	font-weight: bold;
-	font-family: Bitter, Georgia, serif;
+	font-family: Bitter, Cambria, Georgia, serif;
 	font-weight: normal;
 	font-size: 20px;
 }
@@ -236,7 +236,7 @@ fieldset fieldset > legend{
 	border-bottom: 1px solid #e2e3e4;
 	color: #58595b;
 	font-weight: bold;
-	font-family: Bitter, Georgia, serif;
+	font-family: Bitter, Cambria, Georgia, serif;
 	font-weight: normal;
 	font-size: 14px;
 }
@@ -362,13 +362,78 @@ label.checkboxLabel {
 
 
 /* Images */
+
+.thumb {
+	padding: 10px 10px 8px;
+	border: 1px solid #eae3d3;
+	background: white;
+	color: #58595b;
+	transition: .3s;
+}
+
+.thumb:hover {
+	-webkit-transform: translate(-2px, -2px) rotate(5deg);
+	transform: translate(-2px, -2px);
+	box-shadow: 2px 2px 4px rgba(0,0,0,.2);
+}
+
+/* @noflip */ div.tright,
+div.floatright,
+table.floatright {
+	clear: right;
+	float: right;
+	margin-left: 20px;
+}
+
+/* @noflip */ div.tleft,
+div.floatleft,
+table.floatleft {
+	float: left;
+	clear: left;
+	margin-right: 20px;
+}
+
+div.floatright,
+table.floatright,
+div.floatleft,
+table.floatleft {
+	position: relative;
+}
+
 #bodyContent img {
 	height: auto;
 	max-width: 100%;
 }
 
+/**
+ * Image captions
+ */
+
+.thumbcaption {
+	margin-top: 5px;
+	font-style: italic;
+	font-family: Bitter, Cambria, Georgia, serif;
+}
+
+/* @noflip */
+.mw-content-ltr .thumbcaption {
+	text-align: left;
+}
+/* @noflip */
+.mw-content-rtl .thumbcaption {
+	text-align: right;
+}
+/* @noflip */
+.mw-content-ltr .magnify {
+	float: right;
+}
+/* @noflip */
+.mw-content-rtl .magnify {
+	float: left;
+}
+
 .articleFeedback-title{
-	font-family: Bitter, Georgia, serif;
+	font-family: Bitter, Cambria, Georgia, serif;
 }
 
 .articleFeedback-rating{
@@ -403,7 +468,7 @@ label.checkboxLabel {
 	margin: 0 0 1em 0;
 	border: 2px solid;
 	text-shadow: 0 1px 1px white;
-	font: italic 100%/1.5 Bitter, Georgia, serif;
+	font: italic 100%/1.5 Bitter, Cambria, Georgia, serif;
 }
 
 .note {
@@ -1467,7 +1532,7 @@ span.editsection a {
 	background-repeat: no-repeat;
 	color: white;
 	text-shadow: 0 -.1em .1em rgba(0, 0, 0, .3);
-	font: bold 90%/1.5 Bitter, serif;
+	font: bold 90%/1.5 Bitter, Cambria, Georgia, serif;
 }
 
 #flags a:hover {
@@ -1710,7 +1775,7 @@ footer ul.stewards {
 			color: gray;
 			color: rgba(0,0,0,.4);
 			text-align: center;
-			font: bold 140%/2.5 Bitter, serif;
+			font: bold 140%/2.5 Bitter, Cambria, Georgia, serif;
 		}
 		
 		footer ul.stewards > li.steward-adobe > a { background-position: -124px 0; }
@@ -1736,7 +1801,7 @@ footer ul.stewards {
 	text-shadow: 0 -.1em .1em rgba(0,0,0,.3);
 	text-align: center;
 	text-decoration: none !important;
-	font: bold 120%/1.5 Bitter, serif;
+	font: bold 120%/1.5 Bitter, Cambria, Georgia, serif;
 	white-space: nowrap;
 }
 
