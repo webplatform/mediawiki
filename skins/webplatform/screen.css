@@ -366,15 +366,21 @@ label.checkboxLabel {
 .thumb {
 	padding: 10px 10px 8px;
 	border: 1px solid #eae3d3;
+	margin-bottom: 10px;
 	background: white;
 	color: #58595b;
-	transition: .3s;
+	transition: .4s .2s;
 }
 
 .thumb:hover {
-	-webkit-transform: translate(-2px, -2px) rotate(5deg);
-	transform: translate(-2px, -2px);
+	-webkit-transform: translate(-2px, -3px) rotate(-1deg);
+	transform: translate(-2px, -3px) rotate(-1deg);
 	box-shadow: 2px 2px 4px rgba(0,0,0,.2);
+}
+
+.thumb.tright:hover {
+	-webkit-transform: translate(2px, -3px) rotate(1deg);
+	transform: translate(2px, -3px) rotate(1deg);
 }
 
 /* @noflip */ div.tright,
@@ -382,7 +388,7 @@ div.floatright,
 table.floatright {
 	clear: right;
 	float: right;
-	margin-left: 20px;
+	margin-left: 25px;
 }
 
 /* @noflip */ div.tleft,
@@ -390,7 +396,7 @@ div.floatleft,
 table.floatleft {
 	float: left;
 	clear: left;
-	margin-right: 20px;
+	margin-right: 25px;
 }
 
 div.floatright,
