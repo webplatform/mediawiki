@@ -2413,3 +2413,25 @@ dl.compat-list dd {
 	border-color: hsl(40, 34%, 80%);
 	box-shadow: 0 1px white inset;
 }
+
+.languages {
+	border:1px solid #AAAAAA;
+	border-collapse:collapse;
+	clear:both;
+	font-size:85%;
+	margin: 0.5em 0;
+}
+
+	.languages tr {
+		background: #EEF3E2;
+	}
+	
+	.languages .mbox-image {
+		white-space: nowrap;
+		padding: 4px 1em;
+		border-right: 1px solid #aaaaaa;
+	}
+	
+	.languages .mbox-text {
+		background: #F6F9ED;
+	}
