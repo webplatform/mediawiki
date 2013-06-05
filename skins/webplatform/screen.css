@@ -2414,24 +2414,33 @@ dl.compat-list dd {
 	box-shadow: 0 1px white inset;
 }
 
-.languages {
-	border:1px solid #AAAAAA;
-	border-collapse:collapse;
-	clear:both;
-	font-size:85%;
-	margin: 0.5em 0;
+.mw-editsection {
+	display: none;
 }
 
-	.languages tr {
-		background: #EEF3E2;
-	}
+.languages {
+	display: inline-block;
+	clear:both;
+	border-radius: .5em;
+	border: 5px solid transparent;
+	margin: .5em 0;
+	background: #DED8C9;
+	text-shadow: 0 1px hsla(0,0%,100%,.6);
+	font-size: 85%;
+}
 	
 	.languages .mbox-image {
 		white-space: nowrap;
 		padding: 4px 1em;
-		border-right: 1px solid #aaaaaa;
+		border-right: 1px solid rgba(0,0,0,.1);
+		color: rgba(0,0,0,.5);
 	}
 	
 	.languages .mbox-text {
-		background: #F6F9ED;
+		padding: .5em 1em;
+		border-left: 1px solid white;
+	}
+	
+	.languages a {
+		text-decoration: none !important;
 	}
