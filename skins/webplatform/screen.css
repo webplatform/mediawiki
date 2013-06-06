@@ -2422,24 +2422,30 @@ dl.compat-list dd {
 	display: inline-block;
 	clear:both;
 	border-radius: .5em;
-	border: 5px solid transparent;
+	border-spacing: 0;
 	margin: .5em 0;
+	padding: .6em 0;
 	background: #DED8C9;
 	text-shadow: 0 1px hsla(0,0%,100%,.6);
-	font-size: 85%;
+	font-size: 88%;
+	line-height: 1;
+	color: rgba(0,0,0,.5);
 }
 	
 	.languages .mbox-image {
 		white-space: nowrap;
-		padding: 4px 1em;
+		padding: 0 .8em;
 		border-right: 1px solid rgba(0,0,0,.1);
-		color: rgba(0,0,0,.5);
 	}
 	
 	.languages .mbox-text {
-		padding: .5em 1em;
-		border-left: 1px solid white;
+		padding: 0 .8em;
+		border-left: 1px solid hsla(0,0%,100%,.6);
 	}
+	
+		.languages .mbox-text b {
+			color: black;
+		}
 	
 	.languages a {
 		text-decoration: none !important;
