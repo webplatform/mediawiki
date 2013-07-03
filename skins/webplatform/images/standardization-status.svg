@@ -2,7 +2,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 500">
 
 <defs>
-	<circle id="circle" cx="50" cy="50" r="40" transform="rotate(-90,50,50)" stroke-width="20" fill="none" />
+	<circle id="circle" cx="50" cy="50" r="42" transform="rotate(-90,50,50)" stroke-width="16" fill="none" />
 </defs>
 
 <use xlink:href="#circle" stroke-dasharray="50,999" stroke="#D02E27" />
