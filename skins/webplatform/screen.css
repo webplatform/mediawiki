@@ -1650,7 +1650,8 @@ td, th {
 }
 
 .compat-table,
-.wikitable {
+.wikitable,
+.action-view table:not([class]) {
 	border-collapse: separate;
 	border-spacing: 0;
 	box-shadow: 0px -1px 0px #eae8e5;
@@ -1660,45 +1661,55 @@ td, th {
 }
 
 	.compat-table tr,
-	.wikitable tr {
+	.wikitable tr,
+	.action-view table:not([class]) tr {
 		background: #e1dccf;
 	}
 	
 	.compat-table tr:nth-child(even),
-	.wikitable tr:nth-child(even) {
+	.wikitable tr:nth-child(even),
+	.action-view table:not([class]) tr:nth-child(even) {
 		background: #fbf7ef;
 	}
 	
 	.compat-table tbody:first-child tr:first-child th:first-child,
 	.wikitable tbody:first-child tr:first-child th:first-child,
+	.action-view table:not([class]) tbody:first-child tr:first-child th:first-child,
 	.compat-table thead th:first-child,
-	.wikitable thead th:first-child {   
+	.wikitable thead th:first-child,
+	.action-view table:not([class]) thead th:first-child {   
 		border-top-left-radius:5px;
 		border-left: none;
 	}
 	
 	.compat-table tr:first-child th:last-child,
 	.wikitable tr:first-child th:last-child,
+	.action-view table:not([class]) tr:first-child th:last-child,
 	.compat-table tr:first-child td:last-child,
-	.wikitable tr:first-child td:last-child {
+	.wikitable tr:first-child td:last-child,
+	.action-view table:not([class]) tr:first-child td:last-child {
 		border-top-right-radius:5px;
 		border-right: none;
 	}
 	
 	.compat-table tr td:last-child,
-	.wikitable tr td:last-child {
+	.wikitable tr td:last-child,
+	.action-view table:not([class]) tr td:last-child {
 		border-right: none;
 	}
 	
 	.compat-table tr:nth-child(n+2) td,
-	.wikitable tr:nth-child(n+2) td {
+	.wikitable tr:nth-child(n+2) td,
+	.action-view table:not([class]) tr:nth-child(n+2) td {
 		border-bottom: none;
 	}
 	
 	.compat-table td:first-child,
 	.wikitable td:first-child,
+	.action-view table:not([class]) td:first-child,
 	.compat-table tbody th:first-child,
-	.wikitable tbody th:first-child {
+	.wikitable tbody th:first-child,
+	.action-view table:not([class]) tbody th:first-child {
 		border-top: 1px solid white;
 		border-left: none;
 		color: white;
@@ -1706,10 +1717,21 @@ td, th {
 		font-weight: normal;
 	}
 	
+		.compat-table td:first-child a:hover,
+		.wikitable td:first-child a:hover,
+		.action-view table:not([class]) td:first-child a:hover,
+		.compat-table tbody th:first-child a:hover,
+		.wikitable tbody th:first-child a:hover,
+		.action-view table:not([class]) tbody th:first-child a:hover {
+			color: #F89C20;
+		}
+	
 		.compat-table thead th,
 		.wikitable thead th,
+		.action-view table:not([class]) thead th,
 		.compat-table tbody:first-child > tr:first-child > th:not(:only-of-type),
-		.wikitable tbody:first-child > tr:first-child > th:not(:only-of-type) {
+		.wikitable tbody:first-child > tr:first-child > th:not(:only-of-type),
+		.action-view table:not([class]) tbody:first-child > tr:first-child > th:not(:only-of-type) {
 			font-weight: normal;
 			padding: 10px;
 			border: 1px solid white;
@@ -1725,20 +1747,24 @@ td, th {
 		
 		.compat-table thead th:last-child,
 		.wikitable thead th:last-child,
+		.action-view table:not([class]) thead th:last-child,
 		.compat-table tbody:first-child > tr:first-child > th:not(:only-of-type):last-child,
-		.wikitable tbody:first-child > tr:first-child > th:not(:only-of-type):last-child {
+		.wikitable tbody:first-child > tr:first-child > th:not(:only-of-type):last-child,
+		.action-view table:not([class]) tbody:first-child > tr:first-child > th:not(:only-of-type):last-child {
 			border-right: none;
 		}
 		
 		.compat-table td,
-		.wikitable td {
+		.wikitable td,
+		.action-view table:not([class]) td {
 			padding: 5px 15px;
 			border: 1px solid white;
 			border-left: none;
 		}
 		
 		.compat-table th,
-		.wikitable th {
+		.wikitable th,
+		.action-view table:not([class]) th {
 			padding: 10px 15px;
 			font-family: Bitter;
 			text-align: left;
@@ -1749,7 +1775,8 @@ td, th {
 		}
 		
 		.compat-table a,
-		.wikitable a {
+		.wikitable a,
+		.action-view table:not([class]) a {
 			color: inherit;
 		}
 
