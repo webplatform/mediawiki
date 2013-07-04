@@ -249,11 +249,11 @@ a {
 	-webkit-transition: color .2s;
 }
 
-#mw-content-text a {
+[id="mw-content-text"] a {
 	text-decoration: underline;
 }
 
-a:hover, #mw-content-text a:hover{
+a:hover {
 	color: #2dafbc;
 	text-decoration: none;
 }
