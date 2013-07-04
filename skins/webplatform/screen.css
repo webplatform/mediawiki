@@ -205,9 +205,14 @@ p:empty:not([id]):not([class]) {
 	display: none;
 }
 
-code{
+code {
 	font-weight: bold;
 	font-family: Consolas, Monaco, 'Andale Mono', monospace;
+}
+
+i code,
+em code {
+	font-weight: inherit;
 }
 
 fieldset{
