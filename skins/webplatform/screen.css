@@ -275,6 +275,12 @@ a.external:hover{
 	background-position: right -17px;
 }
 
+	pre a.external,
+	code a.external {
+		background: none;
+		padding-right: 0;
+	}
+
 a.new{
 	color: #BA0000;
 }
