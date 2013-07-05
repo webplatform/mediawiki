@@ -1499,17 +1499,19 @@ p > br:first-child {
 	white-space: nowrap;
 	border-radius: 50%;
 	font: bold 90% Gudea, sans-serif;
-	color: hsl(40, 34%, 30%);
+	color: hsl(2, 69%, 45%);
 	text-shadow: 0 1px 1px white;
 	box-shadow: 0 -1px 2px 1px hsla(40, 34%, 30%, .2) inset, 0 1px white, 0 0 0 15px #f9f7f3;
 }
 
 	.standardization_status[title="W3C Working Draft"] {
 		background-position: 0 -100%;
+		color: hsl(13, 78%, 52%);
 	}
 	
 	.standardization_status[title="W3C Last Call Working Draft"] {
 		background-position: 0 -200%;
+		color: hsl(21, 75%, 45%);
 	}
 	
 	.standardization_status[title="W3C Candidate Recommendation"] {
