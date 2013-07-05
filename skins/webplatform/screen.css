@@ -1532,7 +1532,8 @@ p > br:first-child {
 	line-height: 3.3;
 }
 
-	.standardization_status[title="W3C Editor Draft"]:before {
+	.standardization_status[title="W3C Editor’s Draft"]:before,
+	.standardization_status[title="W3C Editor's Draft"]:before {
 		content: 'ED';
 	}
 	
