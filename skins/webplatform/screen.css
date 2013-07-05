@@ -1506,7 +1506,7 @@ p > br:first-child {
 
 	.standardization_status[title="W3C Working Draft"] {
 		background-position: 0 -100%;
-		color: hsl(13, 78%, 52%);
+		color: hsl(13, 78%, 42%);
 	}
 	
 	.standardization_status[title="W3C Last Call Working Draft"] {
