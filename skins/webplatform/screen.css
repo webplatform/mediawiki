@@ -1493,7 +1493,7 @@ p > br:first-child {
 	background: url(http://docs.webplatform.org/w/skins/webplatform/images/standardization-status.svg)
 	            hsl(40, 34%, 88%);
 	background-size: 100% 600%;
-	margin: -4em .5em 0;
+	margin: 1em .5em 0;
 	text-indent: 3em;
 	overflow: hidden;
 	white-space: nowrap;
@@ -1501,7 +1501,7 @@ p > br:first-child {
 	font: 90% Gudea, sans-serif;
 	color: hsl(40, 34%, 30%);
 	text-shadow: 0 1px 1px white;
-	box-shadow: 0 0 2px 1px hsla(40, 34%, 30%, .2) inset, 0 1px white;
+	box-shadow: 0 0 2px 1px hsla(40, 34%, 30%, .2) inset, 0 1px white, 0 0 0 15px #f9f7f3;
 }
 
 	.standardization_status[title="W3C Working Draft"] {
