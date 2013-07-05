@@ -1493,7 +1493,7 @@ p > br:first-child {
 	background: url(http://docs.webplatform.org/w/skins/webplatform/images/standardization-status.svg)
 	            hsl(40, 34%, 88%);
 	background-size: 100% 600%;
-	margin: 1em .5em 0;
+	margin: 1em 0 15px;
 	text-indent: 3em;
 	overflow: hidden;
 	white-space: nowrap;
