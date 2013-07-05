@@ -1498,7 +1498,7 @@ p > br:first-child {
 	overflow: hidden;
 	white-space: nowrap;
 	border-radius: 50%;
-	font: 90% Gudea, sans-serif;
+	font: bold 90% Gudea, sans-serif;
 	color: hsl(40, 34%, 30%);
 	text-shadow: 0 1px 1px white;
 	box-shadow: 0 -1px 2px 1px hsla(40, 34%, 30%, .2) inset, 0 1px white, 0 0 0 15px #f9f7f3;
@@ -1514,52 +1514,51 @@ p > br:first-child {
 	
 	.standardization_status[title="W3C Candidate Recommendation"] {
 		background-position: 0 -300%;
+		color: hsl(260, 35%, 40%);
 	}
 	
 	.standardization_status[title="W3C Proposed Recommendation"] {
 		background-position: 0 -400%;
+		color: hsl(187, 63%, 40%);
 	}
 	
 	.standardization_status[title="W3C Recommendation"] {
 		background-position: 0 -500%;
+		color: hsl(164, 65%, 30%);
 	}
 
-.standardization_status[title^="W3C"]:before {
-	position: absolute;
-	left: 0; right: 0; top: 0; bottom: 0;
-	text-indent: 0;
-	text-align: center;
-	line-height: 3.4;
-}
-
-	.standardization_status[title="W3C Editor’s Draft"]:before,
-	.standardization_status[title="W3C Editor's Draft"]:before {
-		content: 'ED';
+	.standardization_status[title^="W3C"]:before {
+		position: absolute;
+		left: 0; right: 0; top: 0; bottom: 0;
+		text-indent: 0;
+		text-align: center;
+		line-height: 3.4;
 	}
 	
-	.standardization_status[title="W3C Working Draft"]:before {
-		content: 'WD';
-	}
-	
-	.standardization_status[title="W3C Last Call Working Draft"]:before {
-		content: 'LC';
-	}
-	
-	.standardization_status[title="W3C Candidate Recommendation"]:before {
-		content: 'CR';
-	}
-	
-	.standardization_status[title="W3C Proposed Recommendation"]:before {
-		content: 'PR';
-	}
-	
-	.standardization_status[title="W3C Recommendation"]:before {
-		content: 'REC';
-	}
-	
-.standardization_status[title^="W3C"]:after {
-	content: none;
-}
+		.standardization_status[title="W3C Editor’s Draft"]:before,
+		.standardization_status[title="W3C Editor's Draft"]:before {
+			content: 'ED';
+		}
+		
+		.standardization_status[title="W3C Working Draft"]:before {
+			content: 'WD';
+		}
+		
+		.standardization_status[title="W3C Last Call Working Draft"]:before {
+			content: 'LC';
+		}
+		
+		.standardization_status[title="W3C Candidate Recommendation"]:before {
+			content: 'CR';
+		}
+		
+		.standardization_status[title="W3C Proposed Recommendation"]:before {
+			content: 'PR';
+		}
+		
+		.standardization_status[title="W3C Recommendation"]:before {
+			content: 'REC';
+		}
 
 /* flags */
 
