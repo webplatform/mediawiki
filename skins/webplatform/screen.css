@@ -1532,8 +1532,8 @@ p > br:first-child {
 	.standardization_status[title^="W3C"]:before {
 		content: url(http://docs.webplatform.org/w/skins/webplatform/images/w3c-small.svg);
 		position: absolute;
-		top: 2px;
-		left: 0;
+		top: 12px;
+		left: 9px;
 		text-indent: 0;
 		text-align: center;
 	}
