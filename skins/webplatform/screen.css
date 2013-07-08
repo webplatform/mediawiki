@@ -1501,7 +1501,7 @@ p > br:first-child {
 	font: bold 90% Gudea, sans-serif;
 	color: hsl(2, 69%, 45%);
 	text-shadow: 0 1px 1px white;
-	box-shadow: 0 -1px 2px 1px hsla(40, 34%, 30%, .2) inset, 0 1px white, 0 0 0 15px #f9f7f3;
+	box-shadow: 0 -1px 2px 1px hsla(40, 34%, 30%, .2) inset, 0 1px white, 0 0 0 10px #f9f7f3;
 }
 
 	.standardization_status[title="W3C Working Draft"] {
@@ -1532,8 +1532,8 @@ p > br:first-child {
 	.standardization_status[title^="W3C"]:before {
 		content: url(http://docs.webplatform.org/w/skins/webplatform/images/w3c-small.svg);
 		position: absolute;
-		top: 12px;
-		left: 9px;
+		top: 13px;
+		left: 10px;
 		text-indent: 0;
 		text-align: center;
 	}
