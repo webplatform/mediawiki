@@ -1530,6 +1530,7 @@ p > br:first-child {
 	}
 
 	.standardization_status[title^="W3C"]:before {
+		content: url(http://docs.webplatform.org/w/skins/webplatform/images/w3c-small.svg);
 		position: absolute;
 		left: 0; right: 0; top: 0; bottom: 0;
 		text-indent: 0;
@@ -1537,7 +1538,7 @@ p > br:first-child {
 		line-height: 3.4;
 	}
 	
-		.standardization_status[title="W3C Editor’s Draft"]:before,
+		/*.standardization_status[title="W3C Editor’s Draft"]:before,
 		.standardization_status[title="W3C Editor's Draft"]:before {
 			content: 'ED';
 		}
@@ -1560,7 +1561,7 @@ p > br:first-child {
 		
 		.standardization_status[title="W3C Recommendation"]:before {
 			content: 'REC';
-		}
+		}*/
 
 /* flags */
 
