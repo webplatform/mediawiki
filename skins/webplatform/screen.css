@@ -1532,10 +1532,10 @@ p > br:first-child {
 	.standardization_status[title^="W3C"]:before {
 		content: url(http://docs.webplatform.org/w/skins/webplatform/images/w3c-small.svg);
 		position: absolute;
-		left: 0; right: 0; top: 0; bottom: 0;
+		top: 2px;
+		left: 0;
 		text-indent: 0;
 		text-align: center;
-		line-height: 3.4;
 	}
 	
 		/*.standardization_status[title="W3C Editor’s Draft"]:before,
