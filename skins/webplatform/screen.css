@@ -352,7 +352,7 @@ label.checkboxLabel {
 .mw-body input[type="submit"]:focus,
 .mw-body button:focus {
 	color: black;
-	box-shadow: 0 0 .6em .1em #694D9F,
+	box-shadow: 0 0 0 .4em #694D9F,
 				0 2px 2px -1px rgba(0,0,0,.1);
 	outline: none;
 }
