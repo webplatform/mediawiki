@@ -1748,12 +1748,14 @@ td, th {
 .compat-table,
 .wikitable,
 .action-view table:not([class]) {
+	position: relative;
 	border-collapse: separate;
 	border-spacing: 0;
 	box-shadow: 0px -1px 0px #eae8e5;
 	border-radius: 6px 6px 0 0;
 	border: 1px solid #ddd3c2;
 	font-family: Bitter;
+	table-layout: fixed;
 }
 
 	.compat-table tr,
