@@ -1522,12 +1522,11 @@ span.editsection a {
 		.standardization_status[title^="Non-Standard"]:after,
 		.standardization_status[title^="De Facto Standard"]:after,
 		.standardization_status[title^="Experimental"]:after {
-			content: '✕';
+			content: '';
 			position: absolute;
-			top: .6em; right: 0; left: 0;
-			text-align: center;
-			font: 20px/1 sans-serif;
-			color: #e00;
+			top: 50%; right: 8px; left: 8px;
+			border-top: 4px hsla(0, 100%, 40%, .8) solid;
+			margin-top: -3px;
 		}
 
 /* flags */
