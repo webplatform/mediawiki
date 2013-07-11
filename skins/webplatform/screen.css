@@ -1419,66 +1419,6 @@ span.editsection a {
 	height: 22px;
 	text-decoration: none !important;
 }
-
-/* Standardization status */
-
-.standardization_status:not([title^="W3C"]):not([title="Deprecated"]) {
-	position: absolute;
-	top: 0;
-	right: 0;
-	padding: .2em 2.5em;
-	text-transform: uppercase;
-	color: white;
-	line-height: 1.8;
-	text-align: center;
-	text-shadow: 0 -.1em .2em rgba(0,0,0,.5);
-	
-	-o-transform: translateX(30%) translate(1.5em,-1.5em) rotate(45deg);
-	-moz-transform: translateX(30%) translate(1.5em,-1.5em) rotate(45deg);
-	-ms-transform: translateX(30%) translate(1.5em,-1.5em) rotate(45deg);
-	-webkit-transform: translateX(30%) translate(1.5em,-1.5em) rotate(45deg);
-	transform: translateX(30%) translate(1.5em,-1.5em) rotate(45deg);
-	
-	-o-transform-origin: 0 0;
-	-moz-transform-origin: 0 0;
-	-ms-transform-origin: 0 0;
-	-webkit-transform-origin: 0 0;
-	transform-origin: 0 0;
-}
-
-.standardization_status:empty,
-p > br:first-child {
-	display: none;
-}
-
-	.standardization_status:not([title^="W3C"]):before,
-	.standardization_status:not([title^="W3C"]):after {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		z-index: -1;
-	}
-	
-	/* Main ribbon background */
-	.standardization_status:not([title^="W3C"]):before {
-		height: 0;
-		border: 2.2em solid transparent;
-		border-top-width: 0;
-		border-bottom-color: #1b306b;
-		box-shadow: 0 .7em 1em -.8em black;
-	}
-	
-	/* Gradients */
-	.standardization_status:not([title^="W3C"]):after {
-		bottom: 0;
-		
-		background: -o-linear-gradient(left, hsla(0,0%,100%,0), hsla(0,0%,100%,.15) 20%, hsla(0,0%,100%,.15) 80%, hsla(0,0%,100%,0));
-		background: -moz-linear-gradient(left, hsla(0,0%,100%,0), hsla(0,0%,100%,.15) 20%, hsla(0,0%,100%,.15) 80%, hsla(0,0%,100%,0));
-		background: -webkit-linear-gradient(left, hsla(0,0%,100%,0), hsla(0,0%,100%,.15) 20%, hsla(0,0%,100%,.15) 80%, hsla(0,0%,100%,0));
-		background: linear-gradient(to right, hsla(0,0%,100%,0), hsla(0,0%,100%,.15) 20%, hsla(0,0%,100%,.15) 80%, hsla(0,0%,100%,0));
-	}
 	
 /**
  * Standardization status
