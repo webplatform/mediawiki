@@ -1484,11 +1484,8 @@ p > br:first-child {
  * Standardization status
  */
 
-/**
- * Standardization status
- */
-
-.standardization_status[title^="W3C"] {
+.standardization_status[title^="W3C"],
+.standardization_status[title="Deprecated"] {
 	position: relative;
 	float: right; 
 	width: 13px;
@@ -1496,7 +1493,7 @@ p > br:first-child {
 	padding: 15px;
 	background: url(http://docs.webplatform.org/w/skins/webplatform/images/standardization-status.svg)
 	            hsl(40, 34%, 88%);
-	background-size: 100% 600%;
+	background-size: 100% 700%;
 	margin: 13px 0 15px;
 	white-space: nowrap;
 	border-radius: 50%;
@@ -1509,30 +1506,30 @@ p > br:first-child {
 
 	.standardization_status[title="W3C Working Draft"] {
 		background-position: 0 -100%;
-		color: hsl(13, 78%, 42%);
 	}
 	
 	.standardization_status[title="W3C Last Call Working Draft"] {
 		background-position: 0 -200%;
-		color: hsl(21, 75%, 45%);
 	}
 	
 	.standardization_status[title="W3C Candidate Recommendation"] {
 		background-position: 0 -300%;
-		color: hsl(260, 35%, 40%);
 	}
 	
 	.standardization_status[title="W3C Proposed Recommendation"] {
 		background-position: 0 -400%;
-		color: hsl(187, 63%, 40%);
 	}
 	
 	.standardization_status[title="W3C Recommendation"] {
 		background-position: 0 -500%;
-		color: hsl(164, 65%, 30%);
+	}
+	
+	.standardization_status[title="Deprecated"] {
+		background-position: 0 -600%;
 	}
 
-		.standardization_status[title^="W3C"]:before {
+		.standardization_status[title^="W3C"]:before,
+		.standardization_status[title="Deprecated"]:before {
 			content: url(http://docs.webplatform.org/w/skins/webplatform/images/w3c-small.svg);
 			position: absolute;
 			top: 13px;
