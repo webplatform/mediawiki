@@ -7,7 +7,7 @@
 	<use xlink:href="#circle" id="rec-track" stroke="#005A9C" />	
 </defs>
 
-<use xlink:href="#circle" stroke-dasharray="45,999" stroke="#00e" /> <!-- ED -->
+<use xlink:href="#circle" stroke-dasharray="45,999" stroke="#e00" /> <!-- ED -->
 <use xlink:href="#rec-track" y="100" stroke-dasharray="90, 999" />
 <use xlink:href="#rec-track" y="200" stroke-dasharray="135, 999" />
 <use xlink:href="#rec-track" y="300" stroke-dasharray="180, 999" />
