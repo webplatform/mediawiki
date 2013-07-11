@@ -15,6 +15,6 @@
 <use xlink:href="#rec-track" y="500" />
 <use xlink:href="#rec-track" y="600" stroke-dasharray="14, 30" /> <!-- Mixed -->
 <use xlink:href="#circle" y="700" stroke="#012" stroke-opacity=".3" stroke-dasharray="8, 25" /> <!-- Deprecated -->
-<use xlink:href="#circle" stroke="#e00" /> <!-- Non-Standard -->
+<use xlink:href="#circle" y="800" stroke="#e00" /> <!-- Non-Standard -->
 
 </svg>
