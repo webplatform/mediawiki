@@ -1424,8 +1424,7 @@ span.editsection a {
  * Standardization status
  */
 
-.standardization_status[title^="W3C"],
-.standardization_status[title="Deprecated"] {
+.standardization_status {
 	position: relative;
 	float: right; 
 	width: 13px;
@@ -1433,7 +1432,7 @@ span.editsection a {
 	padding: 15px;
 	background: url(http://docs.webplatform.org/w/skins/webplatform/images/standardization-status.svg)
 	            hsl(40, 34%, 88%);
-	background-size: 100% 700%;
+	background-size: 100% 800%;
 	margin: 13px 0 15px;
 	white-space: nowrap;
 	border-radius: 50%;
@@ -1464,12 +1463,15 @@ span.editsection a {
 		background-position: 0 -500%;
 	}
 	
-	.standardization_status[title="Deprecated"] {
+	.standardization_status[title="Mixed"] {
 		background-position: 0 -600%;
 	}
+	
+	.standardization_status[title="Deprecated"] {
+		background-position: 0 -700%;
+	}
 
-		.standardization_status[title^="W3C"]:before,
-		.standardization_status[title="Deprecated"]:before {
+		.standardization_status:before {
 			content: url(http://docs.webplatform.org/w/skins/webplatform/images/w3c-small.svg);
 			position: absolute;
 			top: 13px;
