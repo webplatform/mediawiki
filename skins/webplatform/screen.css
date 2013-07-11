@@ -1422,7 +1422,7 @@ span.editsection a {
 
 /* Standardization status */
 
-.standardization_status:not([title^="W3C"]) {
+.standardization_status:not([title^="W3C"]):not([title="Deprecated"]) {
 	position: absolute;
 	top: 0;
 	right: 0;
