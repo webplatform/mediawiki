@@ -13,6 +13,6 @@
 <use xlink:href="#rec-track" y="300" stroke-dasharray="180, 999" />
 <use xlink:href="#rec-track" y="400" stroke-dasharray="225, 999" />
 <use xlink:href="#rec-track" y="500" />
-<use xlink:href="#circle" y="600" stroke="#012" stroke-opacity=".3" stroke-dasharray="1, 25" />
+<use xlink:href="#circle" y="600" stroke="#012" stroke-opacity=".3" stroke-dasharray="8, 25" />
 
 </svg>
