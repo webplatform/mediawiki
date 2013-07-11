@@ -1,5 +1,5 @@
 <?xml version="1.0" standalone="no"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 800">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 900">
 
 <defs>
 	<circle id="circle" cx="50" cy="50" r="42" transform="rotate(-90,50,50)" stroke-width="16" fill="none" stroke-linecap="round" />
@@ -15,5 +15,6 @@
 <use xlink:href="#rec-track" y="500" />
 <use xlink:href="#rec-track" y="600" stroke-dasharray="14, 30" /> <!-- Mixed -->
 <use xlink:href="#circle" y="700" stroke="#012" stroke-opacity=".3" stroke-dasharray="8, 25" /> <!-- Deprecated -->
+<use xlink:href="#circle" stroke="#e00" /> <!-- Non-Standard -->
 
 </svg>

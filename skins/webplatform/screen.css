@@ -1432,7 +1432,7 @@ span.editsection a {
 	padding: 15px;
 	background: url(http://docs.webplatform.org/w/skins/webplatform/images/standardization-status.svg)
 	            hsl(40, 34%, 88%);
-	background-size: 100% 800%;
+	background-size: 100% 900%;
 	margin: 13px 0 15px;
 	white-space: nowrap;
 	border-radius: 50%;
@@ -1470,6 +1470,10 @@ span.editsection a {
 	.standardization_status[title="Deprecated"] {
 		background-position: 0 -700%;
 	}
+	
+	.standardization_status[title="Non-Standard"] {
+		background-position: 0 -800%;
+	}
 
 		.standardization_status:before {
 			content: url(http://docs.webplatform.org/w/skins/webplatform/images/w3c-small.svg);
@@ -1498,6 +1502,15 @@ span.editsection a {
 		
 		.standardization_status[title^="W3C Recommendation"]:after {
 			top: -3px;	
+		}
+		
+		.standardization_status[title^="Non-Standard"]:after {
+			content: '✕';
+			position: absolute;
+			top: .6em; right: 0; left: 0;
+			text-align: center;
+			font: 20px/1 sans-serif;
+			color: #e00;
 		}
 
 /* flags */
