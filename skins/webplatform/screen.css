@@ -1426,19 +1426,18 @@ span.editsection a {
 
 .standardization_status {
 	position: relative;
-	float: right; 
+	float: right;
 	width: 13px;
 	height: 13px;
 	padding: 15px;
 	background: url(http://docs.webplatform.org/w/skins/webplatform/images/standardization-status.svg)
 	            hsl(40, 34%, 88%);
-	background-size: 100% 900%;
+	background-size: 100% 700%;
 	margin: 13px 0 15px;
 	white-space: nowrap;
 	border-radius: 50%;
 	font-size: 0;
 	color: transparent;
-	text-shadow: 0 1px 1px white;
 	box-shadow: 0 -1px 2px 1px hsla(40, 34%, 30%, .2) inset,
 	            0 1px white, 0 0 0 10px #f9f7f3;
 }
@@ -1460,19 +1459,35 @@ span.editsection a {
 	}
 	
 	.standardization_status[title="W3C Recommendation"] {
-		background-position: 0 -500%;
+		background-image: none;
+		box-shadow: 
+		        0 -1px 2px 1px hsla(40, 34%, 30%, .2) inset,
+		        0 0 0 7px #005A9C inset,
+	            0 1px white, 0 0 0 10px #f9f7f3;
 	}
 	
 	.standardization_status[title="Mixed"] {
-		background-position: 0 -600%;
+		background-position: 0 -500%;
 	}
 	
 	.standardization_status[title="Deprecated"] {
-		background-position: 0 -700%;
+		background-position: 0 -600%;
 	}
 	
 	.standardization_status[title="Non-Standard"] {
-		background-position: 0 -800%;
+		background-image: none;
+		box-shadow: 
+		        0 -1px 2px 1px hsla(40, 34%, 30%, .2) inset,
+		        0 0 0 7px #e00 inset,
+	            0 1px white, 0 0 0 10px #f9f7f3;
+	}
+	
+	.standardization_status[title="De Facto Standard"] {
+		background-image: none;
+		box-shadow: 
+		        0 -1px 2px 1px hsla(40, 34%, 30%, .2) inset,
+		        0 0 0 7px hsl(80, 75%, 40%) inset,
+	            0 1px white, 0 0 0 10px #f9f7f3;
 	}
 
 		.standardization_status:before {
@@ -1504,7 +1519,9 @@ span.editsection a {
 			top: -3px;	
 		}
 		
-		.standardization_status[title^="Non-Standard"]:after {
+		.standardization_status[title^="Non-Standard"]:after,
+		.standardization_status[title^="De Facto Standard"]:after,
+		.standardization_status[title^="Experimental"]:after {
 			content: '✕';
 			position: absolute;
 			top: .6em; right: 0; left: 0;
