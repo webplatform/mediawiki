@@ -1433,7 +1433,7 @@ span.editsection a {
 	background: url(http://docs.webplatform.org/w/skins/webplatform/images/standardization-status.svg)
 	            hsl(40, 34%, 88%);
 	background-size: 100% 700%;
-	margin: 13px 0 15px;
+	margin: 13px 0 15px 10px;
 	white-space: nowrap;
 	border-radius: 50%;
 	font-size: 0;
@@ -1486,7 +1486,7 @@ span.editsection a {
 		background-image: none;
 		box-shadow: 
 		        0 -1px 2px 1px hsla(40, 34%, 30%, .2) inset,
-		        0 0 0 7px hsl(80, 75%, 40%) inset,
+		        0 0 0 7px #1f9374 inset,
 	            0 1px white, 0 0 0 10px #f9f7f3;
 	}
 
