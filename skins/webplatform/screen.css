@@ -1834,11 +1834,12 @@ td, th {
 	  opacity: 0.4;
 	}
 
-#footer-title{
-   font-family: Bitter;
-   font-weight: bold;
-   font-size: 24px;
+#footer-title {
 	display: block;
+	font: bold 24px Bitter, serif;
+}
+
+#footer-title:not(:only-child) {
 	margin-top: 1em;
 }
 
