@@ -1824,23 +1824,19 @@ td, th {
 }
 
 	#footer-wordmark > a.license {
-	  display: block;
+		display: block;
+		margin-bottom: 1em;
 	}
 
-	#footer-wordmark > a.license > img {
-	  width: 120px;
-	  height: 42px;
-	  box-shadow: 0 0 1px #A7A9AC;
-	  opacity: 0.4;
-	}
+		#footer-wordmark > a.license > img {
+		  width: 120px;
+		  height: 42px;
+		  opacity: .4;
+		}
 
 #footer-title {
 	display: block;
 	font: bold 24px Bitter, serif;
-}
-
-#footer-title:not(:only-child) {
-	margin-top: 1em;
 }
 
 #footer-title-light{
@@ -1892,6 +1888,12 @@ footer ul.stewards {
 		vertical-align: top;
 		max-width: 650px;
 		padding-left: 100px;
+	}
+}
+
+@media (max-width: 880px) {
+	footer ul.stewards {
+		margin-top: 1em;
 	}
 }
 		
