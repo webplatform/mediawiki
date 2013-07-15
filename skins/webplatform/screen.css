@@ -1309,44 +1309,6 @@ html.with-doc #main-content {
 	padding-top: 20px;
 }
 
-#mw-footer{
-	padding: 40px 0;
-	border-top: 1px solid #f1eddf;
-	background-color: #efeadd;
-}
-
-	#mw-footer a {
-		color: inherit;
-	}
-
-
-#footer-wordmark {
-  position: absolute;
-}
-
-	#footer-wordmark > a.license {
-	  display: block;
-	}
-
-	#footer-wordmark > a.license > img {
-	  width: 120px;
-	  height: 42px;
-	  box-shadow: 0 0 1px #A7A9AC;
-	  opacity: 0.4;
-	}
-
-#footer-title{
-   font-family: Bitter;
-   font-weight: bold;
-   font-size: 24px;
-	display: block;
-	margin-top: 1em;
-}
-
-#footer-title-light{
-	color: #9f9c97;
-}
-
 #pt-userpage a, 
 #pt-login a {
 	padding-left: 20px;
@@ -1844,19 +1806,49 @@ td, th {
 			color: inherit;
 		}
 
+/* Footer */
+
+#mw-footer{
+	padding: 40px 0;
+	border-top: 1px solid #f1eddf;
+	background-color: #efeadd;
+}
+
+	#mw-footer a {
+		color: inherit;
+	}
+
+
+#footer-wordmark {
+  
+}
+
+	#footer-wordmark > a.license {
+	  display: block;
+	}
+
+	#footer-wordmark > a.license > img {
+	  width: 120px;
+	  height: 42px;
+	  box-shadow: 0 0 1px #A7A9AC;
+	  opacity: 0.4;
+	}
+
+#footer-title{
+   font-family: Bitter;
+   font-weight: bold;
+   font-size: 24px;
+	display: block;
+	margin-top: 1em;
+}
+
+#footer-title-light{
+	color: #9f9c97;
+}
+
 footer ul.stewards {
 	padding: 0;
 	margin: 0;
-}
-
-@media (min-width: 880px) {
-	footer ul.stewards {
-		padding: 0;
-		float: right;
-		max-width: 650px;
-		margin: -2.5em 0 0 220px;
-		padding: 2em 0;
-	}
 }
 
 	footer ul.stewards > li {
@@ -1887,6 +1879,20 @@ footer ul.stewards {
 		footer ul.stewards > li.steward-nokia > a { background-position: -248px -60px; }
 		footer ul.stewards > li.steward-mozilla > a { background-position: -372px -60px; }
 		footer ul.stewards > li.steward-opera > a { background-position: -496px -60px; }
+		
+@media (min-width: 880px) {
+	#footer-wordmark {
+		display: table-cell;
+		vertical-align: top;	
+	}
+	
+	footer ul.stewards {
+		display: table-cell;
+		vertical-align: top;
+		max-width: 650px;
+		padding-left: 100px;
+	}
+}
 		
 /* Comments link - General */
 .comment-count {
