@@ -845,18 +845,12 @@ ol.breadcrumbs {
 				content: '';
 				position: absolute;
 				right: 2px;
-				top: -1px;
-				bottom: -1px;
+				top: 0;
+				bottom: 0;
 				z-index: 3;
 				padding: 1em .6em;
 				border: inherit;
 				border-right-width: 1px;
-			}
-			
-			/* No idea why the first breadcrumb needs different offsets :( */
-			ol.breadcrumbs > li:first-child > a::before {
-				top: 0;
-				bottom: 0;
 			}
 			
 		ol.breadcrumbs > li:last-child > a,
