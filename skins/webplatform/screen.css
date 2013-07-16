@@ -1298,7 +1298,7 @@ html.with-doc #main-content {
 	padding-right: 0;
 }
 	
-@media all and (max-width: 1400px) {
+@media screen and (max-width: 1400px) {
 	html.with-toc #main-content {
 		padding-right: 220px;
 	}
