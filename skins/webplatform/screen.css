@@ -1,3 +1,5 @@
+} /* Close added @media screen { */
+
 @font-face{
 	font-family: 'Gudea';
 	font-weight: normal;
@@ -1298,7 +1300,7 @@ html.with-doc #main-content {
 	padding-right: 0;
 }
 	
-@media screen and (max-width: 1400px) {
+@media s and (max-width: 1400px) {
 	html.with-toc #main-content {
 		padding-right: 220px;
 	}
@@ -2733,3 +2735,5 @@ dl.compat-list dd {
   background: url(../w/images/d/d3/WPD-API-32px.png);
 }
 /* END layout rules for topic container boxes on landing page prototypes (chrisdavidmills) */
+
+@media screen { /* Balance added } */
