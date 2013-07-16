@@ -2627,23 +2627,31 @@ dl.compat-list dd {
 	}
 	
 /* BEGIN layout rules for topic container boxes on landing page prototypes (chrisdavidmills) */
-.topic-container > .long-topic {
-  float: left;
-  width: 290px;
-  height: 170px;
-  padding: 0 5px;
-}
- 
+
+.topic-container > .long-topic,
 .topic-container > .short-topic {
-  float: left;
-  width: 290px;
-  height: 100px;
-  padding: 0 5px;
+	padding: 0 5px;
 }
- 
-.topic-container .inner {
-  float:right;
-  width: 240px;
+
+@media (min-width: 400px) {
+	.topic-container > .long-topic,
+	.topic-container > .short-topic {
+		float: left;
+		width: 290px;
+	}
+	
+	.topic-container > .long-topic {
+		height: 170px;
+	}
+	 
+	.topic-container > .short-topic {
+		height: 100px;
+	}
+	
+	.topic-container .inner {
+	  float:right;
+	  width: 240px;
+	}
 }
  
 .topic-container .inner h3 {
