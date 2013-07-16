@@ -2633,7 +2633,7 @@ dl.compat-list dd {
 	padding: 0 5px;
 }
 
-@media (min-width: 400px) {
+@media (min-width: 870px) {
 	.topic-container > .long-topic,
 	.topic-container > .short-topic {
 		float: left;
