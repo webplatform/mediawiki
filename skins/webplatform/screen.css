@@ -809,48 +809,124 @@ ol.breadcrumbs {
 	}
 	
 	ol.breadcrumbs > li {
-	   float: left; 
+	   float:left;
 	   position: relative;
+	   margin: 0;
 	}
 	
 		ol.breadcrumbs > li:first-child {
-		   margin-left: 2em;
+		   margin-left: 1em;
 		   border-left: solid 2px #ded8c9;
 		}
-	
-		ol.breadcrumbs > li:nth-child(1) { z-index: 90; }
-		ol.breadcrumbs > li:nth-child(2) { z-index: 80; }
-		ol.breadcrumbs > li:nth-child(3) { z-index: 70; }
-		ol.breadcrumbs > li:nth-child(4) { z-index: 60; }
-		ol.breadcrumbs > li:nth-child(5) { z-index: 50; }
-		ol.breadcrumbs > li:nth-child(6) { z-index: 40; }
-		ol.breadcrumbs > li:nth-child(7) { z-index: 30; }
-		ol.breadcrumbs > li:nth-child(8) { z-index: 20; }
-		ol.breadcrumbs > li:nth-child(9) { z-index: 10; }
+		
+		ol.breadcrumbs > li > a,
+		ol.breadcrumbs > li:not(:last-child) > a::before {
+			border: 1px solid #ded8c9;
+			border-width: 1px 0;
+			background-color: #F0EBDD;
+		}
 	
 		ol.breadcrumbs > li > a {
-		   border: thin solid #ded8c9;
-		   margin-left: -1.5em;
-		   padding: .6em 1em .6em 2em;
-		   box-shadow: 0 0 0 1px #f7f1e0 inset;
-		   background-color: #F0EBDD;
-		   border-radius: 0 1.5em 1.5em 0;
+		   padding: .6em 1.5em .6em .4em;
+		   margin-left: -1px;
+		   box-shadow: 0 1px hsla(0,0%,100%,.5) inset, 0 -1px hsla(0,0%,100%,.8) inset;
+		}
+		
+		ol.breadcrumbs > li:not(:last-child) > a::before,
+		ol.breadcrumbs > li:last-child > a {
+			border-radius: 1.2em;
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+			box-shadow: 0 1px hsla(0,0%,100%,.5) inset, 0 -1px hsla(0,0%,100%,.8) inset, -1px 0 hsla(0,0%,100%,.8) inset;
+		}
+			
+			/* The curved part, idea by @wernull */
+			ol.breadcrumbs > li:not(:last-child) > a::before {
+				content: '';
+				position: absolute;
+				right: 2px;
+				top: -1px;
+				bottom: -1px;
+				z-index: 3;
+				padding: 1em .6em;
+				border: inherit;
+				border-right-width: 1px;
+			}
+			
+			/* No idea why the first breadcrumb needs different offsets :( */
+			ol.breadcrumbs > li:first-child > a::before {
+				top: 0;
+				bottom: 0;
+			}
+			
+		ol.breadcrumbs > li:last-child > a,
+		ol.breadcrumbs > li:last-child > ul {
+			background-color: #f9f7f3;
 		}
 		
 		ol.breadcrumbs > li:last-child > a {
-		   background-color: #f9f7f3;
+		   border-right-width: 1px;
+		   box-shadow: 0 1px hsla(0,0%,100%,.5) inset, 0 -1px hsla(0,0%,100%,.8) inset, -1px 0 white inset;
+		}
+		
+		/* Remove the highlight gradient .dropdowns have */
+		ol.breadcrumbs > li:hover:not(:nth-last-child(2)) > a:not(:last-child),
+		ol.breadcrumbs > li.focus:not(:nth-last-child(2)) > a:not(:last-child) {
+			background-image: none;
+		}
+		
+		/* Remove the color showing from the previous breadcrumb */
+		ol.breadcrumbs > li:nth-last-child(2) > a {
+			background-image: linear-gradient(to left, #f9f7f3 100%, transparent);
+			background-repeat: no-repeat;
+			background-size: 1em 100%;
+			background-position: right;
+		}
+		
+		/* Inner left "border" */
+		ol.breadcrumbs > li:first-child > a {
+			box-shadow: 0 1px #f7f1e0 inset, 0 -1px #f7f1e0 inset, 1px 0 #f7f1e0 inset;
 		}
 		
 		ol.breadcrumbs > li:hover > a:not(:last-child),
-		ol.breadcrumbs > li.focus > a:not(:last-child) {
+		ol.breadcrumbs > li.focus > a:not(:last-child),
+		ol.breadcrumbs > li:hover > a:not(:last-child):before,
+		ol.breadcrumbs > li.focus > a:not(:last-child):before {
 			border-bottom-right-radius: 0;
 			border-bottom-color: transparent;
+		}
+		
+		/* Remove bottom shadow on hover/focus */
+		ol.breadcrumbs > li:not(:last-child):hover > a:not(:last-child),
+		ol.breadcrumbs > li:not(:last-child).focus > a:not(:last-child) {
+			box-shadow: 0 1px hsla(0,0%,100%,.5) inset;
+		}
+		
+		ol.breadcrumbs > li:not(:last-child):hover > a:not(:last-child):before,
+		ol.breadcrumbs > li:not(:last-child).focus > a:not(:last-child):before {
+			box-shadow: 0 1px hsla(0,0%,100%,.5) inset, -1px 0 hsla(0,0%,100%,.8) inset;
+		}
+		
+		ol.breadcrumbs > li:last-child:hover > a:not(:last-child),
+		ol.breadcrumbs > li:last-child.focus > a:not(:last-child) {
+			box-shadow: 0 1px hsla(0,0%,100%,.5) inset, -1px 0 white inset;
+		}
+		
+		/* Hide bottom border from previous breadcrumb */
+		ol.breadcrumbs > li:hover > a:not(:last-child):after,
+		ol.breadcrumbs > li.focus > a:not(:last-child):after {
+			content: '';
+			position: absolute;
+			left: -.8em;
+			bottom: -1px;
+			width: 1.2em;
+			height: 2px;
+			background-color: inherit;
 		}
 	
 	ol.breadcrumbs li a {
 	   display: block;
 	}
-	
 	
 		ol.breadcrumbs > li:first-child > a {
 		   padding-left: 1em;
@@ -903,9 +979,7 @@ ol.breadcrumbs {
 	white-space: nowrap;
 }
 
-.toolbar .button,
-ol.breadcrumbs > li > a:not(:only-child):hover,
-ol.breadcrumbs > li > a:not(:only-child):focus {
+.toolbar .button {
 	background-image: -webkit-linear-gradient(hsla(0,0%,100%,.5), hsla(0,0%,100%,0));
 	background-image: -moz-linear-gradient(hsla(0,0%,100%,.5), hsla(0,0%,100%,0));
 	background-image: -o-linear-gradient(hsla(0,0%,100%,.5), hsla(0,0%,100%,0));
@@ -964,7 +1038,7 @@ ol.breadcrumbs > li > a:not(:only-child):focus {
 
 .dropdown:hover,
 .dropdown.focus {
-	z-index: 100;
+	z-index: 101;
 }
 
 	.dropdown > a.button {
