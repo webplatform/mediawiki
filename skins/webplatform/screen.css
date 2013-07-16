@@ -2653,6 +2653,19 @@ dl.compat-list dd {
 	  width: 240px;
 	}
 }
+
+@media (max-width: 870px) {
+	.topic-container > .long-topic {
+		margin: 10px 0;
+	}
+}
+
+.topic-container.editors .inner {
+	border:1px solid #b8860b;
+	padding:5px 5px 5px 10px;
+	border-radius:5px;
+	min-height:150px;
+}
  
 .topic-container .inner h3 {
   padding:0;
