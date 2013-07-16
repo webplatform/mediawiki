@@ -1300,7 +1300,7 @@ html.with-doc #main-content {
 	padding-right: 0;
 }
 	
-@media s and (max-width: 1400px) {
+@media print, (max-width: 1400px) {
 	html.with-toc #main-content {
 		padding-right: 220px;
 	}
@@ -1317,7 +1317,7 @@ html.with-doc #main-content {
 		}
 }
 
-@media (max-width: 700px) {
+@media print, (max-width: 700px) {
 	html.with-toc #main-content {
 		padding-right: 0;
 	}
@@ -1331,7 +1331,7 @@ html.with-doc #main-content {
 	}
 }
 
-@media (max-width: 700px) and (min-width: 500px) {
+@media print, (max-width: 700px) and (min-width: 500px) {
 	#sidebar > ol {
 		-moz-column-count: 2;
 		-webkit-column-count: 2;
