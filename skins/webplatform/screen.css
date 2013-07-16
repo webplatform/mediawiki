@@ -2625,3 +2625,81 @@ dl.compat-list dd {
 	.languages a {
 		text-decoration: none !important;
 	}
+	
+/* BEGIN layout rules for topic container boxes on landing page prototypes (chrisdavidmills) */
+.topic-container > .long-topic {
+  float: left;
+  width: 290px;
+  height: 170px;
+  padding: 0 5px;
+}
+ 
+.topic-container > .short-topic {
+  float: left;
+  width: 290px;
+  height: 100px;
+  padding: 0 5px;
+}
+ 
+.topic-container .inner {
+  float:right;
+  width: 240px;
+}
+ 
+.topic-container .inner h3 {
+  padding:0;
+  margin:0;
+  border-bottom:none;
+}
+ 
+.topic-container .image {
+  width: 32px;
+  height:32px;
+  float: left;
+  margin: 4px 8px 8px 0;
+}
+ 
+.clearfixboth {
+  clear: both;
+}
+ 
+.icon-accessibility {
+  background: url(../w/images/7/7b/WPD-Accessibility-32px.png);
+}
+ 
+.icon-beginners {
+  background: url(../w/images/8/8a/WPD-Beginners-32px.png);
+}
+ 
+.icon-concept {
+  background: url(../w/images/8/83/WPD-Concepts-32px.png);
+}
+ 
+.icon-css {
+  background: url(../w/images/7/74/WPD-CSS-32px.png);
+}
+ 
+.icon-dom {
+  background: url(../w/images/a/ae/WPD-DOM-32px.png);
+}
+ 
+.icon-html {
+  background: url(../w/images/d/d1/WPD-HTML-B-32px.png);
+}
+ 
+.icon-html5 {
+  background: url(../w/images/2/26/WPD-HTML5-32px.png);
+}
+ 
+.icon-js {
+  background: url(../w/images/4/4c/WPD-JS-32px.png);
+}
+ 
+.icon-svg {
+  background: url(../w/images/d/db/WPD-SVG-32px.png);
+}
+ 
+.icon-api {
+  background: url(../w/images/d/d3/WPD-API-32px.png);
+}
+/* END layout rules for topic container boxes on landing page prototypes (chrisdavidmills) */
