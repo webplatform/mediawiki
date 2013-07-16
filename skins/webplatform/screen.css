@@ -871,6 +871,7 @@ ol.breadcrumbs {
 		
 		/* Remove the color showing from the previous breadcrumb */
 		ol.breadcrumbs > li:nth-last-child(2) > a {
+			background-image: -webkit-linear-gradient(right, #f9f7f3 100%, transparent);
 			background-image: linear-gradient(to left, #f9f7f3 100%, transparent);
 			background-repeat: no-repeat;
 			background-size: 1em 100%;
@@ -1297,7 +1298,7 @@ html.with-doc #main-content {
 	padding-right: 0;
 }
 	
-@media (max-width: 1400px) {
+@media all and (max-width: 1400px) {
 	html.with-toc #main-content {
 		padding-right: 220px;
 	}
