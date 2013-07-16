@@ -2648,9 +2648,13 @@ dl.compat-list dd {
 		height: 100px;
 	}
 	
-	.topic-container .inner {
-	  float:right;
-	  width: 240px;
+	.topic-container .image + .inner {
+		float:right;
+		width: 240px;
+	}
+	
+	.topic-container.editors .inner {
+		min-height:150px;	
 	}
 }
 
@@ -2662,9 +2666,8 @@ dl.compat-list dd {
 
 .topic-container.editors .inner {
 	border: 1px solid white;
-	padding:5px 5px 5px 10px;
-	border-radius:5px;
-	min-height:150px;
+	padding: 5px 5px 5px 10px;
+	border-radius: .5em;
 	box-shadow: -1px -1px rgba(0,0,0,.1), -1px -1px rgba(0,0,0,.1) inset;
 }
  
