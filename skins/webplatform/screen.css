@@ -2661,17 +2661,22 @@ dl.compat-list dd {
 }
 
 .topic-container.editors .inner {
-	border:1px solid #b8860b;
+	border: 1px solid white;
 	padding:5px 5px 5px 10px;
 	border-radius:5px;
 	min-height:150px;
+	box-shadow: -1px -1px rgba(0,0,0,.1), -1px -1px rgba(0,0,0,.1) inset;
 }
  
-.topic-container .inner h3 {
-  padding:0;
-  margin:0;
-  border-bottom:none;
-}
+	.topic-container .inner h3 {
+	  padding:0;
+	  margin:0;
+	  border-bottom:none;
+	}
+	
+	.topic-container.editors .inner h3 a {
+		color: #d75f1e;	
+	}
  
 .topic-container .image {
   width: 32px;
