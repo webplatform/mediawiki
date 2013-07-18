@@ -745,23 +745,29 @@ ul.links{
 	background: white;
 }
 
-#sitenav a, #sitenav a:visited{
+#sitenav a {
 	padding-right: 20px;
 	font-family: Bitter;
 	font-weight: bold;
 	font-size: 16px;
 	text-decoration: none;
-	color: #58595b;
-	text-shadow: 1px 1px 1px #dad5c8;
 	-webkit-transition: all .2s;
+	transition: all .2s;
 }
 
-#sitenav a:hover{
+#sitenav a,
+.page-WPD_Editors_Guide #sitenav li:first-child a {
+	color: #58595b;
+	text-shadow: 1px 1px 1px #dad5c8;
+}
+
+#sitenav a:hover {
 	color: #2dafbc;
 	text-shadow: 1px 1px 1px white;
 }
 
-#sitenav a.active{
+#sitenav a.active,
+.page-WPD_Editors_Guide #sitenav a[href$="WPD:Editors_Guide"] {
 	color: #d37e00;
 	text-shadow: 1px 1px 1px white;
 }
