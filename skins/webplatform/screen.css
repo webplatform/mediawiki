@@ -755,8 +755,7 @@ ul.links{
 	transition: all .2s;
 }
 
-#sitenav a,
-.page-WPD_Editors_Guide #sitenav li:first-child a {
+#sitenav a {
 	color: #58595b;
 	text-shadow: 1px 1px 1px #dad5c8;
 }
@@ -766,7 +765,7 @@ ul.links{
 	text-shadow: 1px 1px 1px white;
 }
 
-#sitenav a.active,
+body:not(.page-WPD_Editors_Guide) #sitenav a.active,
 .page-WPD_Editors_Guide #sitenav a[href$="WPD:Editors_Guide"] {
 	color: #d37e00;
 	text-shadow: 1px 1px 1px white;
