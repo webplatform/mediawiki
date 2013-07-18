@@ -49,6 +49,20 @@ function init() {
     		pre.appendChild(code);
     	}
     	
+    	// Syntax highlighting for <pre>s without <code>
+    	var pres = document.querySelectorAll('pre[class*="language-"], pre[class*="lang-"]');
+    	
+    	for (var i=0, pre; pre = pres[i++];) {
+    		if (pre.childElementCount === 0) {
+    			// No element children, only text nodes. Wrap in <code>
+    			var code = document.createElement('code');
+    			code.className = pre.className;
+    			code.innerHTML = pre.innerHTML;
+    			pre.innerHTML = '';
+    			pre.appendChild(code);
+    		}
+    	}
+    	
     	var prism = document.createElement('script');
     	prism.src = '/t/skins/webplatform/prism.js';
     	document.head.appendChild(prism);
