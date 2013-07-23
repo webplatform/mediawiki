@@ -79,7 +79,7 @@ html{
 	background-color: #efeadd;
 }
 
-body{
+body {
 	color: #3C3C3C; /* #58595b; */
 	font-family: Gudea, Arial, sans-serif;
 	font-size: 14px;
@@ -87,6 +87,8 @@ body{
 	padding: 0;
 	background: #ece5d7;
 	background-image: url(skins/webplatform/images/bg-pattern.png);
+	widows: 2;
+	orphans: 2;
 }
 
 h1, h2, h3, h4, h5{
@@ -540,9 +542,15 @@ table.floatleft {
 	clear: left;
 }
 
-#p-search{
+#p-search {
 	display: inline-block;
 	position: relative;
+}
+
+@media print {
+	#p-personal, #p-search {
+		display: none;
+	}
 }
 
 	#search input[type="text"],
@@ -689,12 +697,18 @@ input:focus
 		box-shadow: 1px 1px 1px #cbc6ba;
 	}
 
-#sitenav{
+#sitenav {
 	background-color: #ece5d7;
 	background-image: url(skins/webplatform/images/nav-bg.png);
 	background-position: bottom;
 	background-repeat: repeat-x;
 	padding: 30px 0px 35px;
+}
+
+@media print {
+	#sitenav {
+		display: none;
+	}
 }
 
 .mediawiki ul li {
@@ -951,6 +965,12 @@ ol.breadcrumbs {
 
 .tool-area {
 	padding: 10px 0;
+}
+
+@media print {
+	.tool-area {
+		display: none;
+	}
 }
 
 	.tool-area a {
@@ -1305,7 +1325,7 @@ html.with-doc #main-content {
 	padding-right: 0;
 }
 	
-@media print, (max-width: 1400px) {
+@media screen and (max-width: 1400px) {
 	html.with-toc #main-content {
 		padding-right: 220px;
 	}
@@ -1322,7 +1342,7 @@ html.with-doc #main-content {
 		}
 }
 
-@media print, (max-width: 700px) {
+@media screen and (max-width: 700px) {
 	html.with-toc #main-content {
 		padding-right: 0;
 	}
@@ -1336,11 +1356,17 @@ html.with-doc #main-content {
 	}
 }
 
-@media print, (max-width: 700px) and (min-width: 500px) {
+@media screen and (max-width: 700px) and (min-width: 500px) {
 	#sidebar > ol {
 		-moz-column-count: 2;
 		-webkit-column-count: 2;
 		column-count: 2;
+	}
+}
+
+@media print {
+	#sidebar {
+		display: none;
 	}
 }
 
@@ -1536,35 +1562,44 @@ span.editsection a {
 			text-align: center;
 		}
 		
-		.standardization_status[title^="W3C Last Call Working Draft"]:after,
-		.standardization_status[title^="W3C Recommendation"]:after {
-			content: '';
-			position: absolute;
-			left: 50%;
-			width: 7px;
-			height: 7px;
-			margin-left: -6.5px;
-			background: white;
-			border: 3px solid #005A9C;
-			border-radius: 50%;
+		@media screen {
+			.standardization_status[title^="W3C Last Call Working Draft"]:after,
+			.standardization_status[title^="W3C Recommendation"]:after {
+				content: '';
+				position: absolute;
+				left: 50%;
+				width: 7px;
+				height: 7px;
+				margin-left: -6.5px;
+				background: white;
+				border: 3px solid #005A9C;
+				border-radius: 50%;
+			}
+			
+			.standardization_status[title^="W3C Last Call Working Draft"]:after {
+				bottom: -3px; 
+			}
+			
+			.standardization_status[title^="W3C Recommendation"]:after {
+				top: -3px;	
+			}
+			
+			.standardization_status[title^="Non-Standard"]:after,
+			.standardization_status[title^="De Facto Standard"]:after,
+			.standardization_status[title^="Experimental"]:after {
+				content: '';
+				position: absolute;
+				top: 50%; right: 8px; left: 8px;
+				border-top: 4px hsla(0, 100%, 40%, .8) solid;
+				margin-top: -3px;
+			}
 		}
 		
-		.standardization_status[title^="W3C Last Call Working Draft"]:after {
-			bottom: -3px; 
-		}
-		
-		.standardization_status[title^="W3C Recommendation"]:after {
-			top: -3px;	
-		}
-		
-		.standardization_status[title^="Non-Standard"]:after,
-		.standardization_status[title^="De Facto Standard"]:after,
-		.standardization_status[title^="Experimental"]:after {
-			content: '';
-			position: absolute;
-			top: 50%; right: 8px; left: 8px;
-			border-top: 4px hsla(0, 100%, 40%, .8) solid;
-			margin-top: -3px;
+		@media print {
+			.standardization_status:after {
+				content: attr(title);
+				text-transform: uppercase;
+			}
 		}
 
 /* flags */
@@ -2239,6 +2274,12 @@ pre[data-line] {
 	position: relative;
 	margin: 3em -26px 0;
 	box-shadow: 0 5px 12px -5px hsla(43, 24%, 20%,.8);
+}
+
+@media print {
+	.topics-nav {
+		display: none;
+	}
 }
 	
 	.topics-nav > ul {
