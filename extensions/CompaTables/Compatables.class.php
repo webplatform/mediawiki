@@ -28,15 +28,18 @@ class Compatables {
 
 		if ( $wgCompatablesUseESI ) {
 			// @TODO: this breaks in ESI level if $url ends up http for https views
-			$url = SpecialPage::getTitleFor( 'Compatables' )->getFullUrl(
-				array( 'feature' => $args['feature'], 'format' => $args['format'], 'esi' => 1 ) );
+			$url = SpecialPage::getTitleFor( 'Compatables' )->getFullUrl( array(
+				'feature' => $args['feature'], 'format' => $args['format'], 'foresi' => 1 ) );
 			$url = wfExpandUrl( $url, PROTO_INTERNAL );
+			// @TODO: if the JSON file is always updated the same day of the week, one
+			// could do some math here to avoid IMS GETs from CDN.
+			$ttl = 3600; // revalidate TTL
 
-			// @TODO: Varnish does not support <esi:try> nor alt fallback URLs or content
+			// @TODO: Varnish does not support <esi:try> nor alt fallback URLs
 			// (https://www.varnish-cache.org/docs/3.0/tutorial/esi.html)
 			$out .= self::getUniqPlaceholder( // protect from Tidy
 				"\n<!--esi\n" .
-				Xml::element( 'esi:include', array( 'src' => $url, 'ttl' => 3600 ) ) . "\n" .
+				Xml::element( 'esi:include', array( 'src' => $url, 'ttl' => $ttl ) ) . "\n" .
 				"-->\n" .
 				"<esi:remove>\n" .
 				$table . "\n" . // fallback if no ESI interpreter is around
@@ -47,9 +50,7 @@ class Compatables {
 			$out .= self::getUniqPlaceholder( // protect from Tidy
 				"\n<esi:try>\n" .
 				"<esi:attempt>\n" .
-				// @TODO: if the JSON file is always updated the same day of the week, one
-				// could do some math here to avoid IMF GETs from CDN.
-				Xml::element( 'esi:include', array( 'src' => $url, 'ttl' => 3600 ) ) . "\n" .
+				Xml::element( 'esi:include', array( 'src' => $url, 'ttl' => $ttl ) ) . "\n" .
 				"</esi:attempt>\n" .
 				"<esi:except>\n" .
 				// If this ends up with an error *or* no ESI interpreter is active, this
@@ -109,18 +110,12 @@ class Compatables {
 	}
 
 	/**
-	 * @TODO: maybe store the json file in FileBackend
-	 * @return string jSON URL which should be requested
-	 */
-	private static function getJsonDataUrl() {
-		return 'http://docs.webplatform.org/compat/data.json';
-	}
-
-	/**
 	 * @return array
 	 */
 	public static function getCompatablesJson() {
-		$json_url = self::getJsonDataUrl();
+		global $wgCompatablesJsonFileUrl;
+
+		$json_url = $wgCompatablesJsonFileUrl;
 		$req = MWHttpRequest::factory( $json_url, array( 'method' => 'GET' ) );
 		$status = $req->execute();
 		if ( $status->isOK() ) {
@@ -138,7 +133,9 @@ class Compatables {
 	 * @return string
 	 */
 	public static function getCompatablesJsonTimestamp() {
-		$json_url = self::getJsonDataUrl();
+		global $wgCompatablesJsonFileUrl;
+
+		$json_url = $wgCompatablesJsonFileUrl;
 		$req = MWHttpRequest::factory( $json_url, array( 'method' => 'HEAD' ) );
 		$status = $req->execute();
 		if ( $status->isOK() ) {

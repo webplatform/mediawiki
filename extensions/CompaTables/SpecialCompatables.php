@@ -11,8 +11,9 @@ class SpecialCompatables extends UnlistedSpecialPage {
 		$this->setHeaders();
 
 		// Handle purge requests from admins...
-		// @TODO: Varnish, which only supports a few bits of ESI
+		// @TODO: Varnish, which only supports a few bits of ESI, can not handle this
 		// (https://www.varnish-cache.org/docs/3.0/tutorial/esi.html)
+		// (https://www.varnish-cache.org/trac/wiki/Future_ESI)
 		if ( $this->getRequest()->getVal( 'action' ) === 'purge' ) {
 			if ( $wgCompatablesUseESI && $this->getUser()->isAllowed( 'purgecompatables' ) ) {
 				// Get the ESI URL prefix to purge
@@ -50,7 +51,7 @@ class SpecialCompatables extends UnlistedSpecialPage {
 			'format'  => $this->getRequest()->getVal( 'format' ) );
 
 		$table = Compatables::generateCompaTable( $data, $args );
-		if ( $this->getRequest()->getBool( 'esi' ) ) {
+		if ( $this->getRequest()->getBool( 'foresi' ) ) {
 			$this->getOutput()->addHtml( "<!DOCTYPE html><html>$table</html>" );
 			$this->getOutput()->setArticleBodyOnly( true );
 		} else {
