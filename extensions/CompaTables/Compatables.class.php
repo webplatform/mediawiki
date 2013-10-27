@@ -33,6 +33,7 @@ class Compatables {
 			$url = wfExpandUrl( $url, PROTO_INTERNAL );
 			// @TODO: if the JSON file is always updated the same day of the week, one
 			// could do some math here to avoid IMS GETs from CDN.
+			// @TODO: Varnish does not support TTL here :/
 			$ttl = 3600; // revalidate TTL
 
 			// @TODO: Varnish does not support <esi:try> nor alt fallback URLs

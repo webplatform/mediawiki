@@ -39,6 +39,8 @@ class SpecialCompatables extends UnlistedSpecialPage {
 			}
 		}
 
+		// 1 hour server-side cache max before revalidate
+		$this->getOutput()->setSquidMaxage( 3600 );
 		// Try to handle IMS GET requests from CDN efficiently
 		$timestamp = Compatables::getCompatablesJsonTimestamp();
 		if ( $this->getOutput()->checkLastModified( $timestamp ) ) {
