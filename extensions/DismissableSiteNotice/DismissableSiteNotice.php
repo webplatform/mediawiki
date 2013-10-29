@@ -4,103 +4,64 @@ if ( !defined( 'MEDIAWIKI' ) ) die();
 $wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,
 	'name' => 'DismissableSiteNotice',
-	'author' => 'Brion Vibber',
+	'author' => array(
+		'Brion Vibber',
+		'Kevin Israel',
+	),
 	'descriptionmsg' => 'sitenotice-desc',
 	'url' => 'https://www.mediawiki.org/wiki/Extension:DismissableSiteNotice',
 );
 
 $wgExtensionMessagesFiles['DismissableSiteNotice'] = __DIR__ . '/DismissableSiteNotice.i18n.php';
 
-function wfDismissableSiteNotice( &$notice ) {
-	global $wgMajorSiteNoticeID, $wgUser, $wgContLang;
+$wgResourceModules['ext.dismissableSiteNotice'] = array(
+	'localBasePath' => __DIR__ . '/modules',
+	'remoteExtPath' => 'DismissableSiteNotice/modules',
+	'scripts' => 'ext.dismissableSiteNotice.js',
+	'styles' => 'ext.dismissableSiteNotice.css',
+	'dependencies' => array(
+		'jquery.cookie',
+		'mediawiki.util',
+	),
+	'position' => 'top',
+);
+
+$wgHooks['SiteNoticeAfter'][] = function( &$notice, $skin ) {
+	global $wgMajorSiteNoticeID;
 
 	if ( !$notice ) {
 		return true;
 	}
 
-	$floatSide = $wgContLang->alignEnd();
-	$oppositeFloatSide = $wgContLang->alignStart();
-	$encNotice = Xml::escapeJsString($notice);
-	$encClose = Xml::escapeJsString( wfMessage( 'sitenotice_close' )->text() );
-	$id = intval( $wgMajorSiteNoticeID ) . "." . intval( wfMessage( 'sitenotice_id' )->inContentLanguage()->text() );
-
 	// No dismissal for anons
-	if ( $wgUser->isAnon() ) {
-		$notice = <<<HTML
-<script type="text/javascript">
-/* <![CDATA[ */
-document.writeln("$encNotice");
-/* ]]> */
-</script>
-HTML;
+	if ( $skin->getUser()->isAnon() ) {
+		// Hide the sitenotice from search engines (see bug 9209 comment 4)
+		// XXX: Does this actually work?
+		$notice = Html::inlineScript( Xml::encodeJsCall( 'document.write', array( $notice ) ) );
 		return true;
 	}
 
-	$notice = <<<HTML
-<script type="text/javascript">
-/* <![CDATA[ */
-var cookieName = "dismissSiteNotice=";
-var cookiePos = document.cookie.indexOf(cookieName);
-var floatSide = "$floatSide";
-var oppositeFloatSide = "$oppositeFloatSide";
-var siteNoticeID = "$id";
-var siteNoticeValue = "$encNotice";
-var cookieValue = "";
-var msgClose = "$encClose";
+	// Cookie value consists of two parts
+	$major = (int) $wgMajorSiteNoticeID;
+	$minor = (int) $skin->msg( 'sitenotice_id' )->inContentLanguage()->text();
 
-if (cookiePos > -1) {
-	cookiePos = cookiePos + cookieName.length;
-	var endPos = document.cookie.indexOf(";", cookiePos);
-	if (endPos > -1) {
-		cookieValue = document.cookie.substring(cookiePos, endPos);
-	} else {
-		cookieValue = document.cookie.substring(cookiePos);
-	}
-}
-if (cookieValue != siteNoticeID) {
-	function dismissNotice() {
-		var date = new Date();
-		date.setTime(date.getTime() + 30*86400*1000);
-		document.cookie = cookieName + siteNoticeID + "; expires="+date.toGMTString() + "; path=/";
-		var element = document.getElementById('mw-dismissable-notice');
-		element.parentNode.removeChild(element);
-	}
+	$out = $skin->getOutput();
+	$out->addModules( 'ext.dismissableSiteNotice' );
+	$out->addJsConfigVars( 'wgSiteNoticeId', "$major.$minor" );
 
-	document.writeln('<div id="mw-dismissable-notice">'
-			+ '<a id="mw-dismissable-notice-close" href="javascript:dismissNotice();" title="' + msgClose + '">☒</a>'
-			+ siteNoticeValue
-		+ '</div>'
+	$notice = Html::rawElement( 'div', array( 'class' => 'mw-dismissable-notice' ),
+		Html::rawElement( 'div', array( 'class' => 'mw-dismissable-notice-close' ),
+			$skin->msg( 'sitenotice_close-brackets' )
+			->rawParams(
+				Html::element( 'a', array( 'href' => '#' ), $skin->msg( 'sitenotice_close' )->text() )
+			)
+			->escaped()
+		) .
+		Html::rawElement( 'div', array( 'class' => 'mw-dismissable-notice-body' ), $notice )
 	);
 
-        /*
-        document.writeln('<div id="mw-dismissable-notice">'
-                        + '<div style="float: ' + floatSide + ';">[<a href="javascript:dismissNotice();">' + msgClose + '</a>]</div>'
-                        + '<div style="margin-top: 0.5em; margin-bottom: 0.5em; margin-' + floatSide
-                        + ': 20%; margin-' + oppositeFloatSide + ': 5em;">' + siteNoticeValue + '</div>'
-                + '</div>'
-        );
-        */
-}
-/* ]]> */
-</script>
-HTML;
-	// Compact the string a bit
-	/*
-	$notice = strtr( $notice, array(
-		"\r\n" => '',
-		"\n" => '',
-		"\t" => '',
-		'cookieName' => 'n',
-		'cookiePos' => 'p',
-		'siteNoticeID' => 'i',
-		'siteNoticeValue' => 'sv',
-		'cookieValue' => 'cv',
-		'msgClose' => 'c',
-		'endPos' => 'e',
-	));*/
 	return true;
-}
+};
 
-$wgHooks['SiteNoticeAfter'][] = 'wfDismissableSiteNotice';
-
+// Default settings
 $wgMajorSiteNoticeID = 1;
