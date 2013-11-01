@@ -3,72 +3,72 @@
 @font-face{
 	font-family: 'Gudea';
 	font-weight: normal;
-	src: url('skins/webplatform/fonts/gudea-regular-webfont.eot');
-	src: url('skins/webplatform/fonts/gudea-regular-webfont.eot?#iefix') format('embedded-opentype'),
-		 url('skins/webplatform/fonts/gudea-regular-webfont.woff') format('woff'),
-		 url('skins/webplatform/fonts/gudea-regular-webfont.ttf') format('truetype'),
-		 url('skins/webplatform/fonts/gudea-regular-webfont.svg#GudeaRegular') format('svg');
+	src: url('http://docs.webplatform.org/w/skins/webplatform/fonts/gudea-regular-webfont.eot');
+	src: url('http://docs.webplatform.org/w/skins/webplatform/fonts/gudea-regular-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('http://docs.webplatform.org/w/skins/webplatform/fonts/gudea-regular-webfont.woff') format('woff'),
+		 url('http://docs.webplatform.org/w/skins/webplatform/fonts/gudea-regular-webfont.ttf') format('truetype'),
+		 url('http://docs.webplatform.org/w/skins/webplatform/fonts/gudea-regular-webfont.svg#GudeaRegular') format('svg');
 }
 
 @font-face{
 	font-family: 'Gudea';
 	font-weight: bold;
-	src: url('skins/webplatform/fonts/gudea-bold-webfont.eot');
-	src: url('skins/webplatform/fonts/gudea-bold-webfont.eot?#iefix') format('embedded-opentype'),
-		 url('skins/webplatform/fonts/gudea-bold-webfont.woff') format('woff'),
-		 url('skins/webplatform/fonts/gudea-bold-webfont.ttf') format('truetype'),
-		 url('skins/webplatform/fonts/gudea-bold-webfont.svg#GudeaRegular') format('svg');
+	src: url('http://docs.webplatform.org/w/skins/webplatform/fonts/gudea-bold-webfont.eot');
+	src: url('http://docs.webplatform.org/w/skins/webplatform/fonts/gudea-bold-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('http://docs.webplatform.org/w/skins/webplatform/fonts/gudea-bold-webfont.woff') format('woff'),
+		 url('http://docs.webplatform.org/w/skins/webplatform/fonts/gudea-bold-webfont.ttf') format('truetype'),
+		 url('http://docs.webplatform.org/w/skins/webplatform/fonts/gudea-bold-webfont.svg#GudeaRegular') format('svg');
 }
 
 @font-face{
 	font-family: 'Gudea';
 	font-weight: normal;
 	font-style: italic;
-	src: url('skins/webplatform/fonts/gudea-italic-webfont.eot');
-	src: url('skins/webplatform/fonts/gudea-italic-webfont.eot?#iefix') format('embedded-opentype'),
-		 url('skins/webplatform/fonts/gudea-italic-webfont.woff') format('woff'),
-		 url('skins/webplatform/fonts/gudea-italic-webfont.ttf') format('truetype'),
-		 url('skins/webplatform/fonts/gudea-italic-webfont.svg#GudeaRegular') format('svg');
+	src: url('http://docs.webplatform.org/w/skins/webplatform/fonts/gudea-italic-webfont.eot');
+	src: url('http://docs.webplatform.org/w/skins/webplatform/fonts/gudea-italic-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('http://docs.webplatform.org/w/skins/webplatform/fonts/gudea-italic-webfont.woff') format('woff'),
+		 url('http://docs.webplatform.org/w/skins/webplatform/fonts/gudea-italic-webfont.ttf') format('truetype'),
+		 url('http://docs.webplatform.org/w/skins/webplatform/fonts/gudea-italic-webfont.svg#GudeaRegular') format('svg');
 }
 
 @font-face{
 	font-family: 'Bitter';
 	font-weight: normal;
-	src: url('skins/webplatform/fonts/bitter-regular-webfont.eot');
-	src: url('skins/webplatform/fonts/bitter-regular-webfont.eot?#iefix') format('embedded-opentype'),
-		 url('skins/webplatform/fonts/bitter-regular-webfont.woff') format('woff'),
-		 url('skins/webplatform/fonts/bitter-regular-webfont.ttf') format('truetype'),
-		 url('skins/webplatform/fonts/bitter-regular-webfont.svg#BitterRegular') format('svg');
+	src: url('http://docs.webplatform.org/w/skins/webplatform/fonts/bitter-regular-webfont.eot');
+	src: url('http://docs.webplatform.org/w/skins/webplatform/fonts/bitter-regular-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('http://docs.webplatform.org/w/skins/webplatform/fonts/bitter-regular-webfont.woff') format('woff'),
+		 url('http://docs.webplatform.org/w/skins/webplatform/fonts/bitter-regular-webfont.ttf') format('truetype'),
+		 url('http://docs.webplatform.org/w/skins/webplatform/fonts/bitter-regular-webfont.svg#BitterRegular') format('svg');
 }
 
 @font-face{
 	font-family: 'Bitter';
 	font-weight: bold;
-	src: url('skins/webplatform/fonts/bitter-bold-webfont.eot');
-	src: url('skins/webplatform/fonts/bitter-bold-webfont.eot?#iefix') format('embedded-opentype'),
-		 url('skins/webplatform/fonts/bitter-bold-webfont.woff') format('woff'),
-		 url('skins/webplatform/fonts/bitter-bold-webfont.ttf') format('truetype'),
-		 url('skins/webplatform/fonts/bitter-bold-webfont.svg#BitterBold') format('svg');
+	src: url('http://docs.webplatform.org/w/skins/webplatform/fonts/bitter-bold-webfont.eot');
+	src: url('http://docs.webplatform.org/w/skins/webplatform/fonts/bitter-bold-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('http://docs.webplatform.org/w/skins/webplatform/fonts/bitter-bold-webfont.woff') format('woff'),
+		 url('http://docs.webplatform.org/w/skins/webplatform/fonts/bitter-bold-webfont.ttf') format('truetype'),
+		 url('http://docs.webplatform.org/w/skins/webplatform/fonts/bitter-bold-webfont.svg#BitterBold') format('svg');
 }
 
 @font-face{
 	font-family: 'Bitter';
 	font-weight: normal;
 	font-style: italic;
-	src: url('skins/webplatform/fonts/bitter-italic-webfont.eot');
-	src: url('skins/webplatform/fonts/bitter-italic-webfont.eot?#iefix') format('embedded-opentype'),
-		 url('skins/webplatform/fonts/bitter-italic-webfont.woff') format('woff'),
-		 url('skins/webplatform/fonts/bitter-italic-webfont.ttf') format('truetype'),
-		 url('skins/webplatform/fonts/bitter-italic-webfont.svg#BitterBold') format('svg');
+	src: url('http://docs.webplatform.org/w/skins/webplatform/fonts/bitter-italic-webfont.eot');
+	src: url('http://docs.webplatform.org/w/skins/webplatform/fonts/bitter-italic-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('http://docs.webplatform.org/w/skins/webplatform/fonts/bitter-italic-webfont.woff') format('woff'),
+		 url('http://docs.webplatform.org/w/skins/webplatform/fonts/bitter-italic-webfont.ttf') format('truetype'),
+		 url('http://docs.webplatform.org/w/skins/webplatform/fonts/bitter-italic-webfont.svg#BitterBold') format('svg');
 }
 
 @font-face {
 	font-family: 'WPSymbols';
-	src:url('skins/webplatform/fonts/WPSymbols.eot');
-	src:url('skins/webplatform/fonts/WPSymbols.eot?#iefix') format('embedded-opentype'),
-		url('skins/webplatform/fonts/WPSymbols.svg#WPSymbols') format('svg'),
-		url('skins/webplatform/fonts/WPSymbols.woff') format('woff'),
-		url('skins/webplatform/fonts/WPSymbols.ttf') format('truetype');
+	src:url('http://docs.webplatform.org/w/skins/webplatform/fonts/WPSymbols.eot');
+	src:url('http://docs.webplatform.org/w/skins/webplatform/fonts/WPSymbols.eot?#iefix') format('embedded-opentype'),
+		url('http://docs.webplatform.org/w/skins/webplatform/fonts/WPSymbols.svg#WPSymbols') format('svg'),
+		url('http://docs.webplatform.org/w/skins/webplatform/fonts/WPSymbols.woff') format('woff'),
+		url('http://docs.webplatform.org/w/skins/webplatform/fonts/WPSymbols.ttf') format('truetype');
 }
 
 header, footer{
@@ -86,7 +86,7 @@ body {
 	margin: 0;
 	padding: 0;
 	background: #ece5d7;
-	background-image: url(skins/webplatform/images/bg-pattern.png);
+	background-image: url('http://docs.webplatform.org/w/skins/webplatform/images/bg-pattern.png');
 	widows: 2;
 	orphans: 2;
 }
@@ -270,7 +270,7 @@ a:hover {
 a.external{
 	padding-right: 15px;
 	margin-right: 5px;
-	background-image: url(skins/webplatform/images/link-external.png);
+	background-image: url('http://docs.webplatform.org/w/skins/webplatform/images/link-external.png');
 	background-repeat: no-repeat;
 	background-position: right 3px;
 }
@@ -582,8 +582,8 @@ table.floatleft {
 		border: none;
 		cursor: pointer;
 		font-family: Gudea, Arial, sans-serif;
-		background: url(skins/webplatform/images/btn-search.png);
-		background: rgba(0,0,0,0) url(skins/webplatform/images/btn-search.svg);
+		background: url('http://docs.webplatform.org/w/skins/webplatform/images/btn-search.png');
+		background: rgba(0,0,0,0) url('http://docs.webplatform.org/w/skins/webplatform/images/btn-search.svg');
 		background-repeat: no-repeat;
 		/* background: none; */
 	}
@@ -643,7 +643,7 @@ input:focus
 	}
 
 		#p-personal > a:before {
-			content: url(skins/webplatform/images/icon-head.svg);
+			content: url('http://docs.webplatform.org/w/skins/webplatform/images/icon-head.svg');
 			margin-right: .3em;
 		}
 		
@@ -690,8 +690,8 @@ input:focus
 		border-radius: 0 0 7px 7px;
 		border: 1px solid white;
 		border-top: none;
-		background: #f9f7f3 url(skins/webplatform/images/logo.png);
-		background: hsl(40, 29%, 96%) url(skins/webplatform/images/logo.svg);
+		background: #f9f7f3 url('http://docs.webplatform.org/w/skins/webplatform/images/logo.png');
+		background: hsl(40, 29%, 96%) url('http://docs.webplatform.org/w/skins/webplatform/images/logo.svg');
 		background-repeat: no-repeat;
 		background-position: center;
 		box-shadow: 1px 1px 1px #cbc6ba;
@@ -699,7 +699,7 @@ input:focus
 
 #sitenav {
 	background-color: #ece5d7;
-	background-image: url(skins/webplatform/images/nav-bg.png);
+	background-image: url('http://docs.webplatform.org/w/skins/webplatform/images/nav-bg.png');
 	background-position: bottom;
 	background-repeat: repeat-x;
 	padding: 30px 0px 35px;
@@ -713,7 +713,7 @@ input:focus
 
 .mediawiki ul li {
 	margin-bottom: 10px;
-	list-style-image: url(skins/webplatform/images/bullet.svg);
+	list-style-image: url('http://docs.webplatform.org/w/skins/webplatform/images/bullet.svg');
 }
 
 ul.links{
@@ -1214,7 +1214,7 @@ ol.breadcrumbs {
 	margin-top: -2px;
 	width: 5px;
 	height: 5px;
-	background-image: url(skins/webplatform/images/arrow-down.svg);
+	background-image: url('http://docs.webplatform.org/w/skins/webplatform/images/arrow-down.svg');
 	background-repeat: no-repeat;
 	background-position: right center;
 }
@@ -1312,7 +1312,7 @@ body:not(.mediawiki) #sidebar + #main-content {
 		height: 22px;
 		border-radius: 50%;
 		margin-left: -11px;
-		background: #B4E1E4 url(skins/webplatform/images/bg-pattern.png);
+		background: #B4E1E4 url('http://docs.webplatform.org/w/skins/webplatform/images/bg-pattern.png');
 		box-shadow: 0 3px 7px -3px #81c7e1;
 		color: #7BCCD1;
 		text-align: center;
@@ -1416,46 +1416,46 @@ html.with-doc #main-content {
 	padding-left: 20px;
 	background-position: left center;
 	background-repeat: no-repeat;
-	background-image: url(skins/webplatform/images/icon-head.svg);
+	background-image: url('http://docs.webplatform.org/w/skins/webplatform/images/icon-head.svg');
 }
 
 /* icons for buttons*/
 #ca-protect .icon{
-	background-image: url(skins/webplatform/images/icon-protect.svg);
+	background-image: url('http://docs.webplatform.org/w/skins/webplatform/images/icon-protect.svg');
 }
 
 #ca-delete .icon{
-	background-image: url(skins/webplatform/images/icon-delete.svg);
+	background-image: url('http://docs.webplatform.org/w/skins/webplatform/images/icon-delete.svg');
 }
 
 #ca-move .icon{
-	background-image: url(skins/webplatform/images/icon-move.svg);
+	background-image: url('http://docs.webplatform.org/w/skins/webplatform/images/icon-move.svg');
 }
 
 #ca-edit .icon{
-	background-image: url(skins/webplatform/images/icon-edit.svg);
+	background-image: url('http://docs.webplatform.org/w/skins/webplatform/images/icon-edit.svg');
 }
 #ca-edit .icon{
-	background-image: url(skins/webplatform/images/icon-edit.svg);
+	background-image: url('http://docs.webplatform.org/w/skins/webplatform/images/icon-edit.svg');
 }
 
 #ca-view .icon{
-	background-image: url(skins/webplatform/images/icon-view.svg);
+	background-image: url('http://docs.webplatform.org/w/skins/webplatform/images/icon-view.svg');
 }
 
 #ca-history .icon{
-	background-image: url(skins/webplatform/images/icon-history.svg);
+	background-image: url('http://docs.webplatform.org/w/skins/webplatform/images/icon-history.svg');
 }
 
 
 
 /* watch button */
 #ca-watch .icon{
-	background-image: url(skins/webplatform/images/icon-watch.svg);
+	background-image: url('http://docs.webplatform.org/w/skins/webplatform/images/icon-watch.svg');
 }
 
 #ca-unwatch .icon{
-	background-image: url(skins/webplatform/images/icon-unwatch.svg);
+	background-image: url('http://docs.webplatform.org/w/skins/webplatform/images/icon-unwatch.svg');
 }
 
 #ca-watch > span#watch_label,
@@ -1477,7 +1477,7 @@ html.with-doc #main-content {
 
 
 span.editsection a {
-	background-image: url(skins/webplatform/images/icon-edit.svg);
+	background-image: url('http://docs.webplatform.org/w/skins/webplatform/images/icon-edit.svg');
 	display: inline-block;
 	width: 17px;
 	height: 22px;
@@ -1494,7 +1494,7 @@ span.editsection a {
 	width: 13px;
 	height: 13px;
 	padding: 15px;
-	background: url(http://docs.webplatform.org/w/skins/webplatform/images/standardization-status.svg)
+	background: url('http://docs.webplatform.org/w/skins/webplatform/images/standardization-status.svg')
 	            hsl(40, 34%, 88%);
 	background-size: 100% 700%;
 	margin: 13px 0 15px 10px;
@@ -1555,7 +1555,7 @@ span.editsection a {
 	}
 
 		.standardization_status:before {
-			content: url(http://docs.webplatform.org/w/skins/webplatform/images/w3c-small.svg);
+			content: url('http://docs.webplatform.org/w/skins/webplatform/images/w3c-small.svg');
 			position: absolute;
 			top: 13px;
 			left: 10px;
@@ -1969,7 +1969,7 @@ footer ul.stewards {
 			vertical-align: middle;
 			width: 124px;
 			height: 60px;
-			background: url(skins/webplatform/images/footer-images.png) no-repeat 0 0;
+			background: url('http://docs.webplatform.org/w/skins/webplatform/images/footer-images.png') no-repeat 0 0;
 			text-indent: 200px;
 			overflow: hidden;
 			color: gray;
@@ -2492,7 +2492,7 @@ dl.compat-list dt {
 	display: inline-block;
 	width: 36px;
 	height: 36px;
-	background: url(http://docs.webplatform.org/w/skins/webplatform/images/cloud.svg) no-repeat center;
+	background: url('http://docs.webplatform.org/w/skins/webplatform/images/cloud.svg') no-repeat center;
 	margin: 0;
 }
 		
@@ -2742,43 +2742,43 @@ dl.compat-list dd {
 }
  
 .icon-accessibility {
-  background: url(../w/images/7/7b/WPD-Accessibility-32px.png);
+  background: url('http://docs.webplatform.org/w/images/7/7b/WPD-Accessibility-32px.png');
 }
  
 .icon-beginners {
-  background: url(../w/images/8/8a/WPD-Beginners-32px.png);
+  background: url('http://docs.webplatform.org/w/images/8/8a/WPD-Beginners-32px.png');
 }
  
 .icon-concept {
-  background: url(../w/images/8/83/WPD-Concepts-32px.png);
+  background: url('http://docs.webplatform.org/w/images/8/83/WPD-Concepts-32px.png');
 }
  
 .icon-css {
-  background: url(../w/images/7/74/WPD-CSS-32px.png);
+  background: url('http://docs.webplatform.org/w/images/7/74/WPD-CSS-32px.png');
 }
  
 .icon-dom {
-  background: url(../w/images/a/ae/WPD-DOM-32px.png);
+  background: url('http://docs.webplatform.org/w/images/a/ae/WPD-DOM-32px.png');
 }
  
 .icon-html {
-  background: url(../w/images/d/d1/WPD-HTML-B-32px.png);
+  background: url('http://docs.webplatform.org/w/images/d/d1/WPD-HTML-B-32px.png');
 }
  
 .icon-html5 {
-  background: url(../w/images/2/26/WPD-HTML5-32px.png);
+  background: url('http://docs.webplatform.org/w/images/2/26/WPD-HTML5-32px.png');
 }
  
 .icon-js {
-  background: url(../w/images/4/4c/WPD-JS-32px.png);
+  background: url('http://docs.webplatform.org/w/images/4/4c/WPD-JS-32px.png');
 }
  
 .icon-svg {
-  background: url(../w/images/d/db/WPD-SVG-32px.png);
+  background: url('http://docs.webplatform.org/w/images/d/db/WPD-SVG-32px.png');
 }
  
 .icon-api {
-  background: url(../w/images/d/d3/WPD-API-32px.png);
+  background: url('http://docs.webplatform.org/w/images/d/d3/WPD-API-32px.png');
 }
 /* END layout rules for topic container boxes on landing page prototypes (chrisdavidmills) */
 
