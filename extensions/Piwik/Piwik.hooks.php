@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Inserts Piwik script into MediaWiki pages for tracking and adds some stats
+ *
+ * Source: http://www.mediawiki.org/wiki/Extension:Piwik_Integration
+ **/
+
 class PiwikHooks {
 
   /**
