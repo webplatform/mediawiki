@@ -54,6 +54,7 @@ $wgHooks['PageRenderingHash'][] = function( &$confstr ) {
 
 $wgHooks['ParserFirstCallInit'][] = function( Parser &$parser ) {
 	$parser->setHook( 'compatability', 'Compatables::renderCompaTables' );
+	return true;
 };
 
 $wgHooks['ParserAfterTidy'][] = 'Compatables::onParserAfterTidy';

@@ -2,7 +2,7 @@
 
 class Compatables {
 	/** @var array (unique ID => string) */
-	private static $items = array();
+	public static $items = array(); // used by closure
 
 	/**
 	 * @param string $input
@@ -93,7 +93,7 @@ class Compatables {
 			$text = preg_replace_callback(
 				"/<!-- UNIQ-Compatables:([a-f0-9]{32}):selbatapmoC-QINU -->/m",
 				function( $m ) {
-					return isset( self::$items[$m[1]] ) ? self::$items[$m[1]] : '';
+					return isset( Compatables::$items[$m[1]] ) ? Compatables::$items[$m[1]] : '';
 				},
 				$text
 			);
