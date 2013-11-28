@@ -54,7 +54,7 @@ class SpecialCompatables extends UnlistedSpecialPage {
 
 		$table = Compatables::generateCompaTable( $data, $args );
 		if ( $this->getRequest()->getBool( 'foresi' ) ) {
-			$this->getOutput()->addHtml( "<!DOCTYPE html><html>$table</html>" );
+			// $this->getOutput()->addHtml( "<!DOCTYPE html><html>$table</html>" );
 			$this->getOutput()->setArticleBodyOnly( true );
 		} else {
 			$this->getOutput()->addHtml( $table );
