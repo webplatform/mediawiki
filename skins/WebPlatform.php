@@ -16,9 +16,9 @@ if( !defined( 'MEDIAWIKI' ) ) {
  * @ingroup Skins
  */
 class SkinWebPlatform extends SkinTemplate {
-	var $skinname = 'webplatform', 
+	var $skinname = 'webplatform',
 		 $stylename = 'webplatform',
-		 $template = 'WebPlatformTemplate', 
+		 $template = 'WebPlatformTemplate',
 		 $useHeadElement = true;
 	/**
 	 * Initializes output page and sets up skin-specific parameters
@@ -119,11 +119,11 @@ class WebPlatformTemplate extends BaseTemplate {
 		$this->html( 'headelement' ); ?>
 			<div id="mw-page-base" class="noprint"></div>
 				<div id="mw-head-base" class="noprint"></div>
-				
+
 				<!-- header -->
 				<header id="mw-head" class="noprint">
 					<div class="container">
-						
+
 						<!-- logo -->
 						<div id="p-logo">
 							<a href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ) ?>" <?php echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) ) ?>></a>
@@ -135,15 +135,15 @@ class WebPlatformTemplate extends BaseTemplate {
 					</div>
 				</header>
 				<!-- /header -->
-				
+
 				<nav id="sitenav">
 				<div class="container">
 					<ul class="links">
-						<li><a href="http://docs.webplatform.org/wiki/" class="active">DOCS</a></li>
-						<li><a href="http://docs.webplatform.org/wiki/WPD:Editors_Guide">EDITING</a></li>
+						<li><a href="/wiki/" class="active">DOCS</a></li>
+						<li><a href="/wiki/WPD:Editors_Guide">EDITING</a></li>
 						<li><a href="http://talk.webplatform.org/">DISCUSSION</a></li>
 						<li><a href="http://blog.webplatform.org">BLOG</a></li>
-						<li><a href="http://docs.webplatform.org/wiki/WPD:Community">COMMUNITY</a></li>
+						<li><a href="/wiki/WPD:Community">COMMUNITY</a></li>
 						<li><a href="http://project.webplatform.org">ISSUES</a></li>
 					</ul>
 				</div>
@@ -161,7 +161,7 @@ class WebPlatformTemplate extends BaseTemplate {
 									<?php wfRunHooks( 'SkinBreadcrumb', array( &$this ) ); ?>
 								</ol>
 							</div>
-							
+
 							<div class="toolbar">
 								<?php $this->renderEditButton(); ?>
 								<?php $this->renderWatchButton(); ?>
@@ -171,7 +171,7 @@ class WebPlatformTemplate extends BaseTemplate {
 						<div id="page">
 						  <div id="page-content">
 								<?php /* wfRunHooks( 'SkinTOC', array( &$this ) );*/ ?>
-								
+
 								<div id="main-content">
 									 <div id="mw-js-message" style="display:none;"<?php $this->html( 'userlangattributes' ) ?>></div>
 									 <?php if ( $this->data['sitenotice'] ): ?>
@@ -188,7 +188,7 @@ class WebPlatformTemplate extends BaseTemplate {
 									 <!-- subtitle -->
 									 <div id="contentSub"<?php $this->html( 'userlangattributes' ) ?>><?php $this->html( 'subtitle' ) ?></div>
 									 <!-- /subtitle -->
-						
+
 									 <!-- bodyContent -->
 									 <div id="bodyContent">
 
@@ -197,13 +197,13 @@ class WebPlatformTemplate extends BaseTemplate {
 										  <div id="contentSub2"><?php $this->html( 'undelete' ) ?></div>
 										  <!-- /undelete -->
 										  <?php endif; ?>
-										  
+
 										  <?php if( $this->data['newtalk'] ): ?>
 										  <!-- newtalk -->
 										  <div class="usermessage"><?php $this->html( 'newtalk' )  ?></div>
 										  <!-- /newtalk -->
 										  <?php endif; ?>
-										  
+
 										  <?php if ( $this->data['showjumplinks'] ): ?>
 										  <!-- jumpto -->
 										  <div id="jump-to-nav" class="mw-jump">
@@ -212,12 +212,12 @@ class WebPlatformTemplate extends BaseTemplate {
 										  </div>
 										  <!-- /jumpto -->
 										  <?php endif; ?>
-										  
+
 
 										  <!-- bodycontent -->
 										  <?php $this->html( 'bodycontent' ) ?>
 										  <!-- /bodycontent -->
-										  
+
 
 										  <?php if ( $this->data['printfooter'] ): ?>
 										  <!-- printfooter -->
@@ -238,29 +238,29 @@ class WebPlatformTemplate extends BaseTemplate {
 										  <?php $this->html( 'dataAfterContent' ); ?>
 										  <!-- /dataAfterContent -->
 										  <?php endif; ?>
-										  
+
 										  <div class="visualClear"></div>
-										  
+
 										  <!-- debughtml -->
 										  <?php $this->html( 'debughtml' ); ?>
 										  <!-- /debughtml -->
 									 </div>
 									 <!-- /bodyContent -->
 								</div>
-								
+
 								<div class="topics-nav">
 										<ul>
-											<li><a href="http://docs.webplatform.org/wiki/beginners">Beginners</a></li>
-											<li><a href="http://docs.webplatform.org/wiki/concepts">Concepts</a></li>
-											<li><a href="http://docs.webplatform.org/wiki/html">HTML</a></li>
-											<li><a href="http://docs.webplatform.org/wiki/css">CSS</a></li>
-											<li><a href="http://docs.webplatform.org/wiki/concepts/accessibility">Accessibility</a></li>
-											<li><a href="http://docs.webplatform.org/wiki/javascript">JavaScript</a></li>
-											<li><a href="http://docs.webplatform.org/wiki/dom">DOM</a></li>
-											<li><a href="http://docs.webplatform.org/wiki/svg">SVG</a></li>
+											<li><a href="/wiki/beginners">Beginners</a></li>
+											<li><a href="/wiki/concepts">Concepts</a></li>
+											<li><a href="/wiki/html">HTML</a></li>
+											<li><a href="/wiki/css">CSS</a></li>
+											<li><a href="/wiki/concepts/accessibility">Accessibility</a></li>
+											<li><a href="/wiki/javascript">JavaScript</a></li>
+											<li><a href="/wiki/dom">DOM</a></li>
+											<li><a href="/wiki/svg">SVG</a></li>
 										</ul>
 								</div>
-								
+
 								<!-- /main content -->
 								<div class="clear"></div>
 						  </div>
@@ -276,8 +276,8 @@ class WebPlatformTemplate extends BaseTemplate {
 		<footer id="mw-footer"<?php $this->html( 'userlangattributes' ) ?>>
 		  <div class="container">
 			 <div id="footer-wordmark">
-				<a href="http://docs.webplatform.org/wiki/Template:CC-by-3.0" class="license">
-				  <img src="http://docs.webplatform.org/w/skins/webplatform/images/cc-by-black.svg" 
+				<a href="/wiki/Template:CC-by-3.0" class="license">
+				  <img src="/w/skins/webplatform/images/cc-by-black.svg"
 						 alt="Content available under CC-BY, except where otherwise noted.">
 				</a>
 
@@ -285,14 +285,14 @@ class WebPlatformTemplate extends BaseTemplate {
 
 			 </div>
 
-				 
+
 				<ul class="stewards">
 					<li class="steward-w3c"><a href="http://webplatform.org/stewards/w3c">W3C</a></li>
 					<li class="steward-adobe"><a href="http://webplatform.org/stewards/adobe">Adobe</a></li>
 					<li class="steward-facebook"><a href="http://webplatform.org/stewards/facebook">facebook</a></li>
 					<li class="steward-google"><a href="http://webplatform.org/stewards/google">Google</a></li>
 					<li class="steward-hp"><a href="http://webplatform.org/stewards/hp">HP</a></li>
-					
+
 					<li class="steward-intel"><a href="http://webplatform.org/stewards/intel">Intel</a></li>
 					<li class="steward-microsoft"><a href="http://webplatform.org/stewards/microsoft">Microsoft</a></li>
 					<li class="steward-mozilla"><a href="http://webplatform.org/stewards/mozilla">Mozilla</a></li>
@@ -309,8 +309,8 @@ class WebPlatformTemplate extends BaseTemplate {
 }
 private function renderHeaderMenu() {
 ?>
-	<div id="p-personal" class="dropdown <?php if ( count( $this->data['personal_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">	
-		<?php 
+	<div id="p-personal" class="dropdown <?php if ( count( $this->data['personal_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
+		<?php
 			foreach( $this->getPersonalTools() as $key => $item ) {
 				if ($key == 'userpage' || $key == 'login') {
 					$link = $item['links'][0];
@@ -319,7 +319,7 @@ private function renderHeaderMenu() {
 			}
 		?>
 	  <ul class="user-dropdown">
-		  <?php 
+		  <?php
 			  foreach( $this->getPersonalTools() as $key => $item ) {
 				  if ($key !== 'userpage' && $key !== 'login') {
 					  echo $this->makeListItem( $key, $item );
@@ -334,21 +334,21 @@ private function renderHeaderMenu() {
 private function renderWatchButton() {
 	if (isset($this->data['action_urls']['watch'])) {
 		$link = $this->data['action_urls']['watch'];
-	} 
+	}
 	else if (isset($this->data['action_urls']['unwatch'])) {
 		$link = $this->data['action_urls']['unwatch'];
 	}
 	else {
 		return;
 	}
-	
+
 	$pt = $this->data['personal_urls'];
 ?>
 	<div class="dropdown">
-		<a href="<?php echo htmlspecialchars( $link['href'] ) ?>" 
+		<a href="<?php echo htmlspecialchars( $link['href'] ) ?>"
 			<?php $this->html( 'userlangattributes' ) ?>
 			<?php echo $link['key'] ?>
-			<?php 
+			<?php
 				if (strpos($link['attributes'], 'class=') > 0) {
 					echo str_replace('class="', 'class="watch button ', $link['attributes']);
 				}
@@ -372,12 +372,12 @@ private function renderEditButton() {
 	 $sb = $this->getSidebar();
 	 if (isset($this->data['view_urls']['edit'])) {
 		$link = $this->data['view_urls']['edit'];
-		
+
 		if (isset($this->data['view_urls']['form_edit'])) {
 			$link = $this->data['view_urls']['form_edit'];
 		}
 	 } else {
-		$link = array( "href" => "http://docs.webplatform.org/wiki/Special:UserLogin", "id" => "ca-edit", "text" => "Edit");
+		$link = array( "href" => "/wiki/Special:UserLogin", "id" => "ca-edit", "text" => "Edit");
 	 }
   ?>
 	<div class="dropdown">
@@ -385,11 +385,11 @@ private function renderEditButton() {
 		 	<?php echo $link['text'] ?>
 		</a>
 		<ul>
-			<?php 
+			<?php
 			if (isset($cn['views']['form_edit'])) { echo $this->makeListItem( 'form_edit', $cn['views']['form_edit'] ); }
 			if (isset($cn['views']['edit'])) { echo $this->makeListItem( 'edit', $cn['views']['edit'] ); }
 			if (isset($sb['TOOLBOX']['content']['upload'])) { echo $this->makeListItem( 'upload', $sb['TOOLBOX']['content']['upload'] ); }
-			if (isset($cn['views']['history'])) { echo $this->makeListItem( 'history', $cn['views']['history'] ); } 
+			if (isset($cn['views']['history'])) { echo $this->makeListItem( 'history', $cn['views']['history'] ); }
 			if (isset($cn['views']['view'])) { echo $this->makeListItem( 'view', $cn['views']['view'] ); }
 			if (isset($cn['actions']['move'])) { echo $this->makeListItem( 'move', $cn['actions']['move'] ); }
 		if (isset($cn['actions']['protect'])) { echo $this->makeListItem( 'protect', $cn['actions']['protect'] ); }
@@ -411,7 +411,7 @@ private function renderToolMenu() {
 		 	Tools
 		</a>
 		<ul>
-			<?php 
+			<?php
 			if (isset($sb['TOOLBOX']['content']['whatlinkshere'])) { echo $this->makeListItem( 'whatlinkshere', $sb['TOOLBOX']['content']['whatlinkshere'] ); }
 			if (isset( $sb['TOOLBOXEND']['content'] )) { echo '<li>' . preg_replace('#^<ul.+?>|</ul>#', '', $sb['TOOLBOXEND']['content']); }
 			if (isset($sb['TOOLBOX']['content']['recentchangeslinked'])) { echo $this->makeListItem( 'recentchangeslinked', $sb['TOOLBOX']['content']['recentchangeslinked'] ); }
@@ -422,8 +422,8 @@ private function renderToolMenu() {
 			?>
 		</ul>
 	</div>
-<?php 
-}	
+<?php
+}
 
 	/**
 	 * Render one or more navigations elements by name, automatically reveresed
@@ -433,7 +433,7 @@ private function renderToolMenu() {
 	 */
 
 	private function renderSearch() {
-	?>	
+	?>
 		<div id="p-search">
 			<h5<?php $this->html( 'userlangattributes' ) ?>><label for="searchInput"><?php $this->msg( 'search' ) ?></label></h5>
 			<form action="<?php $this->text( 'wgScript' ) ?>" id="searchform">
