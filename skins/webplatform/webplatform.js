@@ -15,9 +15,10 @@ function setupSearchField() {
     });
 }
 
+
 function init() {
     setupSearchField();
-    
+
     if (document.querySelectorAll && document.body.addEventListener) {
     	var dropdowns = document.querySelectorAll('.dropdown');
     	

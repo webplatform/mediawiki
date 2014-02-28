@@ -95,7 +95,13 @@ JS;
       }
     } catch(Exception $e) {  }
 
-    // Missing configuration parameters
+
+    // Ignore Wiki System Operators
+    //if ( $wgUser->isAllowed( 'protect' ) && $wgPiwikIgnoreSysops ) {
+    //  return "<!-- Piwik tracking is disabled for users with 'protect' rights (i.e., sysops) -->";
+    //}
+    
+    // Missing configuration parameters 
     if ( empty( $wgPiwikIDSite ) || empty( $wgPiwikURL ) ) {
       return "<!-- You need to set the settings for Piwik -->";
     }
