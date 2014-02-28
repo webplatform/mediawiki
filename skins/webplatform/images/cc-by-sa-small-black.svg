@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 80 15">
+   width="80" height="15"
+   <title>Creative Commons Attribution Share-Alike</title>
+   <metadata id="license">
+       <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://web.resource.org/cc/">
+         <cc:Work rdf:about="">
+            <dc:format>image/svg+xml</dc:format>
+            <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+         </cc:Work>
+      </rdf:RDF>
+   </metadata>
+
+  <style>
+    text {
+      font-family: AkzidenzGrotesk, Helvetica, Arial, san serif;
+      font-weight: bold;
+    }
+  </style>
+
+  <defs>
+    <clipPath id="outerclip">
+      <rect x="2" y="2" width="76" height="11"/>
+    </clipPath>
+  </defs>
+
+   <a xlink:href="http://creativecommons.org/licenses/by-sa/3.0/us/">
+    <rect x="0.5" y="0.5" width="79" height="14" fill="white" stroke-width="1" stroke="#000000"/>
+      <g id="creative-commons" clip-path="url(#outerclip)">
+        <rect x="2" y="2" width="76" height="11" fill="#000000"/>
+        <path d="M2,1.9 H22 A30,15 0 0,1 22,13.2 H2 Z" stroke="none" fill="#F9F7F3"/>
+        <ellipse cx="12.5" cy="7.5" rx="7" ry="6.5" stroke-width="1.5" fill="white" stroke="#000000"/>
+        <text x="12.5" y="9.75" font-size="8.5" fill="#000000" stroke="none" text-anchor="middle">cc</text>
+      </g>   
+     <text x="26.5" y="10.25" font-size="7.5" fill="white" stroke="none">BY-SA</text>
+  </a>
+</svg>
