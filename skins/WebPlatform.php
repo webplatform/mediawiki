@@ -156,7 +156,7 @@ class WebPlatformTemplate extends BaseTemplate {
 						<div class="tool-area">
 							<div id="hierarchy-menu">
 								<ol id="breadcrumb-info" class="breadcrumbs">
-									<li><a href="http://webplatform.org/">HOME</a></li>
+									<li><a href="http://www.webplatform.org/">HOME</a></li>
 									<li><a href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ) ?>">DOCS</a></li>
 									<?php wfRunHooks( 'SkinBreadcrumb', array( &$this ) ); ?>
 								</ol>
@@ -281,23 +281,23 @@ class WebPlatformTemplate extends BaseTemplate {
 						 alt="Content available under CC-BY, except where otherwise noted.">
 				</a>
 
-				<a href="http://webplatform.org/"><span id="footer-title">WebPlatform<span id="footer-title-light">.org</span></span></a>
+				<a href="http://www.webplatform.org/"><span id="footer-title">WebPlatform<span id="footer-title-light">.org</span></span></a>
 
 			 </div>
 
 
 				<ul class="stewards">
-					<li class="steward-w3c"><a href="http://webplatform.org/stewards/w3c">W3C</a></li>
-					<li class="steward-adobe"><a href="http://webplatform.org/stewards/adobe">Adobe</a></li>
-					<li class="steward-facebook"><a href="http://webplatform.org/stewards/facebook">facebook</a></li>
-					<li class="steward-google"><a href="http://webplatform.org/stewards/google">Google</a></li>
-					<li class="steward-hp"><a href="http://webplatform.org/stewards/hp">HP</a></li>
+					<li class="steward-w3c"><a href="http://www.webplatform.org/stewards/w3c">W3C</a></li>
+					<li class="steward-adobe"><a href="http://www.webplatform.org/stewards/adobe">Adobe</a></li>
+					<li class="steward-facebook"><a href="http://www.webplatform.org/stewards/facebook">facebook</a></li>
+					<li class="steward-google"><a href="http://www.webplatform.org/stewards/google">Google</a></li>
+					<li class="steward-hp"><a href="http://www.webplatform.org/stewards/hp">HP</a></li>
 
-					<li class="steward-intel"><a href="http://webplatform.org/stewards/intel">Intel</a></li>
-					<li class="steward-microsoft"><a href="http://webplatform.org/stewards/microsoft">Microsoft</a></li>
-					<li class="steward-mozilla"><a href="http://webplatform.org/stewards/mozilla">Mozilla</a></li>
-					<li class="steward-nokia"><a href="http://webplatform.org/stewards/nokia">Nokia</a></li>
-					<li class="steward-opera"><a href="http://webplatform.org/stewards/opera">Opera</a></li>
+					<li class="steward-intel"><a href="http://www.webplatform.org/stewards/intel">Intel</a></li>
+					<li class="steward-microsoft"><a href="http://www.webplatform.org/stewards/microsoft">Microsoft</a></li>
+					<li class="steward-mozilla"><a href="http://www.webplatform.org/stewards/mozilla">Mozilla</a></li>
+					<li class="steward-nokia"><a href="http://www.webplatform.org/stewards/nokia">Nokia</a></li>
+					<li class="steward-opera"><a href="http://www.webplatform.org/stewards/opera">Opera</a></li>
 				</ul>
 			</div>
 		</footer>
@@ -448,4 +448,3 @@ private function renderToolMenu() {
 		echo "\n<!-- /search -->\n";
 	}
 }
-?>
