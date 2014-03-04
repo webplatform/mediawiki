@@ -1,14 +1,19 @@
 <?php
 /**
- * CompaTables - this extension adds a browser compatability table to articles based on arguments
+ * CompaTables - Create web browser compatability table to a wiki document based on arguments
  *
  * To activate this extension, add the following into your LocalSettings.php file:
  * require_once('$IP/extensions/CompaTables/compatables.php');
  *
+ * Other options are described in `Compatables.config.php`
+ *
  * @ingroup Extensions
  * @author Doug Schepers <schepers@w3.org>
  * @author Aaron Schulz <aschulz4587@gmail.com>
- * @version 1.0
+ * @author Renoir Boulanger <renoir@w3.org>
+ *
+ * @version 1.1
+ *
  * @link https://www.mediawiki.org/wiki/Extension:CompaTables Documentation
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
@@ -26,8 +31,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 $wgExtensionCredits['parserHook'][] = array(
 	'name'           => 'CompaTables',
 	'version'        => '1.0',
-	'author'         => array( 'Doug Schepers', 'Aaron Schulz' ),
-	'url'            => 'https://www.mediawiki.org/wiki/Extension:CompaTables',
+	'author'         => array( 'Doug Schepers', 'Aaron Schulz', 'Renoir Boulanger' ),
+	'url'            => 'http://docs.webplatform.org/wiki/WPD:Infrastructure/Extensions/CompaTables',
 	'descriptionmsg' => 'compatablesmessage',
 	'description'    => 'Adds browser compatability table to article based on arguments'
 );
@@ -54,9 +59,17 @@ $wgHooks['PageRenderingHash'][] = function( &$confstr ) {
 
 $wgHooks['ParserFirstCallInit'][] = function( Parser &$parser ) {
 	$parser->setHook( 'compatability', 'Compatables::renderCompaTables' );
+
 	return true;
 };
 
 $wgHooks['ParserAfterTidy'][] = 'Compatables::onParserAfterTidy';
 $wgHooks['ParserClearState'][] = 'Compatables::onParserClearState';
 
+$wgHooks['BeforePageDisplay'][] = function(OutputPage &$out, Skin &$skin) {
+	global $wgCompatablesCssFileUrl;
+	$css = (isset($wgCompatablesCssFileUrl)) ? $wgCompatablesCssFileUrl : '/bogus'; //w/extensions/CompaTables/compatables.css';
+	$out->addStyle($css);
+
+	return true;
+};

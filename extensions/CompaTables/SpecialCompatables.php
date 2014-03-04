@@ -52,6 +52,12 @@ class SpecialCompatables extends UnlistedSpecialPage {
 			'feature' => $this->getRequest()->getVal( 'feature' ),
 			'format'  => $this->getRequest()->getVal( 'format' ) );
 
+		if ( $this->getRequest()->getVal( 'action' ) === 'purge' ) {
+			if ( $wgCompatablesUseESI && $this->getUser()->isAllowed( 'purgecompatables' ) ) {
+				$args['purge'] = true;
+			}
+		}
+
 		$table = Compatables::generateCompaTable( $data, $args );
 		if ( $this->getRequest()->getBool( 'foresi' ) ) {
 			// $this->getOutput()->addHtml( "<!DOCTYPE html><html>$table</html>" );
