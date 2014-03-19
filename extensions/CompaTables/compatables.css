@@ -33,3 +33,7 @@
   font-weight:normal !important;
   overflow: hidden;
 }
+
+.compat-ng .compat-shaded {
+  opacity: 0.5;
+}

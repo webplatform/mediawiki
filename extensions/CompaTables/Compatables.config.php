@@ -42,7 +42,7 @@ $wgCompatablesUseESI = false;
  *
  * @var string Path to the CSS file publicly accessible to the web
  */
-$wgCompatablesCssFileUrl = '/t/extensions/CompaTables/compatables.css';
+$wgCompatablesCssFileUrl = '/w/extensions/CompaTables/compatables.css';
 
 $wgAvailableRights[] = 'purgecompatables';
 $wgGroupPermissions['sysop']['purgecompatables'] = true;

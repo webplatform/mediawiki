@@ -9,16 +9,21 @@ class Compatables
   protected static $allowed_formats = array('table','list');
 
   const TTL = 3600;
+  const MAX_AGE = 3600;
 
 
   /**
-   * Purge key in Memcache
+   * Serialize and save data to memcache
    *
-   * @param  string $cacheKey Cache key
+   * Note that it also sets a time to live for the
+   * cached version set to self::TTL
+   *
+   * @param string $cacheKey Cache key
+   * @param mixed  $data     Data to send to memcached, will use serialize();
    *
    * @return null
    */
-  public static function saveMemcacheKey($cacheKey, $data)
+  public static function memcacheSave($cacheKey, $data)
   {
     global $wgMemc;
 
@@ -26,13 +31,13 @@ class Compatables
   }
 
   /**
-   * Purge key in Memcache
+   * Delete entry from memcache from given cache key
    *
    * @param  string $cacheKey Cache key
    *
    * @return null
    */
-  public static function purgeMemcacheKey($cacheKey)
+  public static function memcacheRemove($cacheKey)
   {
     global $wgMemc;
 
@@ -40,23 +45,29 @@ class Compatables
   }
 
   /**
-   * Check and return data from Memcache
+   * Check and return data from memcache
    *
-   * @param  array  $cacheKey
-   * @param  string $hash     Hash checksum from the originating JSON document
+   * Second option allows to specify a hash to compare and
+   * delete the entry if it mismatch.
+   *
+   * If specified hash mismatch the saved one, it deletes
+   * the entry and returns false as if it didn't find anything.
+   *
+   * @param  array $cacheKey
+   * @param  mixed $hash     Optional; String hash checksum from the originating JSON document.
    *
    * @return mixed Either an array or false
    */
-  public static function fromMemcache($cacheKey, $hash=null)
+  public static function memcacheRead($cacheKey, $hash=null)
   {
-    global $wgMemc, $wgRequest;
+    global $wgMemc;
 
     $cachedView = $wgMemc->get($cacheKey);
 
     if($cachedView !== false) {
       $unserialized = unserialize($cachedView);
       if(isset($unserialized['hash']) && isset($unserialized['output'])) {
-        if($unserialized['hash'] !== $hash) {
+        if( $unserialized['hash'] !== $hash && $hash !== null ) {
           $wgMemc->delete($cacheKey);
 
           return false;
@@ -83,13 +94,13 @@ class Compatables
     global $wgCompatablesUseESI, $wgUseTidy, $wgAlwaysUseTidy;
     $out = '';
 
-    $args['feature'] = isset( $args['feature'] ) ? $args['feature'] : '';
-    $args['format']  = isset( $args['format'] ) ? $args['format'] : '';
-    $cacheKey        = wfMemcKey('compatables', $args['format'], $args['feature']);
+    $args['feature']  = isset( $args['feature'] ) ? $args['feature'] : '';
+    $args['format']   = isset( $args['format'] ) ? $args['format'] : '';
+    $args['cacheKey'] = wfMemcKey('compatables', $args['format'], $args['feature']);;
 
     /**   *****************************   **/
     $data = self::getData();
-    $cached = self::fromMemcache($cacheKey, $data['hash']);
+    $cached = self::memcacheRead($args['cacheKey'], $data['hash']);
     if( $cached !== false ) {
       $table = $cached['output'];
     } else {
@@ -99,7 +110,7 @@ class Compatables
         $generated['output'] = MWTidy::tidy( $generated['output'] );
       }
 
-      self::saveMemcacheKey( $cacheKey, $generated );
+      self::memcacheSave( $args['cacheKey'], $generated );
 
       $table = $generated['output'];
     }
@@ -267,6 +278,7 @@ class Compatables
     $viewParameters['hash']      = $data['hash'];
     $viewParameters['feature']   = $args['feature'];
     $viewParameters['format']    = $args['format'];
+    $viewParameters['cacheKey']  = $args['cacheKey'];
 
     // extracting data for feature
     $contents = null;

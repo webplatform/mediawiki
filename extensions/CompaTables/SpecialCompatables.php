@@ -2,8 +2,6 @@
 
 class SpecialCompatables extends UnlistedSpecialPage
 {
-	const MAX_AGE = 3600;
-
 	public function __construct() {
 		parent::__construct( 'Compatables' );
 	}
@@ -13,9 +11,9 @@ class SpecialCompatables extends UnlistedSpecialPage
 
 		$this->setHeaders();
 
-		$args['feature'] = $this->getRequest()->getVal( 'feature' );
-		$args['format']  = $this->getRequest()->getVal( 'format' );
-		$cacheKey        = wfMemcKey('compatables', $args['format'], $args['feature']);
+		$args['feature']  = $this->getRequest()->getVal( 'feature' );
+		$args['format']   = $this->getRequest()->getVal( 'format' );
+		$args['cacheKey'] = wfMemcKey('compatables', $args['format'], $args['feature']);
 
 		// Handle purge requests from admins...
 		// @TODO: Varnish, which only supports a few bits of ESI, can not handle this
@@ -24,7 +22,7 @@ class SpecialCompatables extends UnlistedSpecialPage
 		if ( $this->getRequest()->getVal( 'action' ) === 'purge' ) {
 			if ( $wgCompatablesUseESI && $this->getUser()->isAllowed( 'purgecompatables' ) ) {
 
-				Compatables::purgeMemcacheKey($cacheKey);
+				Compatables::memcacheRemove($args['cacheKey']);
 
 				// Get the ESI URL prefix to purge
 				$urlPrefix = SpecialPage::getTitleFor( 'Compatables' )->getFullUrl();
@@ -52,7 +50,7 @@ class SpecialCompatables extends UnlistedSpecialPage
 		}
 
 		// 1 hour server-side cache max before revalidate
-		$this->getOutput()->setSquidMaxage( self::MAX_AGE );
+		$this->getOutput()->setSquidMaxage( Compatables::MAX_AGE );
 
 		// Try to handle IMS GET requests from CDN efficiently
 		//   $data['timestamp'] has been added, to not have to do
@@ -64,7 +62,7 @@ class SpecialCompatables extends UnlistedSpecialPage
 		}
 
     /**   *****************************   **/
-		$cached = Compatables::fromMemcache( $cacheKey, $data['hash'] );
+		$cached = Compatables::memcacheRead( $args['cacheKey'], $data['hash'] );
 		if( $cached !== false ) {
 			$table = $cached['output'];
 		} else {
@@ -74,7 +72,7 @@ class SpecialCompatables extends UnlistedSpecialPage
         $generated['output'] = MWTidy::tidy( $generated['output'] );
       }
 
-			Compatables::saveMemcacheKey( $cacheKey, $generated );
+			Compatables::memcacheSave( $args['cacheKey'], $generated );
 
 			$table = $generated['output'];
 		}

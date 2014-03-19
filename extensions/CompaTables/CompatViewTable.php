@@ -45,8 +45,10 @@ class CompatViewTable extends AbstractCompaTableView
           foreach($f as $version => $support_string_descriptor) {
             // I know, an anonymous div; lets
             //   live with it for now.
-            $out .= '<dt>'.$this->versionHelper($version).'</dt>';
-            $out .= join('', array_map($dd, $this->supportHelper($support_string_descriptor)));
+            $out .= $this->tagHelper($this->versionText($version),'dt');
+            foreach($this->supportText($support_string_descriptor) as $supportVersion) {
+              $out .= '<dd>'.$this->tagHelper($supportVersion, 'abbr').'</dd>';
+            }
           }
           $out .= '</dl>';
           $out .= '</td>';

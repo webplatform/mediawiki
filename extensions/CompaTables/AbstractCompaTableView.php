@@ -42,6 +42,11 @@ abstract class AbstractCompaTableView
   protected $hash;
 
   /**
+   * Cache key
+   */
+  protected $cacheKey;
+
+  /**
    * Feature name
    *
    * Slugified version of the name
@@ -93,18 +98,15 @@ abstract class AbstractCompaTableView
   public function getOutput()
   {
       $now = new \DateTime();
-      $dataComment = 'Generated on '.$now->format(\DateTime::W3C);
 
-      $out = sprintf('<div data-comment="%s" class="compat-parent compat-ng compat-%s">', $dataComment, $this->feature);
-      $out .= $this->output;
-      $out .= '</div>';
+      $a['inner'] = $this->output;
+      $a['classNames'] = array('compat-parent', 'compat-ng', 'compat-'.$this->feature);
+      $a['dataAttribs']['data-comment'] = 'Generated on '.$now->format(\DateTime::W3C);
+      $a['dataAttribs']['data-hash'] = $this->hash;
+      $a['dataAttribs']['data-cacheKey'] = $this->cacheKey;
+      $a['dataAttribs']['data-feature'] = $this->feature;
 
-      return $out;
-  }
-
-  public function getFeatureName()
-  {
-      return $this->feature;
+      return $this->tagHelper($a, 'div');
   }
 
   /**
@@ -119,7 +121,7 @@ abstract class AbstractCompaTableView
    *
    * Ref: https://github.com/Fyrd/caniuse/blob/master/Contributing.md
    **/
-  protected function supportHelper($support_string)
+  protected function supportText($support_string)
   {
       $out = array();
       $exploded = explode(',', $support_string);
@@ -128,23 +130,40 @@ abstract class AbstractCompaTableView
           foreach($exploded as $support_token) {
               switch ($support_string) {
                   case 'p':
-                    $out[] = 'No support, but has polyfill';
+                    $out[] = array(
+                              'inner'=>'No support, but has polyfill',
+                              'classNames' => array('compat-shaded')
+                            );
                     break;
                   case 'a':
-                    $out[] = 'Partial support (almost)';
+                    $out[] = array(
+                              'inner'=>'Partial support (almost)'
+                            );
                     break;
                   case 'x':
-                    $out[] = '<abbr title="Requires script polyfill library to work">polyfill</abbr>';
+                    $out[] = array(
+                              'title'=>'Requires script polyfill library to work',
+                              'inner'=>'polyfill'
+                            );
                     break;
                   case 'y':
-                    $out[] = 'Yes';
+                    $out[] = array(
+                              'inner'=>'Yes'
+                            );
                     break;
                   case 'n':
-                    $out[] = '<abbr title="No support, or disabled by default">none</abbr>';
+                    $out[] = array(
+                              'title'=>'No support, or disabled by default',
+                              'inner'=>'none',
+                              'classNames' => array('compat-shaded')
+                            );
                     break;
                   case 'u':
                   default:
-                    $out[] = 'Unknown';
+                    $out[] = array(
+                              'inner'=>'Unknown',
+                              'classNames' => array('compat-shaded')
+                            );
                     break;
               }
           }
@@ -154,12 +173,14 @@ abstract class AbstractCompaTableView
   }
 
 
-  protected function versionHelper($version_string)
+  protected function versionText($version_string)
   {
       if(strstr($version_string, '?') == false) {
-        $out = $version_string;
+        $out['inner'] = $version_string;
       } else {
-        $out = '<abbr title="Version unknown">?</abbr>';
+        $out['inner'] = '?';
+        $out['title'] = 'Version unknown';
+        $out['classNames'] = array('compat-shaded');
       }
 
       return $out;
@@ -173,11 +194,18 @@ abstract class AbstractCompaTableView
   protected function tagHelper($in, $tagName='div')
   {
       $tagAttribs = array();
-      if(isset($in['classNames'])) {
-        $tagAttribs['class'] = $in['classNames'];
-      }
-      if(isset($in['title'])) {
-        $tagAttribs['title'] = $in['title'];
+      foreach($in as $inputk => $inputv) {
+        switch($inputk) {
+          case 'title':
+            $tagAttribs['title'] = $inputv;
+          break;
+          case 'classNames':
+            $tagAttribs['class'] = $inputv;
+          break;
+          case 'dataAttribs':
+            $tagAttribs = array_merge($tagAttribs, $inputv);
+          break;
+        }
       }
 
       // Use MediaWiki's Html class in includes/Html.php
@@ -195,6 +223,7 @@ abstract class AbstractCompaTableView
     return array(
       'timestamp' => $this->timestamp,
       'hash'      => $this->hash,
+      'cacheKey'  => $this->cacheKey,
       'output'    => '<!-- Generated -->'.$this->getOutput().'<!-- /Generated -->'
     );
   }
