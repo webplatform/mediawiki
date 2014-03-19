@@ -78,9 +78,8 @@ class SpecialCompatables extends UnlistedSpecialPage
 		}
     /**   *****************************   **/
 
-
 		if ( $this->getRequest()->getBool( 'foresi' ) ) {
-			// $this->getOutput()->addHtml( "<!DOCTYPE html><html>$table</html>" );
+			$this->getOutput()->addHtml($table);
 			$this->getOutput()->setArticleBodyOnly( true );
 		} else {
 			$this->getOutput()->addHtml( $table );

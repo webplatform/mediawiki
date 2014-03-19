@@ -35,7 +35,7 @@ $wgCompatablesJsonFileUrl = 'http://docs.webplatform.org/compat/data.json';
  *
  * @var bool Whether to use Edge-Side-Includes for tables
  */
-$wgCompatablesUseESI = false;
+$wgCompatablesUseESI = true;
 
 /**
  * `$wgCompatablesCssFileUrl`: CSS file to include to style tables
