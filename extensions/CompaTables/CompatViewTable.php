@@ -8,10 +8,6 @@ class CompatViewTable extends AbstractCompaTableView
   protected function compile()
   {
     $out = '';
-    $th = function($in){ return '<th>'.$in.'</th>'; };
-    $td = function($in){ return '<td>'.$in.'</td>'; };
-    $dd = function($in){ return '<dd>'.$in.'</dd>'; };
-    $dt = function($in){ return '<dt>'.$in.'</dt>'; };
 
     // loop through desktop, mobile
     foreach ($this->contents as $browser_type_key => $feature_list) {
@@ -24,7 +20,9 @@ class CompatViewTable extends AbstractCompaTableView
       // we want to list only once that list of browsers.
       $out .= '<thead><tr><th>Features</th>';
       $a = array_values($feature_list);
-      $out .= join("", array_map($th, array_keys($a[0])));
+      foreach(array_keys($a[0]) as $f) {
+        $out .= $this->tagHelper(array('inner'=>$f), 'th');
+      }
       $out .= '</tr></thead>';
 
       $out .= '<tbody>';
