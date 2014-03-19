@@ -1,6 +1,6 @@
 <?php
 /**
- * CompaTables - Create web browser compatability table to a wiki document based on arguments
+ * CompaTables - Create web browser feature compatability table to a wiki document based on arguments
  *
  * To activate this extension, add the following into your LocalSettings.php file:
  * require_once('$IP/extensions/CompaTables/compatables.php');
@@ -13,9 +13,6 @@
  * @author Renoir Boulanger <renoir@w3.org>
  *
  * @version 1.1
- *
- * @link https://www.mediawiki.org/wiki/Extension:CompaTables Documentation
- * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 
 /**
@@ -38,6 +35,14 @@ $wgExtensionCredits['parserHook'][] = array(
 );
 
 require( __DIR__ . '/Compatables.config.php' );
+
+// Hopefully, we won't need too
+// many files here. It would be
+// better to use a ClassLoader
+require_once( __DIR__ . '/AbstractCompaTableView.php' );
+require_once( __DIR__ . '/CompatViewList.php' );
+require_once( __DIR__ . '/CompatViewTable.php' );
+require_once( __DIR__ . '/CompatViewNotSupportedBlock.php' );
 
 # Main i18n file and special page alias file
 $wgExtensionMessagesFiles['Compatables'] = __DIR__. "/Compatables.i18n.php";
@@ -66,10 +71,10 @@ $wgHooks['ParserFirstCallInit'][] = function( Parser &$parser ) {
 $wgHooks['ParserAfterTidy'][] = 'Compatables::onParserAfterTidy';
 $wgHooks['ParserClearState'][] = 'Compatables::onParserClearState';
 
-$wgHooks['BeforePageDisplay'][] = function(OutputPage &$out, Skin &$skin) {
+$wgHooks['BeforePageDisplay'][] = function(OutputPage &$out, Skin &$skin) use ($wgCompatablesCssFileUrl) {
 	global $wgCompatablesCssFileUrl;
-	$css = (isset($wgCompatablesCssFileUrl)) ? $wgCompatablesCssFileUrl : '/bogus'; //w/extensions/CompaTables/compatables.css';
-	$out->addStyle($css);
+
+	$out->addStyle($wgCompatablesCssFileUrl);
 
 	return true;
 };

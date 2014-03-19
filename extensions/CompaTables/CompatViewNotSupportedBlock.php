@@ -1,17 +1,14 @@
 <?php
 
-require_once('AbstractCompaTableView.php');
-
 class CompatViewNotSupportedBlock extends AbstractCompaTableView
 {
-  const FORMAT = 'CompatViewNotSupportedBlock';
-  const ERRORBLOCK = '<div class="note"><p><strong>NOTE</strong>Compatibility tables: Requested table format "%s" is not supported</p></div>';
+  const ERR_BLOCK = '<div class="note"><p>Requested table format "%s" is not supported</p></div>';
 
   public function __construct($contents = null, array $meta)
   {
     parent::__construct($contents, $meta);
 
-    $this->output = sprintf(self::ERRORBLOCK, $meta['format']);
+    $this->output = sprintf(self::ERR_BLOCK, $meta['format']);
 
     return $this;
   }

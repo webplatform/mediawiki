@@ -1,9 +1,8 @@
 <?php
 
-// Requires MediaWiki's Html class in includes/Html.php
-
 abstract class AbstractCompaTableView
 {
+  const ERR_NO_COMPAT_FOUND = '<div class="note"><p>No compatibility data found for feature "<i>%s</i>"</p></div>';
 
   /**
    * Selected Compatibility table
@@ -68,7 +67,7 @@ abstract class AbstractCompaTableView
     // If we do not have
     // contents, lets stop right away
     if($contents === null) {
-      $this->noDataMessageHelper();
+      $this->noDataMessageBlock();
 
       return $this;
     }
@@ -93,14 +92,14 @@ abstract class AbstractCompaTableView
 
   public function getOutput()
   {
-      // Use MediaWiki's Html class in includes/Html.php
-      $tag = Html::rawElement(
-          'div',
-          array('class' => array('compat-parent', 'compat-ng', 'prout')),
-          $this->output
-        );
+      $now = new \DateTime();
+      $dataComment = 'Generated on '.$now->format(\DateTime::W3C);
 
-      return $tag;
+      $out = sprintf('<div data-comment="%s" class="compat-parent compat-ng compat-%s">', $dataComment, $this->feature);
+      $out .= $this->output;
+      $out .= '</div>';
+
+      return $out;
   }
 
   public function getFeatureName()
@@ -144,8 +143,6 @@ abstract class AbstractCompaTableView
                     $out[] = '<abbr title="No support, or disabled by default">none</abbr>';
                     break;
                   case 'u':
-                    $out[] = 'Unknown';
-                    break;
                   default:
                     $out[] = 'Unknown';
                     break;
@@ -168,31 +165,37 @@ abstract class AbstractCompaTableView
       return $out;
   }
 
-  protected function noDataMessageHelper()
+  protected function noDataMessageBlock()
   {
-      $this->output = '
-      <div class="note"><p>
-        <b>NOTE</b>
-        No compatibility data found for feature "<i>'.$this->getFeatureName().'</i>"
-      </p></div>';
+      $this->output = sprintf(self::ERR_NO_COMPAT_FOUND, $this->feature);
   }
 
-  public function getCacheKeyName()
+  protected function tagHelper($in, $tagName='div')
   {
-      return 'compatables:'.static::FORMAT.':'.$this->getFeatureName();
+      $tagAttribs = array();
+      if(isset($in['classNames'])) {
+        $tagAttribs['class'] = $in['classNames'];
+      }
+      if(isset($in['title'])) {
+        $tagAttribs['title'] = $in['title'];
+      }
+
+      // Use MediaWiki's Html class in includes/Html.php
+      $tag = Html::rawElement(
+          $tagName,
+          $tagAttribs,
+          $in['inner']
+      );
+
+      return $tag;
   }
 
-  public function getHash()
+  public function toArray()
   {
-      return $this->hash;
-  }
-
-  public function serializeView()
-  {
-    return serialize(array(
+    return array(
       'timestamp' => $this->timestamp,
       'hash'      => $this->hash,
-      'output'    => '<!-- from memcached -->'.$this->getOutput().'<!-- /from memcached -->'
-    ));
+      'output'    => '<!-- Generated -->'.$this->getOutput().'<!-- /Generated -->'
+    );
   }
 }

@@ -1,11 +1,7 @@
 <?php
 
-require_once('AbstractCompaTableView.php');
-
 class CompatViewList extends AbstractCompaTableView
 {
-  const FORMAT = 'CompatViewList';
-
   /**
    * @inheritDoc
    */

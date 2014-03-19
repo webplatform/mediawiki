@@ -37,6 +37,12 @@ $wgCompatablesJsonFileUrl = 'http://docs.webplatform.org/compat/data.json';
  */
 $wgCompatablesUseESI = false;
 
+/**
+ * `$wgCompatablesCssFileUrl`: CSS file to include to style tables
+ *
+ * @var string Path to the CSS file publicly accessible to the web
+ */
+$wgCompatablesCssFileUrl = '/t/extensions/CompaTables/compatables.css';
 
 $wgAvailableRights[] = 'purgecompatables';
 $wgGroupPermissions['sysop']['purgecompatables'] = true;

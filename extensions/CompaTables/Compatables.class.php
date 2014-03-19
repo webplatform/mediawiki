@@ -1,127 +1,176 @@
 <?php
 
-// Hopefully, for memory sake, we
-// only need two classes here.
-//
-// Would be better to use an
-// UniversalClassLoader if we need
-// to load more classes
-require_once('AbstractCompaTableView.php');
-require_once('CompatViewList.php');
-require_once('CompatViewTable.php');
-require_once('CompatViewNotSupportedBlock.php');
-
 class Compatables
 {
 
   /** @var array (unique ID => string) */
   public static $items = array(); // used by closure
 
+  protected static $allowed_formats = array('table','list');
+
+  const TTL = 3600;
+
+
   /**
-   * [hasValidCache description]
+   * Purge key in Memcache
    *
    * @param  string $cacheKey Cache key
+   *
+   * @return null
+   */
+  public static function saveMemcacheKey($cacheKey, $data)
+  {
+    global $wgMemc;
+
+    $wgMemc->set( $cacheKey, serialize($data), self::TTL );
+  }
+
+  /**
+   * Purge key in Memcache
+   *
+   * @param  string $cacheKey Cache key
+   *
+   * @return null
+   */
+  public static function purgeMemcacheKey($cacheKey)
+  {
+    global $wgMemc;
+
+    $wgMemc->delete($cacheKey);
+  }
+
+  /**
+   * Check and return data from Memcache
+   *
+   * @param  array  $cacheKey
    * @param  string $hash     Hash checksum from the originating JSON document
    *
-   * @return mixed Either an object or false
+   * @return mixed Either an array or false
    */
-  public static function fromMemcache($cacheKey, $hash)
+  public static function fromMemcache($cacheKey, $hash=null)
   {
-    return false; // Cache purging needs more work
+    global $wgMemc, $wgRequest;
 
-    global $wgMemc;
-    $read = $wgMemc->get($cacheKey);
+    $cachedView = $wgMemc->get($cacheKey);
 
-    if($read === false) {
-      return false;
-    }
+    if($cachedView !== false) {
+      $unserialized = unserialize($cachedView);
+      if(isset($unserialized['hash']) && isset($unserialized['output'])) {
+        if($unserialized['hash'] !== $hash) {
+          $wgMemc->delete($cacheKey);
 
-    $data = unserialize($read);
-    if(isset($data['hash']) && isset($data['output'])) {
-      if($data['hash'] !== $hash) {
-        $wgMemc->delete($cacheKey);
+          return false;
+        }
 
-        return false;
+        return $unserialized;
       }
-
-      return $data['output'];
     }
 
     return false;
   }
 
-  protected static function toMemcache(AbstractCompaTableView $obj) {
-    global $wgMemc;
-    $key = $obj->getCacheKeyName();
-
-    $wgMemc->add($key, $obj->serializeView());
-  }
-
   /**
+   * Render CompaTable HTML code
+   *
+   * Reads from JSON file, triggers generation if required
+   * and optionally adds ESI tags.
+   *
    * @param string $input
-   * @param array $args
+   * @param array  $args
    * @param Parser $parser
    */
   public static function renderCompaTables( $input, array $args, Parser $parser ) {
     global $wgCompatablesUseESI, $wgUseTidy, $wgAlwaysUseTidy;
-
-    $data = self::getCompatablesJson();
-    $args['feature'] = isset( $args['feature'] ) ? $args['feature'] : '';
-    $args['format'] = isset( $args['format'] ) ? $args['format'] : '';
-
     $out = '';
+
+    $args['feature'] = isset( $args['feature'] ) ? $args['feature'] : '';
+    $args['format']  = isset( $args['format'] ) ? $args['format'] : '';
+    $cacheKey        = wfMemcKey('compatables', $args['format'], $args['feature']);
+
+    /**   *****************************   **/
+    $data = self::getData();
+    $cached = self::fromMemcache($cacheKey, $data['hash']);
+    if( $cached !== false ) {
+      $table = $cached['output'];
+    } else {
+      $generated = self::generateCompaTable( $data, $args );
+
+      if ( ( $wgUseTidy && $parser->getOptions()->getTidy() ) || $wgAlwaysUseTidy ) {
+        $generated['output'] = MWTidy::tidy( $generated['output'] );
+      }
+
+      self::saveMemcacheKey( $cacheKey, $generated );
+
+      $table = $generated['output'];
+    }
+    /**   *****************************   * */
+
     if ( $input != '' ) {
       $out .= '<p class="compat-label">' . $input . '</p>';
     }
 
-    $table = self::generateCompaTable($data, $args);
-    if ( ( $wgUseTidy && $parser->getOptions()->getTidy() ) || $wgAlwaysUseTidy ) {
-      $table = MWTidy::tidy( $table );
-    }
-
-    if ($wgCompatablesUseESI === true) {
+    if ( $wgCompatablesUseESI === true ) {
+      $urlArgs['feature'] = $args['feature'];
+      $urlArgs['format']  = $args['format'];
+      $urlArgs['foresi']  = 1;
       // @TODO: this breaks in ESI level if $url ends up http for https views
-      $url = SpecialPage::getTitleFor( 'Compatables' )->getFullUrl( array(
-        'feature' => $args['feature'], 'format' => $args['format'], 'foresi' => 1 ) );
-      $url = wfExpandUrl( $url, PROTO_INTERNAL );
-      // @TODO: if the JSON file is always updated the same day of the week, one
-      // could do some math here to avoid IMS GETs from CDN.
-      // @TODO: Varnish does not support TTL here :/
-      $ttl = 3600; // revalidate TTL
-
-      // @TODO: Varnish does not support <esi:try> nor alt fallback URLs
-      // (https://www.varnish-cache.org/docs/3.0/tutorial/esi.html)
-      $out .= self::getUniqPlaceholder( // protect from Tidy
-        "\n<!--esi\n" .
-        Xml::element( 'esi:include', array( 'src' => $url, 'ttl' => $ttl ) ) . "\n" .
-        "-->\n" .
-        "<esi:remove>\n" .
-        $table . "\n" . // fallback if no ESI interpreter is around
-        "</esi:remove>\n"
-      );
-
-      /*
-      $out .= self::getUniqPlaceholder( // protect from Tidy
-        "\n<esi:try>\n" .
-        "<esi:attempt>\n" .
-        Xml::element( 'esi:include', array( 'src' => $url, 'ttl' => $ttl ) ) . "\n" .
-        "</esi:attempt>\n" .
-        "<esi:except>\n" .
-        // If this ends up with an error *or* no ESI interpreter is active, this
-        // will still show (though perhaps be stale) and the <esi> tags won't render.
-        // If the special page works and ESI is running, it will strip this out.
-        "<!-- Error: Special:Compatables or ESI is not available; used fallback! -->\n" .
-        $table . "\n" .
-        "</esi:except>\n" .
-        "</esi:try>\n"
-      );
-      */
+      $urlHelper = SpecialPage::getTitleFor( 'Compatables' )->getFullUrl( $urlArgs );
+      $out .= self::applyEsiTags($table, wfExpandUrl( $urlHelper, PROTO_INTERNAL ));
     } else {
       $out .= $table;
       $parser->getOutput()->updateCacheExpiry( 6*3600 ); // worse cache hit rate
     }
 
     return $out;
+  }
+
+  /**
+   * Add ESI tags to markup
+   *
+   * @param  string $table String representation of the HTML to make ESI
+   *
+   * @return string The HTML block surrounded ESI tags
+   */
+  private static function applyEsiTags( $table, $url )
+  {
+      $out = null;
+
+      // @TODO: if the JSON file is always updated the same day of the week, one
+      // could do some math here to avoid IMS GETs from CDN.
+      // @TODO: Varnish does not support TTL here :/
+      //
+
+      $params['src'] = $url;
+      $params['ttl'] = self::TTL;
+      // @TODO: Varnish does not support <esi:try> nor alt fallback URLs
+      // (https://www.varnish-cache.org/docs/3.0/tutorial/esi.html)
+      $out .= self::getUniqPlaceholder( // protect from Tidy
+        PHP_EOL . "<!--esi" . PHP_EOL .
+        Xml::element( 'esi:include', $params ) . PHP_EOL .
+        "-->" . PHP_EOL .
+        "<esi:remove>" . PHP_EOL .
+        $table . PHP_EOL . // fallback if no ESI interpreter is around
+        "</esi:remove>" . PHP_EOL
+      );
+
+      /*
+      $out .= self::getUniqPlaceholder( // protect from Tidy
+        PHP_EOL . "<esi:try>" . PHP_EOL .
+        "<esi:attempt>" . PHP_EOL .
+        Xml::element( 'esi:include', $params ) . PHP_EOL .
+        "</esi:attempt>" . PHP_EOL .
+        "<esi:except>" . PHP_EOL .
+        // If this ends up with an error *or* no ESI interpreter is active, this
+        // will still show (though perhaps be stale) and the <esi> tags won't render.
+        // If the special page works and ESI is running, it will strip this out.
+        "<!-- Error: Special:Compatables or ESI is not available; used fallback! -->" . PHP_EOL .
+        $table . PHP_EOL .
+        "</esi:except>" . PHP_EOL .
+        "</esi:try>" . PHP_EOL
+      );
+      */
+
+      return $out;
   }
 
   /**
@@ -166,7 +215,7 @@ class Compatables
   /**
    * @return array
    */
-  public static function getCompatablesJson() {
+  public static function getData() {
     global $wgCompatablesJsonFileUrl;
 
     $json_url = $wgCompatablesJsonFileUrl;
@@ -193,7 +242,7 @@ class Compatables
   /**
    * @return string
    */
-  public static function getCompatablesJsonTimestamp() {
+  public static function getFileTimestamp() {
     global $wgCompatablesJsonFileUrl;
 
     $json_url = $wgCompatablesJsonFileUrl;
@@ -211,23 +260,16 @@ class Compatables
    * @param array $args
    * @return string
    */
-  public static function generateCompaTable( array $data, array $args ) {
-    /** @var instanceof AbstractCompaTableView */
-    $viewObject = null;
-    $contents = null;
-    $format = $args['format'];
-    $className = 'CompatView'.ucfirst($format);
+  public static function generateCompaTable( array $data, array $args )
+  {
 
-    // Should match patterin from AbstractCompaTableView::getCacheKeyName()
-    $cacheKeyName = 'compatables:'.$className.':'.$args['feature'];
-    $cachedView = self::fromMemcache($cacheKeyName, $data['hash']);
-
-    // Return cached object as soon as possible!
-    if($cachedView !== false) {
-        return $cachedView;
-    }
+    $viewParameters['timestamp'] = $data['timestamp'];
+    $viewParameters['hash']      = $data['hash'];
+    $viewParameters['feature']   = $args['feature'];
+    $viewParameters['format']    = $args['format'];
 
     // extracting data for feature
+    $contents = null;
     if(isset($data['data'][$args['feature']])) {
       $tmp = $data['data'][$args['feature']];
       // Looping through contents array, that
@@ -241,19 +283,13 @@ class Compatables
       }
     }
 
-    $meta['timestamp'] = $data['timestamp'];
-    $meta['hash']      = $data['hash'];
-    $meta['feature']   = $args['feature'];
-
-    if(in_array($format, array('table','list'))) {
-      $viewObject = new $className($contents, $meta);
+    if(in_array($viewParameters['format'], self::$allowed_formats)) {
+      $className = 'CompatView'.ucfirst($viewParameters['format']);
+      $viewObject = new $className($contents, $viewParameters);
     } else {
-      $meta['format'] = $format;
-      $viewObject = new CompatViewNotSupportedBlock($contents, $meta);
+      $viewObject = new CompatViewNotSupportedBlock($contents, $viewParameters);
     }
 
-    self::toMemcache($viewObject);
-
-    return $viewObject->getOutput();
+    return $viewObject->toArray();
   }
 }
