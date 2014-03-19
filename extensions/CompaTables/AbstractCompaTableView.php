@@ -103,6 +103,7 @@ abstract class AbstractCompaTableView
       $a['classNames'] = array('compat-parent', 'compat-ng', 'compat-'.$this->feature);
       $a['dataAttribs']['data-comment'] = 'Generated on '.$now->format(\DateTime::W3C);
       $a['dataAttribs']['data-hash'] = $this->hash;
+      $a['dataAttribs']['data-timestamp'] = $this->timestamp;
       $a['dataAttribs']['data-cacheKey'] = $this->cacheKey;
       $a['dataAttribs']['data-feature'] = $this->feature;
 
