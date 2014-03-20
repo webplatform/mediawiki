@@ -5,6 +5,10 @@
 .compat-ng .compat-table {
   width:100%;
 }
+.compat-ng .compat-table th {
+  word-wrap: break-word;
+  font-size: 0.87em;
+}
 .compat-ng .compat-table td {
   vertical-align: top;
   padding:1%;
@@ -17,9 +21,9 @@
 }
 .compat-ng .compat-table dt,
 .compat-ng .compat-table dd {
-  font-size: 0.9em;
+  font-size: 0.87em;
   margin:0;
-  padding:0;
+  padding: 2px 0;
   float:left;
 }
 .compat-ng .compat-table dt {
@@ -29,9 +33,10 @@
 }
 .compat-ng .compat-table dd {
   /*background-color:purple;*/
-  width: 50%;
+  width: 60%;
   font-weight:normal !important;
   overflow: hidden;
+  word-wrap: break-word;
 }
 
 .compat-ng .compat-shaded {

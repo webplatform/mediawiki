@@ -1,6 +1,6 @@
 <?php
 
-class CompatViewNotSupportedBlock extends AbstractCompaTableView
+class CompatViewNotSupportedBlock extends AbstractCompatView
 {
   const ERR_BLOCK = '<div class="note"><p>Requested table format "%s" is not supported</p></div>';
 

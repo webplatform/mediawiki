@@ -1,6 +1,6 @@
 <?php
 
-class CompatViewList extends AbstractCompaTableView
+class CompatViewList extends AbstractCompatView
 {
   /**
    * @inheritDoc

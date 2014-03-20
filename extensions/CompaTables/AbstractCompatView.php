@@ -1,6 +1,6 @@
 <?php
 
-abstract class AbstractCompaTableView
+abstract class AbstractCompatView
 {
   const ERR_NO_COMPAT_FOUND = '<div class="note"><p>No compatibility data found for feature "<i>%s</i>"</p></div>';
 

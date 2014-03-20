@@ -1,6 +1,6 @@
 <?php
 
-class CompatViewTable extends AbstractCompaTableView
+class CompatViewTable extends AbstractCompatView
 {
   //const SUMMARY = "This table shows %s browser feature %s support organized by list of sub-features and showing browser vendor and listing support level per version";
 
@@ -60,7 +60,11 @@ class CompatViewTable extends AbstractCompaTableView
             //   live with it for now.
             $out .= $this->tagHelper($this->versionText($version),'dt');
             foreach($this->supportText($support_string_descriptor) as $supportVersion) {
-              $out .= '<dd>'.$this->tagHelper($supportVersion, 'abbr').'</dd>';
+              if(isset($supportVersion['classNames'])) {
+                $out .= '<dd>'.$this->tagHelper($supportVersion, 'abbr').'</dd>';
+              } else {
+                $out .= '<dd>'.$supportVersion['inner'].'</dd>';
+              }
             }
           }
           $out .= '</dl>';
