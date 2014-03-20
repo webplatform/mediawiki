@@ -223,6 +223,13 @@ class Compatables
     return true;
   }
 
+  public static function onBeforePageDisplay( OutputPage &$out, Skin &$skin )
+  {
+    global $wgCompatablesCssFileUrl;
+    $out->addStyle($wgCompatablesCssFileUrl);
+    return true;
+  }
+
   /**
    * @return array
    */

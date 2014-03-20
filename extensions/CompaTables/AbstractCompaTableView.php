@@ -97,6 +97,8 @@ abstract class AbstractCompaTableView
 
   public function getOutput()
   {
+      global $wgCompatablesSpecialUrl;
+
       $now = new \DateTime();
 
       $a['inner'] = $this->output;
@@ -106,6 +108,9 @@ abstract class AbstractCompaTableView
       $a['dataAttribs']['data-timestamp'] = $this->timestamp;
       $a['dataAttribs']['data-cacheKey'] = $this->cacheKey;
       $a['dataAttribs']['data-feature'] = $this->feature;
+      if(isset($this->meta['format'])) {
+          $a['dataAttribs']['data-canonical'] = $wgCompatablesSpecialUrl.'?feature='.$this->feature.'&format='.$this->meta['format'];
+      }
 
       return $this->tagHelper($a, 'div');
   }
@@ -197,6 +202,9 @@ abstract class AbstractCompaTableView
       $tagAttribs = array();
       foreach($in as $inputk => $inputv) {
         switch($inputk) {
+          case 'id':
+            $tagAttribs['id'] = $inputv;
+          break;
           case 'title':
             $tagAttribs['title'] = $inputv;
           break;
@@ -205,6 +213,13 @@ abstract class AbstractCompaTableView
           break;
           case 'dataAttribs':
             $tagAttribs = array_merge($tagAttribs, $inputv);
+          break;
+          // Not validating if its in a td or th
+          case 'headers':
+            $tagAttribs['headers'] = $inputv;
+          break;
+          case 'scope':
+            $tagAttribs['scope'] = $inputv;
           break;
         }
       }

@@ -12,5 +12,4 @@ class CompatViewList extends AbstractCompaTableView
 
     return true;
   }
-
 }

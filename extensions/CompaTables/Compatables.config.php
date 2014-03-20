@@ -19,7 +19,7 @@
  *
  * @var string Location of compatability JSON file
  */
-$wgCompatablesJsonFileUrl = 'http://docs.webplatform.org/compat/data.json';
+$wgCompatablesJsonFileUrl = (isset($GLOBALS['wgCompatablesJsonFileUrl']))?$GLOBALS['wgCompatablesJsonFileUrl']:'http://docs.webplatform.org/compat/data.json';
 
 /**
  * `$wgCompatablesUseESI`: Enable ESI tags support
@@ -35,14 +35,20 @@ $wgCompatablesJsonFileUrl = 'http://docs.webplatform.org/compat/data.json';
  *
  * @var bool Whether to use Edge-Side-Includes for tables
  */
-$wgCompatablesUseESI = true;
+$wgCompatablesUseESI = (isset($GLOBALS['wgCompatablesUseESI']))?$GLOBALS['wgCompatablesUseESI']:true;
 
 /**
  * `$wgCompatablesCssFileUrl`: CSS file to include to style tables
  *
  * @var string Path to the CSS file publicly accessible to the web
  */
-$wgCompatablesCssFileUrl = '/w/extensions/CompaTables/compatables.css';
+$wgCompatablesCssFileUrl = (isset($GLOBALS['wgCompatablesCssFileUrl']))?$GLOBALS['wgCompatablesCssFileUrl']:'/w/extensions/CompaTables/compatables.css';
+
+/**
+ * `$wgCompatablesSpecialUrl`: Path to the special page
+ */
+$wgCompatablesSpecialUrl = (isset($GLOBALS['wgCompatablesSpecialUrl']))?$GLOBALS['wgCompatablesSpecialUrl']:'/wiki/Special:Compatables';
+
 
 $wgAvailableRights[] = 'purgecompatables';
 $wgGroupPermissions['sysop']['purgecompatables'] = true;

@@ -70,11 +70,4 @@ $wgHooks['ParserFirstCallInit'][] = function( Parser &$parser ) {
 
 $wgHooks['ParserAfterTidy'][] = 'Compatables::onParserAfterTidy';
 $wgHooks['ParserClearState'][] = 'Compatables::onParserClearState';
-
-$wgHooks['BeforePageDisplay'][] = function(OutputPage &$out, Skin &$skin) use ($wgCompatablesCssFileUrl) {
-	global $wgCompatablesCssFileUrl;
-
-	$out->addStyle($wgCompatablesCssFileUrl);
-
-	return true;
-};
+$wgHooks['BeforePageDisplay'][] =  'Compatables::onBeforePageDisplay';
