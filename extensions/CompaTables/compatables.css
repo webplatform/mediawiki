@@ -37,3 +37,12 @@
 .compat-ng .compat-shaded {
   opacity: 0.5;
 }
+
+.compat-ng .compat-prefix {
+  border-color: white;
+  background: rgb(70,183,228);
+  background: -moz-linear-gradient( rgba(70,183,228,1) 0%,rgba(74,125,186,1) 100%);
+  background: -webkit-linear-gradient( rgba(70,183,228,1) 0%,rgba(74,125,186,1) 100%);
+  background: -o-linear-gradient( rgba(70,183,228,1) 0%,rgba(74,125,186,1) 100%);
+  background: linear-gradient( rgba(70,183,228,1) 0%,rgba(74,125,186,1) 100%);
+}

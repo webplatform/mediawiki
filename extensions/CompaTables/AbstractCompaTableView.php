@@ -95,14 +95,14 @@ abstract class AbstractCompaTableView
    */
   abstract protected function compile();
 
-  public function getOutput()
+  protected function getOutput()
   {
       global $wgCompatablesSpecialUrl;
 
       $now = new \DateTime();
 
       $a['inner'] = $this->output;
-      $a['classNames'] = array('compat-parent', 'compat-ng', 'compat-'.$this->feature);
+      $a['classNames'] = 'compat-parent,compat-ng,compat-'.$this->feature;
       $a['dataAttribs']['data-comment'] = 'Generated on '.$now->format(\DateTime::W3C);
       $a['dataAttribs']['data-hash'] = $this->hash;
       $a['dataAttribs']['data-timestamp'] = $this->timestamp;
@@ -118,12 +118,12 @@ abstract class AbstractCompaTableView
   /**
    * Based on caniuse.com's model:
    *
-   *  .y - (Y)es, supported by default
-   *  .a - (A)lmost supported (aka Partial support)
-   *  .n - (N)o support, or disabled by default
-   *  .p - No support, but has (P)olyfill
-   *  .u - Support (u)nknown
-   *  .x - Requires prefi(x) to work
+   *  y - (Y)es, supported by default
+   *  a - (A)lmost supported (aka Partial support)
+   *  n - (N)o support, or disabled by default
+   *  p - No support, but has (P)olyfill
+   *  u - Support (u)nknown
+   *  x - Requires prefi(x) to work
    *
    * Ref: https://github.com/Fyrd/caniuse/blob/master/Contributing.md
    **/
@@ -138,7 +138,7 @@ abstract class AbstractCompaTableView
                   case 'p':
                     $out[] = array(
                               'inner'=>'No support, but has polyfill',
-                              'classNames' => array('compat-shaded')
+                              'classNames' => 'compat-shaded'
                             );
                     break;
                   case 'a':
@@ -149,7 +149,8 @@ abstract class AbstractCompaTableView
                   case 'x':
                     $out[] = array(
                               'title'=>'Requires script polyfill library to work',
-                              'inner'=>'polyfill'
+                              'inner'=>'prefix',
+                              'classNames' => 'compat-prefix prefix'
                             );
                     break;
                   case 'y':
@@ -161,14 +162,14 @@ abstract class AbstractCompaTableView
                     $out[] = array(
                               'title'=>'No support, or disabled by default',
                               'inner'=>'none',
-                              'classNames' => array('compat-shaded')
+                              'classNames' => 'compat-shaded'
                             );
                     break;
                   case 'u':
                   default:
                     $out[] = array(
                               'inner'=>'Unknown',
-                              'classNames' => array('compat-shaded')
+                              'classNames' => 'compat-shaded'
                             );
                     break;
               }
@@ -178,7 +179,6 @@ abstract class AbstractCompaTableView
       return $out;
   }
 
-
   protected function versionText($version_string)
   {
       if(strstr($version_string, '?') == false) {
@@ -186,7 +186,7 @@ abstract class AbstractCompaTableView
       } else {
         $out['inner'] = '?';
         $out['title'] = 'Version unknown';
-        $out['classNames'] = array('compat-shaded');
+        $out['classNames'] = 'compat-shaded';
       }
 
       return $out;
@@ -209,12 +209,14 @@ abstract class AbstractCompaTableView
             $tagAttribs['title'] = $inputv;
           break;
           case 'classNames':
-            $tagAttribs['class'] = $inputv;
+            $tagAttribs['class'] = explode(',',$inputv);
           break;
           case 'dataAttribs':
             $tagAttribs = array_merge($tagAttribs, $inputv);
           break;
-          // Not validating if its in a td or th
+
+          // Not validating if its in
+          // a <td> or <th> tag.
           case 'headers':
             $tagAttribs['headers'] = $inputv;
           break;
@@ -224,7 +226,8 @@ abstract class AbstractCompaTableView
         }
       }
 
-      // Use MediaWiki's Html class in includes/Html.php
+      // Use MediaWiki's Html class
+      // in includes/Html.php
       $tag = Html::rawElement(
           $tagName,
           $tagAttribs,
@@ -240,7 +243,7 @@ abstract class AbstractCompaTableView
       'timestamp' => $this->timestamp,
       'hash'      => $this->hash,
       'cacheKey'  => $this->cacheKey,
-      'output'    => '<!-- Generated -->'.$this->getOutput().'<!-- /Generated -->'
+      'output'    => '<!-- Generated --><nowiki>'.$this->getOutput().'</nowiki><!-- /Generated -->'
     );
   }
 }

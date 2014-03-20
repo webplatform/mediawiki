@@ -33,7 +33,7 @@ class CompatViewTable extends AbstractCompaTableView
       $a = array_values($feature_list);
       $loopIndex = 1;
       foreach(array_keys($a[0]) as $f) {
-        $out .= $this->tagHelper(array('inner'=>$f, 'id'=>$hashId.'-c-'.$loopIndex++, 'scope'=>'col'), 'th');
+        $out .= $this->tagHelper(array('inner' => wfEscapeWikiText($f), 'id' => $hashId.'-c-'.$loopIndex++), 'th');
       }
       unset($loopIndex);
       $out .= '</tr></thead>';
@@ -43,7 +43,7 @@ class CompatViewTable extends AbstractCompaTableView
       $loopIndexRow = 1;
       foreach($feature_list as $feature_name_key => $browser_list) {
         $out .= '<tr>';
-        $out .= $this->tagHelper(array('inner'=>$feature_name_key, 'id'=> $hashId.'-r-'.$loopIndexRow),'th');
+        $out .= $this->tagHelper(array('inner' => wfEscapeWikiText($feature_name_key), 'id' => $hashId.'-r-'.$loopIndexRow),'th');
 
         foreach($browser_list as $f) {
           $out .= '<td headers="'.$hashId.'-feature '.$hashId.'-r-'.$loopIndexRow.' '.$hashId.'-c-'.$loopIndex++.'">';
