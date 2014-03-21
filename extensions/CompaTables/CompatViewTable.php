@@ -29,9 +29,13 @@ class CompatViewTable extends AbstractCompatView
       // We want the first values of $feature_list
       // that has a list of browsers inside. In it
       // we want to list only once that list of browsers.
-      $out .= '<thead><tr><th id="'.$hashId.'-feature'.'"><abbr title="'.$longTitle.'">Features</abbr></th>';
+      $out .= '<thead><tr><th id="'.$hashId.'-feature-'.strtolower($browser_type_key).'"><abbr title="'.$longTitle.'">Features</abbr></th>';
       $a = array_values($feature_list);
       $loopIndex = 1;
+      ksort($a[0]); // Same as $browser_list, but we need the browser
+                    //   list only once for the thead. Ideally, it
+                    //   should be done in the importer.
+                    //   see: https://github.com/webplatform/mdn-compat-importer/issues/4
       foreach(array_keys($a[0]) as $f) {
         $out .= $this->tagHelper(array('inner' => wfEscapeWikiText($f), 'id' => $hashId.'-c-'.$loopIndex++), 'th');
       }
@@ -45,21 +49,20 @@ class CompatViewTable extends AbstractCompatView
         $out .= '<tr>';
         $out .= $this->tagHelper(array('inner' => wfEscapeWikiText($feature_name_key), 'id' => $hashId.'-r-'.$loopIndexRow),'th');
 
-        foreach($browser_list as $f) {
-          $out .= '<td headers="'.$hashId.'-feature '.$hashId.'-r-'.$loopIndexRow.' '.$hashId.'-c-'.$loopIndex++.'">';
-          $notes = null;
+        ksort($browser_list); // See: https://github.com/webplatform/mdn-compat-importer/issues/4
+        foreach($browser_list as $user_agent) {
+          $out .= '<td headers="'.$hashId.'-feature-'.strtolower($browser_type_key).' '.$hashId.'-r-'.$loopIndexRow.' '.$hashId.'-c-'.$loopIndex++.'">';
+          //$notes = null;
 
-          if(isset($f['notes'])) {
-            $notes = $f['notes'];
-            unset($f['notes']);
+          if(isset($user_agent['notes'])) {
+            //$notes = $user_agent['notes'];
+            unset($user_agent['notes']);
           }
 
           $out .= '<dl>';
-          foreach($f as $version => $support_string_descriptor) {
-            // I know, an anonymous div; lets
-            //   live with it for now.
-            $out .= $this->tagHelper($this->versionText($version),'dt');
-            foreach($this->supportText($support_string_descriptor) as $supportVersion) {
+          foreach($user_agent as $ua_version => $ua_descriptor) {
+            $out .= $this->tagHelper($this->versionText($ua_version),'dt');
+            foreach($this->supportText($ua_descriptor) as $supportVersion) {
               if(isset($supportVersion['classNames'])) {
                 $out .= '<dd>'.$this->tagHelper($supportVersion, 'abbr').'</dd>';
               } else {

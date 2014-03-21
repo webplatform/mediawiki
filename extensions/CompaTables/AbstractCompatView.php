@@ -102,7 +102,7 @@ abstract class AbstractCompatView
       $now = new \DateTime();
 
       $a['inner'] = $this->output;
-      $a['classNames'] = 'compat-parent,compat-ng,compat-'.$this->feature;
+      $a['classNames'] = array('compat-parent', 'compat-ng', 'compat-'.$this->feature);
       $a['dataAttribs']['data-comment'] = 'Generated on '.$now->format(\DateTime::W3C);
       $a['dataAttribs']['data-hash'] = $this->hash;
       $a['dataAttribs']['data-timestamp'] = $this->timestamp;
@@ -138,7 +138,7 @@ abstract class AbstractCompatView
                   case 'p':
                     $out[] = array(
                               'inner'=>'No support, but has polyfill',
-                              'classNames' => 'compat-shaded'
+                              'classNames' => array('compat-shaded')
                             );
                     break;
                   case 'a':
@@ -150,7 +150,7 @@ abstract class AbstractCompatView
                     $out[] = array(
                               'title'=>'Requires script polyfill library to work',
                               'inner'=>'prefix',
-                              'classNames' => 'compat-prefix prefix'
+                              'classNames' => array('compat-prefix', 'prefix')
                             );
                     break;
                   case 'y':
@@ -162,14 +162,14 @@ abstract class AbstractCompatView
                     $out[] = array(
                               'title'=>'No support, or disabled by default',
                               'inner'=>'none',
-                              'classNames' => 'compat-shaded'
+                              'classNames' => array('compat-shaded')
                             );
                     break;
                   case 'u':
                   default:
                     $out[] = array(
                               'inner'=>'Unknown',
-                              'classNames' => 'compat-shaded'
+                              'classNames' => array('compat-shaded')
                             );
                     break;
               }
@@ -186,7 +186,7 @@ abstract class AbstractCompatView
       } else {
         $out['inner'] = '?';
         $out['title'] = 'Version unknown';
-        $out['classNames'] = 'compat-shaded';
+        $out['classNames'] = array('compat-shaded');
       }
 
       return $out;
@@ -208,11 +208,11 @@ abstract class AbstractCompatView
           case 'title':
             $tagAttribs['title'] = $inputv;
           break;
-          case 'classNames':
-            $tagAttribs['class'] = explode(',',$inputv);
+          case 'classNames':    // Casting as an array
+            $tagAttribs['class'] = (array) $inputv;
           break;
           case 'dataAttribs':
-            $tagAttribs = array_merge($tagAttribs, $inputv);
+            $tagAttribs = array_merge($tagAttribs, (array) $inputv);
           break;
 
           // Not validating if its in
