@@ -1,0 +1,183 @@
+/* MediaWiki:Common.css  */
+/* BEGIN hide all edit section links (Frozenice) */
+.editsection {
+  display: none !important;
+}
+/* END hide all edit section links (Frozenice) */
+
+
+/* BEGIN testing layout for possible new main page (Tomato) */
+.wpdbox {
+  background-color: #F4F5F7;
+  padding: 5px;
+  border: 1px solid #CDCED0;
+}
+
+.wpdbox_header {
+  padding-bottom: 3px;
+  font-size: 16px;
+  color: #58595B;
+  font-family: Bitter;
+  font-weight: bold;
+}
+
+.wpdbox_header a, 
+.wpdbox_header a span, 
+.wpdbox_header a:visited, 
+.wpdbox_header a:active {
+  color: #D37E00;
+}
+
+.wpdbox_header a:hover {
+  color: #2DAFBC;
+}
+/* END testing layout for possible new main page (Tomato) */
+
+/* BEGIN temporary fix for duplicate <h1> issue on Wiki pages (chrisdavidmills) */
+
+.firstHeading { display: none; } 
+/* END temporary fix for duplicate <h1> issue on Wiki pages (chrisdavidmills) */
+
+
+/* BEGIN removing bullets from search types on search results page (Frozenice) */
+.mw-search-formheader div.results-info ul li,
+.mw-search-formheader div.search-types ul li {
+  list-style-image: none !important;
+}
+/* END removing bullets from search types on search results page (Frozenice) */
+
+/* BEGIN making raw source textarea taking full width (Frozenice) */
+.wikiEditor-ui-text textarea {
+  width: 100%;
+}
+/* END making raw source textarea taking full width (Frozenice) */
+
+/* BEGIN sticking property list checkboxes in the semantic forms to their labels, so they don't break up on line-wrap (Frozenice) */
+.formtable .checkboxesSpan .checkboxLabel {
+  display: inline-block;
+}
+/* END sticking property list checkboxes in the semantic forms to their labels, so they don't break up on line-wrap (Frozenice) */
+
+
+/* Begin new site-notice style (Shepazu) */
+#alpha-notice {
+  border-radius: 5px;
+  text-align: center;
+  border-color: #694D9F;
+  background: #694D9F;
+  color: white;
+  padding: 0 1em;
+  text-shadow: none;
+}
+
+#alpha-notice a {
+  color: gold;
+}
+
+#alpha-notice p.campaign {
+  color: #694D9F;
+  background: white;
+  padding: 0.5em;
+  border-radius: 5px;
+}
+
+#alpha-notice p.campaign a {
+  color: #263C81;
+  text-decoration: underline;
+}
+
+div#mw-dismissable-notice-close a {
+float: none;
+padding-left: 0.25em;
+padding-top: 0.25em;
+color: white;
+font-size: 1.5em;
+text-decoration: none;
+}
+/* End new site-notice style (Shepazu) */
+
+
+/* Start new topic-box style (Shepazu) */
+
+body {
+  counter-reset: topic-container-inner;
+}
+
+.topic-container-inner {
+   counter-increment: topic-container-inner;
+   border: 5px solid #694D9F;
+   padding: 5px 5px 5px 10px;
+   border-radius: 5px;
+   min-height: 150px;
+   float: right;
+   width: 240px;
+}
+
+.topic-container-inner:before {
+   content: counter(topic-container-inner);
+   font-weight: bold;
+   float: left;
+   background-color: #694D9F;
+   padding: 0.25em 0.8em;
+   border-radius: 0 0 5px 0;
+   margin: -0.4em 1em 0em -0.75em;
+   color: white;
+}
+/* End new topic-box style (Shepazu) */
+
+
+/* Start table new-link style (Shepazu) */
+.compat-table a.new, .wikitable a.new {
+   color: #BA0000;
+}
+
+.compat-table td:first-child a.new, .wikitable td:first-child a.new, .compat-table tbody th:first-child a.new, .wikitable tbody th:first-child  a.new {
+   color: pink;
+}
+/* End table new-link style (Shepazu) */
+
+/* Start testing new CSS property template (Shepazu) */
+dt.template_test {
+   float: left;
+   width: 10em;
+   background: #6c6657;
+   padding: 0.25em 0.1em 0.5em 0.5em;
+   border-radius: 5px 0 0 5px;
+   color: white;
+}
+
+dd.template_test {
+   margin-left: 12em;
+   margin-bottom: 0.5em;
+   border: #6c6657 3px solid;
+   padding: 0.25em 0.5em;
+   border-radius: 0 5px 5px;
+   min-height: 2em;
+}
+
+table.template_test td:first-child {
+   background-color: inherit;
+   color: inherit;
+}
+
+table.template_test th {
+   background-color: #6c6657;
+}
+
+ul.keywords {
+   margin: 0;
+   list-style-type: none;
+}
+
+ul.keywords li {
+   margin: 0;
+   list-style-image: none;
+}
+
+ul.keywords li code.keyword {
+   padding: 0.2em 0.5em;
+   color: #fff;
+   background-color: #6c6657;
+}
+/* End testing new CSS property template (Shepazu) */
+

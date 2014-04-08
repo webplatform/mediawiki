@@ -8,6 +8,7 @@ global $wgResourceModules, $wgStylePath, $wgStyleDirectory;
 $wgResourceModules['skins.webplatform'] = array(
 	'styles' => array(
 		'webplatform/screen.css' => array( 'media' => 'screen' ),
+                'webplatform/temporary.css' => array( 'media' => 'screen' ),
                 'webplatform/webplatformPrint.css' => array( 'media' => 'print' ),
 		'webplatform/screen-950.css' => array( 'media' => 'screen and (max-width: 950px)' ),
 		'webplatform/screen-640.css' => array( 'media' => 'screen and (max-width: 705px)' ),
