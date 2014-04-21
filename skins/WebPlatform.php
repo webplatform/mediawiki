@@ -139,7 +139,7 @@ class WebPlatformTemplate extends BaseTemplate {
 				<nav id="sitenav">
 				<div class="container">
 					<ul class="links">
-						<li><a href="/wiki/" class="active">DOCS</a></li>
+						<li><a href="/wiki/Main_Page" class="active">DOCS</a></li>
 						<li><a href="/wiki/WPD:Editors_Guide">EDITING</a></li>
 						<li><a href="http://talk.webplatform.org/">DISCUSSION</a></li>
 						<li><a href="http://blog.webplatform.org">BLOG</a></li>
