@@ -37,10 +37,10 @@ class SkinWebPlatform extends SkinTemplate {
 						"/{$this->stylename}/csshover{$min}.htc\")}</style><![endif]-->"
 						);
 		$out->addHeadItem('ie compatibility', '<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">');
-		$out->addHeadItem('html5shiv', '<!--[if lt IE 9]><script src="http://docs.webplatform.org/w/skins/webplatform/html5shiv.js"></script><![endif]-->');
+		$out->addHeadItem('html5shiv', '<!--[if lt IE 9]><script src="//docs.webplatform.org/w/skins/webplatform/html5shiv.js"></script><![endif]-->');
 		$out->addHeadItem('viewport', '<meta name="viewport" content="width=device-width">');
-		#$out->addHeadItem('ie8CSS', '<!--[if lt IE 9]><link rel="stylesheet" href="http://docs.webplatform.org/w/skins/webplatform/ie8.css"><![endif]-->');
-		$out->addHeadItem('ie7CSS', '<!--[if lt IE 8]><link rel="stylesheet" href="http://docs.webplatform.org/w/skins/webplatform/ie7.css"><![endif]-->');
+		#$out->addHeadItem('ie8CSS', '<!--[if lt IE 9]><link rel="stylesheet" href="//docs.webplatform.org/w/skins/webplatform/ie8.css"><![endif]-->');
+		$out->addHeadItem('ie7CSS', '<!--[if lt IE 8]><link rel="stylesheet" href="//docs.webplatform.org/w/skins/webplatform/ie7.css"><![endif]-->');
 		$out->addModuleScripts( 'skins.webplatform' );
 	}
 
@@ -141,10 +141,10 @@ class WebPlatformTemplate extends BaseTemplate {
 					<ul class="links">
 						<li><a href="/wiki/" class="active">DOCS</a></li>
 						<li><a href="/wiki/WPD:Editors_Guide">EDITING</a></li>
-						<li><a href="http://talk.webplatform.org/">DISCUSSION</a></li>
-						<li><a href="http://blog.webplatform.org">BLOG</a></li>
+						<li><a href="//talk.webplatform.org/">DISCUSSION</a></li>
+						<li><a href="//blog.webplatform.org">BLOG</a></li>
 						<li><a href="/wiki/WPD:Community">COMMUNITY</a></li>
-						<li><a href="http://project.webplatform.org">ISSUES</a></li>
+						<li><a href="//project.webplatform.org">ISSUES</a></li>
 					</ul>
 				</div>
 				</nav>
@@ -156,7 +156,7 @@ class WebPlatformTemplate extends BaseTemplate {
 						<div class="tool-area">
 							<div id="hierarchy-menu">
 								<ol id="breadcrumb-info" class="breadcrumbs">
-									<li><a href="http://www.webplatform.org/">HOME</a></li>
+									<li><a href="//www.webplatform.org/">HOME</a></li>
 									<li><a href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ) ?>">DOCS</a></li>
 									<?php wfRunHooks( 'SkinBreadcrumb', array( &$this ) ); ?>
 								</ol>
@@ -281,23 +281,23 @@ class WebPlatformTemplate extends BaseTemplate {
 						 alt="Content available under CC-BY, except where otherwise noted.">
 				</a>
 
-				<a href="http://www.webplatform.org/"><span id="footer-title">WebPlatform<span id="footer-title-light">.org</span></span></a>
+				<a href="//www.webplatform.org/"><span id="footer-title">WebPlatform<span id="footer-title-light">.org</span></span></a>
 
 			 </div>
 
 
 				<ul class="stewards">
-					<li class="steward-w3c"><a href="http://www.webplatform.org/stewards/w3c">W3C</a></li>
-					<li class="steward-adobe"><a href="http://www.webplatform.org/stewards/adobe">Adobe</a></li>
-					<li class="steward-facebook"><a href="http://www.webplatform.org/stewards/facebook">facebook</a></li>
-					<li class="steward-google"><a href="http://www.webplatform.org/stewards/google">Google</a></li>
-					<li class="steward-hp"><a href="http://www.webplatform.org/stewards/hp">HP</a></li>
+					<li class="steward-w3c"><a href="//www.webplatform.org/stewards/w3c">W3C</a></li>
+					<li class="steward-adobe"><a href="//www.webplatform.org/stewards/adobe">Adobe</a></li>
+					<li class="steward-facebook"><a href="//www.webplatform.org/stewards/facebook">facebook</a></li>
+					<li class="steward-google"><a href="//www.webplatform.org/stewards/google">Google</a></li>
+					<li class="steward-hp"><a href="//www.webplatform.org/stewards/hp">HP</a></li>
 
-					<li class="steward-intel"><a href="http://www.webplatform.org/stewards/intel">Intel</a></li>
-					<li class="steward-microsoft"><a href="http://www.webplatform.org/stewards/microsoft">Microsoft</a></li>
-					<li class="steward-mozilla"><a href="http://www.webplatform.org/stewards/mozilla">Mozilla</a></li>
-					<li class="steward-nokia"><a href="http://www.webplatform.org/stewards/nokia">Nokia</a></li>
-					<li class="steward-opera"><a href="http://www.webplatform.org/stewards/opera">Opera</a></li>
+					<li class="steward-intel"><a href="//www.webplatform.org/stewards/intel">Intel</a></li>
+					<li class="steward-microsoft"><a href="//www.webplatform.org/stewards/microsoft">Microsoft</a></li>
+					<li class="steward-mozilla"><a href="//www.webplatform.org/stewards/mozilla">Mozilla</a></li>
+					<li class="steward-nokia"><a href="//www.webplatform.org/stewards/nokia">Nokia</a></li>
+					<li class="steward-opera"><a href="//www.webplatform.org/stewards/opera">Opera</a></li>
 				</ul>
 			</div>
 		</footer>
