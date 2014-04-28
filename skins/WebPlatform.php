@@ -126,7 +126,7 @@ class WebPlatformTemplate extends BaseTemplate {
 
 						<!-- logo -->
 						<div id="p-logo">
-							<a href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ) ?>" <?php echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) ) ?>></a>
+							<a href="//www.webplatform.org/" <?php echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) ) ?>></a>
 						</div>
 						<!-- /logo -->
 
