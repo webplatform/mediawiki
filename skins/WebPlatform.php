@@ -138,13 +138,12 @@ class WebPlatformTemplate extends BaseTemplate {
 
 				<nav id="sitenav">
 				<div class="container">
-					<ul class="links">
-						<li><a href="/wiki/" class="active">DOCS</a></li>
-						<li><a href="/wiki/WPD:Editors_Guide">EDITING</a></li>
-						<li><a href="http://talk.webplatform.org/">DISCUSSION</a></li>
-						<li><a href="http://blog.webplatform.org">BLOG</a></li>
-						<li><a href="/wiki/WPD:Community">COMMUNITY</a></li>
-						<li><a href="http://project.webplatform.org">ISSUES</a></li>
+          <ul class="links">
+            <li><a href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ) ?>" class="active">The Docs</a></li>
+            <li><?php echo Linker::link( Title::newFromText('WPD:Community'), 'Connect'); ?></li>
+            <li><?php echo Linker::link( Title::newFromText('WPD:Contributors_Guide'), 'Contribute'); ?></li>
+            <li><a href="http://blog.webplatform.org/">BLOG</a></li>
+            <li><a href="http://project.webplatform.org/">ISSUES</a></li>
 					</ul>
 				</div>
 				</nav>
