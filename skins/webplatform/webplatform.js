@@ -17,9 +17,12 @@ function setupSearchField() {
 
 (function() {
    var ssl = !!document.location.protocol.match(/^https:/)
-   , embedUrl = 'http://notes.webplatform.org/app/embed.js';
-   ;
+   , embedUrl = 'http://notes.webplatform.org/app/embed.js'
+   , editMode = !!window.location.search.match(/action=edit/);
 
+   if(editMode === true) {
+
+   } else {
    if (ssl && !embedUrl.match(/^https:/)) {
      var msg = (
        'Sorry, but this service is unavailable on pages ' +
@@ -32,6 +35,7 @@ function setupSearchField() {
      embed.setAttribute('src', embedUrl);
      document.body.appendChild(embed);
    }
+   } // MW editMode check
 })();
 
 function init() {
