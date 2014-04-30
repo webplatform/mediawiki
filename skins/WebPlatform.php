@@ -276,7 +276,7 @@ class WebPlatformTemplate extends BaseTemplate {
 		  <div class="container">
 			 <div id="footer-wordmark">
 				<a href="/wiki/Template:CC-by-3.0" class="license">
-				  <img src="/w/skins/webplatform/images/cc-by-black.svg"
+				  <img src="/w/skins/webplatform/images/cc-by-black.svg" width="120" height="42"
 						 alt="Content available under CC-BY, except where otherwise noted.">
 				</a>
 
