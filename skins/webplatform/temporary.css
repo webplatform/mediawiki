@@ -216,7 +216,7 @@ ul.keywords li code.keyword {
   font-family: Bitter,Cambria,Georgia,serif;
   font-style: italic;
   color: #333;
-  background: url('white-circle.svg') right center no-repeat;
+  background: url('//www.webplatform.org/assets/white-circle.svg') right center no-repeat;
 }
 .readiness-state p a {
   color: #333;
