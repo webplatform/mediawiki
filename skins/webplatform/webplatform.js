@@ -92,7 +92,8 @@ function init() {
     	}
 
     	var prism = document.createElement('script');
-    	prism.src = '/t/skins/webplatform/prism.js';
+      var srcStartsWith = window.location.pathname[1] || 'w';
+    	prism.src = '/' + srcStartsWith  +'/skins/webplatform/prism.js';
     	document.head.appendChild(prism);
     	prism.onload = function () {
     		window.Prism && Prism.highlightAll();
