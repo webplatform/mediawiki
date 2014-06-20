@@ -312,8 +312,14 @@ private function renderHeaderMenu() {
 		<?php
 			foreach( $this->getPersonalTools() as $key => $item ) {
 				if ($key == 'userpage' || $key == 'login') {
-					$link = $item['links'][0];
-					echo "<a href='$link[href]' class='$link[class]' id='{$link['single-id']}'>$link[text]</a>";
+          $link = $item['links'][0];
+          $attribs['href'] = $link['href'];
+          $attribs['id'] = $link['single-id'];
+          if(isset($link['class'])){
+            $attribs['class'] = $link['class'];
+          }
+          echo Html::rawElement('a', $attribs, $link['text']);
+          unset($attribs);
 				}
 			}
 		?>
@@ -409,7 +415,8 @@ private function renderToolMenu() {
 		<a class="tools button">
 		 	Tools
 		</a>
-		<ul>
+    <ul>
+      <li><a href="http://code.webplatform.org/" target="_blank" title="Use this to add code examples">Code sample editor</a></li>
 			<?php
 			if (isset($sb['TOOLBOX']['content']['whatlinkshere'])) { echo $this->makeListItem( 'whatlinkshere', $sb['TOOLBOX']['content']['whatlinkshere'] ); }
 			if (isset( $sb['TOOLBOXEND']['content'] )) { echo '<li>' . preg_replace('#^<ul.+?>|</ul>#', '', $sb['TOOLBOXEND']['content']); }

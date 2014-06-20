@@ -15,31 +15,36 @@ function setupSearchField() {
     });
 }
 
-(function() {
+/**
+ * Annotator loader for MediaWiki
+ **/
+function annotatorLoader ( ) {
    var ssl = !!document.location.protocol.match(/^https:/)
-   , embedUrl = 'http://notes.webplatform.org/app/embed.js'
-   , editMode = !!window.location.search.match(/action=edit/);
+   , embedUrl = 'https://notes.webplatform.org/embed.js'
+   , mwContentNamespaces = mw.config.get('wgContentNamespaces')
+   , showAnnotator = !!window.location.search.match(/action=edit/);
+   /* Improve later when deploying MW that supports it
+    * ( !!mwContentNamespaces && mwContentNamespaces.indexOf( mw.config.get('wgNamespaceNumber') )  >= 0 && window.location.search.indexOf('action=edit') <
+    **/
 
-   if(editMode === true) {
-
-   } else {
-   if (ssl && !embedUrl.match(/^https:/)) {
-     var msg = (
-       'Sorry, but this service is unavailable on pages ' +
-       'served with HTTPS at this time. Please contact support for ' +
-       'further assistance.'
-     );
-     alert(msg);
-   } else {
-     var embed = document.createElement('script');
-     embed.setAttribute('src', embedUrl);
-     document.body.appendChild(embed);
-   }
-   } // MW editMode check
-})();
+   if(showAnnotator === true) {
+     if (ssl && embedUrl.match(/^https:/)) {
+       var msg = (
+         'Sorry, but the annotator sidebar is currently unavailable ' +
+         'on pages that are served through HTTPS.'
+       );
+       mw.notify(msg, {title: "Cannot load annotation sidebar"});
+     } else {
+       var embed = document.createElement('script');
+       embed.setAttribute('src', embedUrl);
+       document.body.appendChild(embed);
+     }
+   } // MW showAnnotator check
+}
 
 function init() {
     setupSearchField();
+    annotatorLoader();
 
     if (document.querySelectorAll && document.body.addEventListener) {
     	var dropdowns = document.querySelectorAll('.dropdown');
