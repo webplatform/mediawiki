@@ -22,7 +22,7 @@ function annotatorLoader ( ) {
    var ssl = !!document.location.protocol.match(/^https:/)
    , embedUrl = 'https://notes.webplatform.org/embed.js'
    , mwContentNamespaces = mw.config.get('wgContentNamespaces')
-   , showAnnotator = !!window.location.search.match(/action=edit/);
+   , showAnnotator = false; //!!window.location.search.match(/action=edit/);
    /* Improve later when deploying MW that supports it
     * ( !!mwContentNamespaces && mwContentNamespaces.indexOf( mw.config.get('wgNamespaceNumber') )  >= 0 && window.location.search.indexOf('action=edit') <
     **/
