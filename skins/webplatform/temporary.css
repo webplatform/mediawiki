@@ -216,7 +216,7 @@ ul.keywords li code.keyword {
   font-family: Bitter,Cambria,Georgia,serif;
   font-style: italic;
   color: #333;
-  background: url('white-circle.svg') right center no-repeat;
+  background: url('//www.webplatform.org/assets/white-circle.svg') right center no-repeat;
 }
 .readiness-state p a {
   color: #333;
@@ -253,6 +253,7 @@ ul.keywords li code.keyword {
  * ... make it mobile first
  * ... and then to adjust it to make space for readiness markers
  **/
+/*
 .container {
     margin: auto;
     position: static;
@@ -263,4 +264,5 @@ ul.keywords li code.keyword {
     width: 950px;
   }
 }
+*/
 /* /Overriding Main layout */
