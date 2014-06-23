@@ -248,12 +248,13 @@ ul.keywords li code.keyword {
 }
 /* /Readiness Markers ******************* */
 
-/**
+/*
  * Overridding Main layout
  * ... make it mobile first
  * ... and then to adjust it to make space for readiness markers
- **/
-/*
+ *
+ * Cause of: http://lists.w3.org/Archives/Public/public-webplatform/2014Jun/0058.html
+ *
 .container {
     margin: auto;
     position: static;
