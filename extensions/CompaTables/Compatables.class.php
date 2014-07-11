@@ -287,20 +287,46 @@ class Compatables
     $viewParameters['format']    = $args['format'];
     $viewParameters['cacheKey']  = $args['cacheKey'];
 
-    // extracting data for feature
+    // Parse feature attribute and split in an array if there is a slash
+    $methodAlpha = preg_split('/\//', $args['feature']);
+
+    // Will hold what we came for
     $contents = null;
-    if(isset($data['data'][$args['feature']])) {
-      $tmp = $data['data'][$args['feature']];
-      // Looping through contents array, that
-      //   contains browser types (e.g. 'mobile','desktop')
-      if(is_array($tmp['contents'])) {
-        foreach($tmp['contents'] as $tmp_key => $tmp_value) {
+
+    // Will hold the raw data to prepare
+    $tableData = null;
+
+    // Method Alpha use-case 1:
+    //
+    // If feature string (accessible at $args['feature']) has a
+    //   slash present (e.g. feature="css/pseudo-active"), so we can
+    //   dig in data['css']['pseudo-active']
+    //
+    // This case matches ONLY IF:
+    //   - feature string has ONE slash (maybe filter up front #TODO)
+    //   - $methodAlpha is an array of exactly two members that was split at the slash in the feature string
+    //   - $data['data']['folder']['feature'] has data, and a member called 'contents'
+    //
+    if(count($methodAlpha) === 2) {
+               // This (Below) is sure uggly! Will do for now
+      if(isset($data['data'][$methodAlpha[0]][$methodAlpha[1]])) {
+        $tableData = $data['data'][$methodAlpha[0]][$methodAlpha[1]];
+      }
+    }
+
+    // Finishing things up
+    if(is_array($tableData) && isset($tableData['contents'])) {
+        // Loop through contents array, that
+        //   contains browser types (e.g. 'mobile','desktop')
+        foreach($tableData['contents'] as $tmp_key => $tmp_value) {
           if(is_array($tmp_value) && count($tmp_value) >= 1) {
             $contents[$tmp_key] = $tmp_value;
           }
         }
-      }
     }
+
+    // Clean your own mess
+    unset($tableData);
 
     if(in_array($viewParameters['format'], self::$allowed_formats)) {
       $className = 'CompatView'.ucfirst($viewParameters['format']);
