@@ -13,7 +13,7 @@ This procedure describes how to install from scratch.
 2. Checkout latest [`wmf/...` branch](https://gerrit.wikimedia.org/r/#/admin/projects/mediawiki/core,branches)
 
         cd wiki
-        git checkout -t origin/wmf/1.23wmf1
+        git checkout -t origin/wmf/1.24wmf13
 
 3. Install submodules; It might take a while.
 
