@@ -94,9 +94,10 @@ class Compatables
     global $wgCompatablesUseESI, $wgUseTidy, $wgAlwaysUseTidy;
     $out = '';
 
+    $args['topic']    = isset( $args['topic']   ) ? $args['topic']   : '';
     $args['feature']  = isset( $args['feature'] ) ? $args['feature'] : '';
     $args['format']   = isset( $args['format'] ) ? $args['format'] : '';
-    $args['cacheKey'] = wfMemcKey('compatables', $args['format'], $args['feature']);;
+    $args['cacheKey'] = wfMemcKey('compatables', $args['format'], $args['topic'], $args['feature']);;
 
     /**   *****************************   **/
     $data = self::getData();
@@ -116,11 +117,14 @@ class Compatables
     }
     /**   *****************************   * */
 
-    if ( $input != '' ) {
-      $out .= '<p class="compat-label">' . $input . '</p>';
-    }
+    // We are ignoring <compatibility>input would be here</compatibility>
+    // because its useless for now.
+    //if ( $input != '' ) {
+    //  $out .= '<p>' . $input . '</p>';
+    //}
 
     if ( $wgCompatablesUseESI === true ) {
+      $urlArgs['topic'] = $args['topic'];
       $urlArgs['feature'] = $args['feature'];
       $urlArgs['format']  = $args['format'];
       $urlArgs['foresi']  = 1;
@@ -149,7 +153,6 @@ class Compatables
       // @TODO: if the JSON file is always updated the same day of the week, one
       // could do some math here to avoid IMS GETs from CDN.
       // @TODO: Varnish does not support TTL here :/
-      //
 
       $params['src'] = $url;
       $params['ttl'] = self::TTL;
@@ -274,21 +277,52 @@ class Compatables
   }
 
   /**
-   * @param array $data Array from compatibility JSON file
+   * Search the $compatArray, return a CompatView* object
+   *
+   * Let us say we have a tag in the wiki with the following attributes:
+   *
+   *    <compatibility topic="css" feature="border-radius" format="table" />
+   *
+   * And that we have a JSON file that has a similar format.
+   *
+   *     {
+   *       data: {
+   *         css: {
+   *           'border-radius': {
+   *             contents: {
+   *               desktop: {},
+   *               mobile: {}
+   *             },
+   *             links: []
+   *           }
+   *         }
+   *       }
+   *     }
+   *
+   * $compatArray is actually that JSON string, passed through json_encode().
+   *
+   * We can then dig into that array tree like this:
+   *
+   *     $compatArray['data']['css']['border-radius']['contents'];
+   *
+   * Then, we test if an array exists at that location, like so:
+   *
+   *     $compatArray['data'][$topic][$feature]['contents']
+   *
+   * If we have an array at 'contents', we can continue.
+   *
+   * @param array $compatArray Array json_encode()-ed from compatibility JSON file
    * @param array $args
-   * @return string
+   *
+   * @return AbstractCompatView
    */
-  public static function generateCompaTable( array $data, array $args )
+  public static function generateCompaTable( array $compatArray, array $args )
   {
+    /* @var $viewObject instanceof AbstractCompatView */
+    $viewObject = null;
 
-    $viewParameters['timestamp'] = $data['timestamp'];
-    $viewParameters['hash']      = $data['hash'];
-    $viewParameters['feature']   = $args['feature'];
-    $viewParameters['format']    = $args['format'];
-    $viewParameters['cacheKey']  = $args['cacheKey'];
-
-    // Parse feature attribute and split in an array if there is a slash
-    $methodAlpha = preg_split('/\//', $args['feature']);
+    // Will hold stuff we send to the view object
+    $viewArgs = array();
 
     // Will hold what we came for
     $contents = null;
@@ -296,25 +330,24 @@ class Compatables
     // Will hold the raw data to prepare
     $tableData = null;
 
-    // Method Alpha use-case 1:
-    //
-    // If feature string (accessible at $args['feature']) has a
-    //   slash present (e.g. feature="css/pseudo-active"), so we can
-    //   dig in data['css']['pseudo-active']
-    //
-    // This case matches ONLY IF:
-    //   - feature string has ONE slash (maybe filter up front #TODO)
-    //   - $methodAlpha is an array of exactly two members that was split at the slash in the feature string
-    //   - $data['data']['folder']['feature'] has data, and a member called 'contents'
-    //
-    if(count($methodAlpha) === 2) {
-               // This (Below) is sure uggly! Will do for now
-      if(isset($data['data'][$methodAlpha[0]][$methodAlpha[1]])) {
-        $tableData = $data['data'][$methodAlpha[0]][$methodAlpha[1]];
-      }
+    // What were the <compatibility topic="" feature="" format="" />
+    // attributes.
+    $viewArgs['topic']     = $args['topic'];
+    $viewArgs['feature']   = $args['feature'];
+    $viewArgs['format']    = $args['format'];
+
+    // Some source info to be able to review in generated tables HTML
+    $viewArgs['cacheKey']  = $args['cacheKey'];
+    $viewArgs['source']    = $GLOBALS['wgCompatablesJsonFileUrl'];
+    $viewArgs['timestamp'] = $compatArray['timestamp'];
+    $viewArgs['hash']      = $compatArray['hash'];
+
+    // Finding appropriate data
+    if(isset($compatArray['data'][$viewArgs['topic']][$viewArgs['feature']])) {
+      $tableData = $compatArray['data'][$viewArgs['topic']][$viewArgs['feature']];
     }
 
-    // Finishing things up
+    // If we have data, we are good to continue!
     if(is_array($tableData) && isset($tableData['contents'])) {
         // Loop through contents array, that
         //   contains browser types (e.g. 'mobile','desktop')
@@ -325,14 +358,16 @@ class Compatables
         }
     }
 
-    // Clean your own mess
-    unset($tableData);
-
-    if(in_array($viewParameters['format'], self::$allowed_formats)) {
-      $className = 'CompatView'.ucfirst($viewParameters['format']);
-      $viewObject = new $className($contents, $viewParameters);
+    // Based on Format (e.g. list, table) will call
+    // a class (e.g. CompatViewList for format=list) to handle the
+    // HTML generation logic
+    if(in_array($viewArgs['format'], self::$allowed_formats)) {
+      // E.g.
+      // CompatViewList, CompatViewTable
+      $className = 'CompatView'.ucfirst($viewArgs['format']);
+      $viewObject = new $className($contents, $viewArgs);
     } else {
-      $viewObject = new CompatViewNotSupportedBlock($contents, $viewParameters);
+      $viewObject = new CompatViewNotSupportedBlock($contents, $viewArgs);
     }
 
     return $viewObject->toArray();

@@ -2,6 +2,10 @@
 
 abstract class AbstractCompatView
 {
+  //const SUMMARY = "This table shows %s browser feature %s support organized by list of sub-features and showing browser vendor and listing support level per version";
+
+  const LONG_TITLE = '%s browser %s feature support';
+
   const ERR_NO_COMPAT_FOUND = '<div class="note"><p>No compatibility data found for feature "<i>%s</i>"</p></div>';
 
   /**
@@ -32,6 +36,11 @@ abstract class AbstractCompatView
   protected $output = null;
 
   /**
+   * URI to the source JSON document
+   */
+  protected $source;
+
+  /**
    * Table content version tag
    */
   protected $timestamp;
@@ -45,6 +54,14 @@ abstract class AbstractCompatView
    * Cache key
    */
   protected $cacheKey;
+
+  /**
+   * Topic name
+   *
+   * In which broad category is the feature
+   * categorized into?
+   */
+  protected $topic;
 
   /**
    * Feature name
@@ -102,15 +119,16 @@ abstract class AbstractCompatView
       $now = new \DateTime();
 
       $a['inner'] = $this->output;
-      $a['classNames'] = array('compat-parent', 'compat-ng', 'compat-'.$this->feature);
+      $a['classNames'] = array('compat-parent', 'compat-ng', 'compat-'.$this->feature, 'compat-topic-'.$this->topic);
       $a['dataAttribs']['data-comment'] = 'Generated on '.$now->format(\DateTime::W3C);
       $a['dataAttribs']['data-hash'] = $this->hash;
       $a['dataAttribs']['data-timestamp'] = $this->timestamp;
       $a['dataAttribs']['data-cacheKey'] = $this->cacheKey;
+      $a['dataAttribs']['data-source'] = $this->source;
+      $a['dataAttribs']['data-jsonselect'] = ':root .'.$this->topic.' .'.$this->feature;
+      $a['dataAttribs']['data-topic'] = $this->topic;
       $a['dataAttribs']['data-feature'] = $this->feature;
-      if(isset($this->meta['format'])) {
-          $a['dataAttribs']['data-canonical'] = $wgCompatablesSpecialUrl.'?feature='.$this->feature.'&format='.$this->meta['format'];
-      }
+      $a['dataAttribs']['data-canonical'] = $wgCompatablesSpecialUrl.'?feature='.$this->feature.'&topic='.$this->meta['topic'].'&format='.$this->meta['format'];
 
       return $this->tagHelper($a, 'div');
   }
@@ -242,6 +260,8 @@ abstract class AbstractCompatView
     return array(
       'timestamp' => $this->timestamp,
       'hash'      => $this->hash,
+      'topic'     => $this->topic,
+      'feature'   => $this->feature,
       'cacheKey'  => $this->cacheKey,
       'output'    => '<!-- Generated --><nowiki>'.$this->getOutput().'</nowiki><!-- /Generated -->'
     );

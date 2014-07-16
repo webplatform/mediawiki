@@ -11,9 +11,10 @@ class SpecialCompatables extends UnlistedSpecialPage
 
 		$this->setHeaders();
 
-		$args['feature']  = $this->getRequest()->getVal( 'feature' );
-		$args['format']   = $this->getRequest()->getVal( 'format' );
-		$args['cacheKey'] = wfMemcKey('compatables', $args['format'], $args['feature']);
+		$args['topic']    = $this->getRequest()->getVal('topic');
+		$args['feature']  = $this->getRequest()->getVal('feature');
+		$args['format']   = $this->getRequest()->getVal('format');
+		$args['cacheKey'] = wfMemcKey('compatables', $args['format'], $args['topic'], $args['feature']);
 
 		// Handle purge requests from admins...
 		// @TODO: Varnish, which only supports a few bits of ESI, can not handle this
