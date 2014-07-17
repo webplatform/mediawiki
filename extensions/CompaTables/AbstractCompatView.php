@@ -128,7 +128,17 @@ abstract class AbstractCompatView
       $a['dataAttribs']['data-jsonselect'] = ':root .'.$this->topic.' .'.$this->feature;
       $a['dataAttribs']['data-topic'] = $this->topic;
       $a['dataAttribs']['data-feature'] = $this->feature;
-      $a['dataAttribs']['data-canonical'] = $wgCompatablesSpecialUrl.'?feature='.$this->feature.'&topic='.$this->meta['topic'].'&format='.$this->meta['format'];
+
+      /*
+      $b = array();
+      $params = array('feature', 'topic', 'format');
+      foreach($params as $p) {
+        if(isset($this->{$p})) {
+          $b[$p] = $this->{$p};
+        }
+      }
+      $a['dataAttribs']['data-canonical'] = $wgCompatablesSpecialUrl.'?'.http_build_query($b); //feature='.$this->feature.'&topic='.$this->meta['topic'].'&format='.$this->meta['format'];
+      */
 
       return $this->tagHelper($a, 'div');
   }
