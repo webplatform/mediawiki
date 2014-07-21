@@ -23,9 +23,15 @@ $wgResourceModules['ext.dismissableSiteNotice'] = array(
 		'jquery.cookie',
 		'mediawiki.util',
 	),
+	'targets' => array( 'desktop', 'mobile' ),
 	'position' => 'top',
 );
 
+/**
+ * @param string $notice
+ * @param Skin $skin
+ * @return bool true
+ */
 $wgHooks['SiteNoticeAfter'][] = function( &$notice, $skin ) {
 	global $wgMajorSiteNoticeID;
 
