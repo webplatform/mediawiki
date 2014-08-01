@@ -12,7 +12,7 @@
  * @author Aaron Schulz <aschulz4587@gmail.com>
  * @author Renoir Boulanger <renoir@w3.org>
  *
- * @version 1.1
+ * @version 2.0
  */
 
 /**
@@ -26,12 +26,11 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 // Extension credits that will show up on Special:Version
 $wgExtensionCredits['parserHook'][] = array(
-	'name'           => 'CompaTables',
-	'version'        => '1.0',
-	'author'         => array( 'Doug Schepers', 'Aaron Schulz', 'Renoir Boulanger' ),
-	'url'            => 'http://docs.webplatform.org/wiki/WPD:Infrastructure/Extensions/CompaTables',
-	'descriptionmsg' => 'compatablesmessage',
-	'description'    => 'Adds browser compatability table to article based on arguments'
+	'name'         => 'Compatibility',
+	'version'      => '2.0',
+	'author'       => array( '[http://schepers.cc Doug Schepers]', 'Aaron Schulz', '[https://renoirboulanger.com Renoir Boulanger]' ),
+	'url'          => 'http://docs.webplatform.org/wiki/WPD:Infrastructure/Extensions/CompaTables',
+	'description'  => '[http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle Part of WebPlatformDocs extension bundle];  Adds browser compatability table to article based on arguments. To use, insert <code><nowiki><compatibility feature="border-radius" format="table" topic="css"></compatibility></nowiki></code> to a page where the data is read from an external JSON file and generates an HTML representation of it.'
 );
 
 require( __DIR__ . '/Compatables.config.php' );
@@ -63,6 +62,10 @@ $wgHooks['PageRenderingHash'][] = function( &$confstr ) {
 };
 
 $wgHooks['ParserFirstCallInit'][] = function( Parser &$parser ) {
+	if(defined('MW_UPDATER')) {
+		return true; // do NOT RUN during update scripts.
+	}
+
 	$parser->setHook( 'compatibility', 'Compatables::renderCompaTables' );
 
 	return true;

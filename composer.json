@@ -1,0 +1,53 @@
+{
+  "name": "mediawiki/webplatform-customizations",
+  "type": "mediawiki-extension",
+  "description": "Set of adapted and custom MediaWiki extensions for webplatform.org",
+  "keywords": [
+    "MediaWiki",
+    "WebPlatform",
+    "distribution"
+  ],
+  "homepage": "http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle",
+  "authors": [
+    {
+      "name": "Renoir Boulanger",
+      "role": "Maintainer",
+      "homepage": "https://renoirboulanger.com"
+    },
+    {
+      "name": "Doug Schepers",
+      "role": "Project lead"
+    },
+    {
+      "name": "Youri van den Bogert",
+      "role": "Contributor",
+      "homepage": "https://github.com/YOUR1"
+    },
+    {
+      "name": "DaSch",
+      "role": "Contributor",
+      "homepage": "http://www.daschmedia.de"
+    },
+    {
+      "name": "Isb1009",
+      "role": "Contributor"
+    },
+    {
+      "name": "Tim Laqua <t.laqua at gmail dot com>",
+      "role": "Contributor"
+    },
+    {
+      "name": "Yaron Koren",
+      "role": "Contributor"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/webplatform/mediawiki/issues"
+  },
+  "require": {
+    "composer/installers": ">=1.0.1"
+  },
+  "autoload": {
+    "files": ["main.php"]
+  }
+}

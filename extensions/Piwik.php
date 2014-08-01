@@ -4,7 +4,32 @@
  * Inserts Piwik script into MediaWiki pages for tracking and adds some stats
  *
  * Source: http://www.mediawiki.org/wiki/Extension:Piwik_Integration
- **/
+ *
+ * @author Isb1009 <isb1009 at gmail dot com>
+ * @author DaSch <dasch@daschmedia.de>
+ * @author Youri van den Bogert <yvdbogert@archixl.nl>
+ * @copyright © 2008-2010 Isb1009
+ * @licence GNU General Public Licence 2.0
+ */
+
+if ( !defined( 'MEDIAWIKI' ) ) die( 'This file is a MediaWiki extension, it is not a valid entry point' );
+
+$wgExtensionCredits['other'][] = array(
+  'path'        => __FILE__,
+  'name'        => 'Piwik Integration',
+  'version'     => '2.2.2',
+  'author'      => array(
+                    'Isb1009',
+                    '[http://www.daschmedia.de DaSch]',
+                    '[https://github.com/YOUR1 Youri van den Bogert]',
+                    '[https://renoirboulanger.com Renoir Boulanger]'
+                  ),
+  'url'         => 'http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle',
+  'description' => '[http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle Part of WebPlatformDocs extension bundle];  Adding Piwik Tracking Code'
+);
+
+$wgHooks['SkinAfterBottomScripts'][]  = 'PiwikHooks::PiwikSetup';
+
 
 class PiwikHooks {
 
@@ -100,8 +125,8 @@ JS;
     //if ( $wgUser->isAllowed( 'protect' ) && $wgPiwikIgnoreSysops ) {
     //  return "<!-- Piwik tracking is disabled for users with 'protect' rights (i.e., sysops) -->";
     //}
-    
-    // Missing configuration parameters 
+
+    // Missing configuration parameters
     if ( empty( $wgPiwikIDSite ) || empty( $wgPiwikURL ) ) {
       return "<!-- You need to set the settings for Piwik -->";
     }
@@ -169,3 +194,13 @@ PIWIK;
 
   }
 }
+
+$wgPiwikIDSite = "1";
+$wgPiwikURL = "tracking.webplatform.org";
+$wgPiwikIgnoreSysops = true;
+$wgPiwikIgnoreBots = true;
+$wgPiwikCustomJS = "";
+$wgPiwikUsePageTitle = false;
+$wgPiwikActionName = "";
+$wgPiwikDisableCookies = false;
+

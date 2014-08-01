@@ -92,8 +92,7 @@ function init() {
     	}
 
     	var prism = document.createElement('script');
-      var srcStartsWith = window.location.pathname[1] || 'w';
-    	prism.src = '/' + srcStartsWith  +'/skins/webplatform/prism.js';
+    	prism.src = mw.config.get('wgScriptPath') +'/skins/webplatform/prism.js';
     	document.head.appendChild(prism);
     	prism.onload = function () {
     		window.Prism && Prism.highlightAll();
