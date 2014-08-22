@@ -25,6 +25,7 @@ function annotatorLoader ( ) {
    , showAnnotator = false; //!!window.location.search.match(/action=edit/);
    /* Improve later when deploying MW that supports it
     * ( !!mwContentNamespaces && mwContentNamespaces.indexOf( mw.config.get('wgNamespaceNumber') )  >= 0 && window.location.search.indexOf('action=edit') <
+    * ( !!mwContentNamespaces && mwContentNamespaces.indexOf( mw.config.get('wgNamespaceNumber') )  >= 0 && !window.location.search.match(/action=edit/) )
     **/
 
    if(showAnnotator === true) {
@@ -91,11 +92,8 @@ function init() {
     		}
     	}
 
-    	var prism = document.createElement('script');
-    	prism.src = mw.config.get('wgScriptPath') +'/skins/webplatform/prism.js';
-    	document.head.appendChild(prism);
-    	prism.onload = function () {
-    		window.Prism && Prism.highlightAll();
+        if (!!window.Prism) {
+            window.Prism && Prism.highlightAll();
     	}
     }
 }
@@ -103,12 +101,13 @@ function init() {
 $(document).ready(init);
 
 $(document).ready(function(){
-	if (location.hostname.indexOf('docs.') !== 0) {
-		return;
-	}
+	var mainContent = document.getElementById('main-content');
 
-	var page = document.getElementById('main-content');
-	var headings = Array.prototype.slice.apply(page.querySelectorAll('h2, h3, h4, h5, h6'));
+    if (mainContent === null) {
+        return;
+    }
+
+	var headings = Array.prototype.slice.apply(mainContent.querySelectorAll('h2, h3, h4, h5, h6'));
 
 	if (headings.length < 2) {
 		return;
@@ -188,7 +187,7 @@ $(document).ready(function(){
 	toc.appendChild(tocH);
 	toc.appendChild(rootOl);
 
-	page.parentNode.insertBefore(toc, page);
+	mainContent.parentNode.insertBefore(toc, mainContent);
 
 	/*var initialTop = $(toc).offset().top;
 
@@ -196,7 +195,7 @@ $(document).ready(function(){
 		if (window.innerWidth > 700) {
 			var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
 
-			var maxTop = page.offsetHeight - toc.offsetHeight - 40;
+			var maxTop = mainContent.offsetHeight - toc.offsetHeight - 40;
 
 			toc.style.top = Math.min(Math.max(0, scrollTop - initialTop), maxTop) + 'px';
 		}

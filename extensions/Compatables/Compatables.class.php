@@ -97,7 +97,7 @@ class Compatables
     $args['topic']    = isset( $args['topic']   ) ? $args['topic']   : '';
     $args['feature']  = isset( $args['feature'] ) ? $args['feature'] : '';
     $args['format']   = isset( $args['format'] ) ? $args['format'] : '';
-    $args['cacheKey'] = wfMemcKey('compatables', $args['format'], $args['topic'], $args['feature']);;
+    $args['cacheKey'] = wfMemcKey('compatables', $args['format'], $args['topic'], $args['feature']);
 
     /**   *****************************   **/
     $data = self::getData();
@@ -237,6 +237,26 @@ class Compatables
    * @return array
    */
   public static function getData() {
+    global $wgCompatablesCssFileUrl;
+
+    $cache = wfGetCache( CACHE_ANYTHING );
+    $key = wfMemcKey( 'webplatformdocs', 'compatables', 'data', 'full' );
+
+    $data = $cache->get( $key );
+
+    if ( $data !== false ) {
+      wfDebugLog( 'CompaTables', 'Got compat/data.json contents from cache' );
+    } else {
+      wfDebugLog( 'CompaTables', 'Made an HTTP request to ' . $wgCompatablesCssFileUrl );
+      $data = self::getJsonFile();
+
+      $cache->set( $key, $data, 60 * 60 * 12 );
+    }
+
+    return $data;
+  }
+
+  protected static function getJsonFile() {
     global $wgCompatablesJsonFileUrl;
 
     $json_url = $wgCompatablesJsonFileUrl;

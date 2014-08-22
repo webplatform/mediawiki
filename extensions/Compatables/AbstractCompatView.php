@@ -119,20 +119,20 @@ abstract class AbstractCompatView
       $now = new \DateTime();
 
       $a['inner'] = $this->output;
-      $a['classNames'] = array('compat-parent', 'compat-ng', 'compat-'.$this->meta['feature'], 'compat-topic-'.$this->meta['topic']);
+      $a['classNames'] = array('compat-parent', 'compat-ng', 'compat-'.$this->feature, 'compat-topic-'.$this->topic);
       $a['dataAttribs']['data-comment'] = 'Generated on '.$now->format(\DateTime::W3C);
-      $a['dataAttribs']['data-hash'] = $this->meta['hash'];
+      $a['dataAttribs']['data-hash'] = $this->hash;
       $a['dataAttribs']['data-timestamp'] = $this->timestamp;
       $a['dataAttribs']['data-cacheKey'] = $this->cacheKey;
       $a['dataAttribs']['data-source'] = $this->source;
-      $a['dataAttribs']['data-jsonselect'] = ':root .'.$this->meta['topic'].' .'.$this->meta['feature'];
+      $a['dataAttribs']['data-jsonselect'] = ':root .'.$this->topic.' .'.$this->feature;
 
       $b = array();
       $params = array('feature', 'topic', 'format');
       foreach($params as $p) {
-        if(isset($this->meta[$p])) {
-          $b[$p] = $this->meta[$p];
-          $a['dataAttribs']['data-'.$p] = $this->meta[$p];
+        if(isset($this->{$p})) {
+          $b[$p] = $this->{$p};
+          $a['dataAttribs']['data-'.$p] = $this->{$p};
         }
       }
       $a['dataAttribs']['data-canonical'] = $wgCompatablesSpecialUrl.'?'.http_build_query($b);

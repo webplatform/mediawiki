@@ -1,3 +1,9 @@
+/* WebPlatformSectionComments */
+#comments-flag-link {
+  cursor:pointer;
+}
+/* /WebPlatformSectionComments */
+
 /* MediaWiki:Common.css  */
 /* BEGIN hide all edit section links (Frozenice) */
 .editsection {
@@ -21,9 +27,9 @@
   font-weight: bold;
 }
 
-.wpdbox_header a, 
-.wpdbox_header a span, 
-.wpdbox_header a:visited, 
+.wpdbox_header a,
+.wpdbox_header a span,
+.wpdbox_header a:visited,
 .wpdbox_header a:active {
   color: #D37E00;
 }
@@ -35,7 +41,7 @@
 
 /* BEGIN temporary fix for duplicate <h1> issue on Wiki pages (chrisdavidmills) */
 
-.firstHeading { display: none; } 
+.firstHeading { display: none; }
 /* END temporary fix for duplicate <h1> issue on Wiki pages (chrisdavidmills) */
 
 

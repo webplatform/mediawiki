@@ -33,7 +33,9 @@ $wgResourceModules["skins.webplatform"] = array(
     "screen-520.css" => array("media" => "screen and (max-width: 520px)")
   ),
   "scripts" => array(
-    "webplatform.js"
+    "prism.js",
+    "webplatform.js",
+    "sso.js"
   ),
   "remoteBasePath" => $wpdBundle["uri"],
   "localBasePath"  => __DIR__

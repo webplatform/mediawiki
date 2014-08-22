@@ -18,7 +18,7 @@ $wgExtensionCredits['other'][] = array(
    'version'     => '0.1',
    'author'      => '[http://schepers.cc Doug Schepers]',
    'url'         => 'http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle',
-   'description' => '[http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle Part of WebPlatformDocs extension bundle];  Generates breadcrumbs in the top of the page'
+   'description' => '[http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle WebPlatform Docs extension bundle]; Generates breadcrumbs on the top of every pages'
 );
 
 $wgHooks['SkinBreadcrumb'][] = 'BreadcrumbMenu::fnDisplay';
@@ -33,17 +33,14 @@ class BreadcrumbMenu {
    }
 
    public static function fnSetOutput( OutputPage &$out, Skin &$skin ) {
-      $baseURL = 'http://docs.webplatform.org/upgrade/';
+      global $wpdBundle;
 
-      $page_title = $skin->getTitle();
-      // $page_namespace = $skin->getTitle()->getNamespaceKey();
-
-      $page_path = explode('/', $page_title);
+      $page_path = explode('/', $skin->getTitle());
 
       for ($pp = 1; count($page_path) >= $pp; $pp++) {
          $path_part = implode('/', array_slice($page_path, 0, $pp));
 
-         self::$menuhtml .=  '<li data-comment="Not removing underscore here"><a href="'.$baseURL.str_replace(' ','_', $path_part).'">'.str_replace('_', ' ',$page_path[$pp - 1]).'</a></li>';
+         self::$menuhtml .=  '<li data-comment="Not removing underscore here"><a href="'.$wpdBundle['root_uri'].str_replace(' ','_', $path_part).'">'.str_replace('_', ' ',$page_path[$pp - 1]).'</a></li>';
       }
 
       return true;

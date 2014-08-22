@@ -4,7 +4,7 @@ if ( !defined( "MEDIAWIKI" ) ) die( 'This file is a MediaWiki extension, it is n
 
 $wpdBundle["path"]     = __DIR__;
 $wpdBundle["root_uri"] = str_replace('$1', '', $wgArticlePath);
-$wpdBundle["context"]  = end(explode("/",__DIR__));
+$wpdBundle["context"]  = basename(dirname(__FILE__));
 $wpdBundle["uri"]      = "{$wgScriptPath}/extensions/".$wpdBundle["context"];
 
 ## Small customizations
@@ -18,33 +18,15 @@ require_once(__DIR__."/extensions/Compatables/Compatables.php");
 $wgCompatablesCssFileUrl = $wpdBundle["uri"]."/extensions/Compatables/compat.css";
 
 ## Extension behavior changes
-//require_once(__DIR__."/extensions/BreadcrumbMenu.php"); // Dependency: SubPageList3
-//require_once(__DIR__."/extensions/WpdCaptcha.php");   // Dependency: ConfirmEdit
+if ( defined( 'SPL_VERSION' ) ) {
+  require_once(__DIR__."/extensions/BreadcrumbMenu.php"); // Dependency: SubPageList3
+}
+
+if ( isset( $wgConfirmEditIP ) ) {
+  require_once(__DIR__."/extensions/WpdCaptcha.php");   // Dependency: ConfirmEdit
+}
 
 require_once(__DIR__."/skin/main.php");
-
-
-## TODO
-# Disable Talk pages?
-#   http://www.mediawiki.org/wiki/Extension%3aTalkright
-#   $wgDisableAnonTalk = false;
-# Cookie names and domain? see wgCookieExpiration below
-# Problem with Comments extension in Puppet
-# See neat plugin how it does things https://git.wikimedia.org/summary/mediawiki%2Fextensions%2FDumpHTML
-# Notes tabs:
-#   - https://gist.github.com/renoirb/2296a50a33910ef8936a
-#   - https://gist.github.com/renoirb/9923697
-#   - http://meta.wikimedia.org/wiki/Help:User_style
-#   - http://www.mediawiki.org/wiki/Composer/Future_work
-#   - http://www.mediawiki.org/wiki/Manual:Skin.php
-#   - http://www.mediawiki.org/wiki/Manual:Skinning
-#   - http://www.mediawiki.org/wiki/Manual:Skinning/Tutorial
-# Do not forget:
-#   - WebPlatformSearchAutocomplete
-#   - WebPlatformSectionCommentsSmw
-#   - Comments WpdCaptcha
-# Rebuild all tests: http://www.mediawiki.org/wiki/Manual:Rebuildall.php
-# Code samples and GitHub extension?
 
 ## SemanticMediaWiki adjustment
 $sfgRenameEditTabs = true;
@@ -52,6 +34,9 @@ enableSemantics("webplatform");
 
 ## Remove normal table of contents
 ## $wgDefaultUserOptions["showtoc"] = 0;
+
+// Defaults is that we do not want to be indexed
+$wgDefaultRobotPolicy = 'noindex,nofollow';
 
 $wgCrossSiteAJAXdomains = "*";
 
@@ -91,7 +76,7 @@ $wgContentNamespaces[] = NS_WPD;
 $wgCapitalLinks = false;
 
 ## Allow users to read the request account page, so they can request accounts
-$wgWhitelistRead = array("Special:RequestAccount","Main_Page");
+$wgWhitelistRead = array("Special:RequestAccount","Main Page");
 
 ## General rights
 $wgGroupPermissions["*"]["read"] = true;
@@ -105,10 +90,12 @@ $wgGroupPermissions["autoconfirmed"]["createpage"] = true;
 $wgAutoConfirmAge = 1*3600*24; // 1 day
 $wgAutoConfirmCount = 10;
 
-$wgWhitelistRead = array("Special:RequestAccount","Main_Page");
+$wgWhitelistRead = array("Special:RequestAccount","Main Page");
 
 $wgRCMaxAge = 365*24*3600; // 10 years
 
+
+## UPO means: this is also a user preference option
 $wgShowIPinHeader      = false;
 $wgDisableCounters     = true;
 $wgAllowUserCss        = false;
@@ -122,6 +109,7 @@ $wgUseSiteJs           = false;
 $wgUseSiteCss          = false;
 $wgUseAjax             = true;
 $wgAjaxWatch           = true;
+$wgMiserMode           = true;
 
 ## Jobs are run by cron, disable jobs run via page requests
 $wgJobRunRate = 0;
