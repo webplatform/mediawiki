@@ -315,23 +315,31 @@ class WebPlatformTemplate extends BaseTemplate {
 
 
   private function renderEditButton() {
-     $cn = $this->data['content_navigation'];
-     $sb = $this->getSidebar();
-     if (isset($this->data['view_urls']['edit'])) {
-      $link = $this->data['view_urls']['edit'];
+    global $wpdBundle;
 
-      if (isset($this->data['view_urls']['form_edit'])) {
-        $link = $this->data['view_urls']['form_edit'];
+    $cn = $this->data['content_navigation'];
+    $sb = $this->getSidebar();
+
+    // The Default edit link
+    $link = $cn['views']['edit'];
+    $title = $this->getSkin()->getTitle();
+
+    if ($title->quickUserCan( 'edit' ) === true) {
+      // If formedit exists, all the better
+      if (isset($cn['views']['form_edit'])) {
+        $link = $cn['views']['form_edit'];
       }
-     } else {
+    } else {
+      // Oops, no session, lets ensure we are logged in
       $link = array( "href" => $wpdBundle['root_uri'] . "Special:UserLogin", "id" => "ca-edit", "text" => "Edit");
-     }
+    }
+
     ?><!-- renderEditButton --><div class="dropdown">
       <a href="<?php echo $link['href'] ?>" id="<?php echo $link['id'] ?>" class="highlighted edit button">
         <?php echo $link['text'] ?>
       </a>
       <ul><?php
-        if (isset($cn['views']['form_edit'])) { echo $this->makeListItem( 'form_edit', $cn['views']['form_edit'] ); }
+        //if (isset($cn['views']['form_edit'])) { echo $this->makeListItem( 'form_edit', $cn['views']['form_edit'] ); }
         if (isset($cn['views']['edit'])) { echo $this->makeListItem( 'edit', $cn['views']['edit'] ); }
         if (isset($sb['TOOLBOX']['content']['upload'])) { echo $this->makeListItem( 'upload', $sb['TOOLBOX']['content']['upload'] ); }
         if (isset($cn['views']['history'])) { echo $this->makeListItem( 'history', $cn['views']['history'] ); }
@@ -362,7 +370,6 @@ class WebPlatformTemplate extends BaseTemplate {
         if (isset($sb['TOOLBOX']['content']['recentchangeslinked'])) { echo $this->makeListItem( 'recentchangeslinked', $sb['TOOLBOX']['content']['recentchangeslinked'] ); }
         if (isset($sb['navigation']['content'][3])) { echo $this->makeListItem( 3, $sb['navigation']['content'][3] ); }
         if (isset($sb['TOOLBOX']['content']['specialpages'])) { echo $this->makeListItem( 'specialpages', $sb['TOOLBOX']['content']['specialpages'] ); }
-        //if (isset($cn['namespaces']['talk'])) { echo $this->makeListItem( 'talk', $cn['namespaces']['talk'] ); }
         if (isset($sb['navigation']['content'][5])) { echo $this->makeListItem( 5, $sb['navigation']['content'][5] ); }
         ?>
       </ul>

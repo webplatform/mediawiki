@@ -6,11 +6,16 @@ if ( !defined( "MEDIAWIKI" ) ) die( 'This file is a MediaWiki extension, it is n
  * Extension now supports defining a Skin, see docs/skin.txt
  */
 
-$wgExtensionCredits["skin"][] = array("path" => __FILE__,
+$wgExtensionCredits["skin"][] = array(
+  "path" => __FILE__,
   "name" => "WebPlatform",
-  "description" => "[http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle Part of WebPlatformDocs extension bundle]; WebPlatform.org MediaWiki skin",
+  "version" => "1.1",
+  "description" => "[http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle WebPlatform Docs extension bundle]; WebPlatform.org MediaWiki skin",
   "url" => "http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle",
-  "author" => array("TODO, find authors for credits")
+  "author" => array(
+    "[https://renoirboulanger.com Renoir Boulanger]",
+    "TODO, find authors for credits"
+  )
 );
 
 // Register files
@@ -35,8 +40,15 @@ $wgResourceModules["skins.webplatform"] = array(
   "scripts" => array(
     "prism.js",
     "webplatform.js",
-    "sso.js"
+    //"tracking.js",
+    //"sso.js"  #RBx
   ),
   "remoteBasePath" => $wpdBundle["uri"],
   "localBasePath"  => __DIR__
 );
+
+/*
+if(isset($wgWebPlatformAuth['client'])) {
+  $wgResourceModules["skins.webplatform"]["scripts"][] = "sso.js"; # RBx
+}
+*/

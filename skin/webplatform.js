@@ -20,7 +20,7 @@ function setupSearchField() {
  **/
 function annotatorLoader ( ) {
    var ssl = !!document.location.protocol.match(/^https:/)
-   , embedUrl = 'https://notes.webplatform.org/embed.js'
+   , embedUrl = '//notes.webplatform.org/embed.js'
    , mwContentNamespaces = mw.config.get('wgContentNamespaces')
    , showAnnotator = false; //!!window.location.search.match(/action=edit/);
    /* Improve later when deploying MW that supports it
@@ -48,163 +48,163 @@ function init() {
     annotatorLoader();
 
     if (document.querySelectorAll && document.body.addEventListener) {
-    	var dropdowns = document.querySelectorAll('.dropdown');
+        var dropdowns = document.querySelectorAll('.dropdown');
 
-    	for (var i=0, dropdown; dropdown=dropdowns[i++];) {
-    		dropdown.addEventListener('focus', function () {
-    			this.className += ' focus';
-    		}, true);
+        for (var i=0, dropdown; dropdown=dropdowns[i++];) {
+            dropdown.addEventListener('focus', function () {
+                this.className += ' focus';
+            }, true);
 
-    		dropdown.addEventListener('blur', function () {
-    			this.className = this.className.replace(/\s+focus\b/, ' ');
-    		}, true);
-    	}
+            dropdown.addEventListener('blur', function () {
+                this.className = this.className.replace(/\s+focus\b/, ' ');
+            }, true);
+        }
 
-    	// Syntax highlighting for examples with a language
-    	var langs = document.querySelectorAll('.example > p > .language');
+        // Syntax highlighting for examples with a language
+        var langs = document.querySelectorAll('.example > p > .language');
 
-    	for (var i=0, lang; lang = langs[i++];) {
-    		var pre = lang.parentNode.parentNode.querySelector('pre');
+        for (var i=0, lang; lang = langs[i++];) {
+            var pre = lang.parentNode.parentNode.querySelector('pre');
 
-    		var code = document.createElement('code');
-    		code.className = 'language-' + {
-    			'JavaScript': 'javascript',
-    			'HTML': 'markup',
-    			'CSS': 'css'
-    		}[lang.textContent];
+            var code = document.createElement('code');
+            code.className = 'language-' + {
+                'JavaScript': 'javascript',
+                'HTML': 'markup',
+                'CSS': 'css'
+            }[lang.textContent];
 
-    		code.innerHTML = pre.innerHTML;
-    		pre.innerHTML = '';
-    		pre.appendChild(code);
-    	}
+            code.innerHTML = pre.innerHTML;
+            pre.innerHTML = '';
+            pre.appendChild(code);
+        }
 
-    	// Syntax highlighting for <pre>s without <code>
-    	var pres = document.querySelectorAll('pre[class*="language-"], pre[class*="lang-"]');
+        // Syntax highlighting for <pre>s without <code>
+        var pres = document.querySelectorAll('pre[class*="language-"], pre[class*="lang-"]');
 
-    	for (var i=0, pre; pre = pres[i++];) {
-    		if (pre.childElementCount === 0) {
-    			// No element children, only text nodes. Wrap in <code>
-    			var code = document.createElement('code');
-    			code.className = pre.className;
-    			code.innerHTML = pre.innerHTML;
-    			pre.innerHTML = '';
-    			pre.appendChild(code);
-    		}
-    	}
+        for (var i=0, pre; pre = pres[i++];) {
+            if (pre.childElementCount === 0) {
+                // No element children, only text nodes. Wrap in <code>
+                var code = document.createElement('code');
+                code.className = pre.className;
+                code.innerHTML = pre.innerHTML;
+                pre.innerHTML = '';
+                pre.appendChild(code);
+            }
+        }
 
         if (!!window.Prism) {
             window.Prism && Prism.highlightAll();
-    	}
+        }
     }
 }
 
 $(document).ready(init);
 
 $(document).ready(function(){
-	var mainContent = document.getElementById('main-content');
+    var mainContent = document.getElementById('main-content');
 
     if (mainContent === null) {
         return;
     }
 
-	var headings = Array.prototype.slice.apply(mainContent.querySelectorAll('h2, h3, h4, h5, h6'));
+    var headings = Array.prototype.slice.apply(mainContent.querySelectorAll('h2, h3, h4, h5, h6'));
 
-	if (headings.length < 2) {
-		return;
-	}
+    if (headings.length < 2) {
+        return;
+    }
 
-	$(document.documentElement).addClass('with-toc');
+    $(document.documentElement).addClass('with-toc');
 
-	var ol = document.createElement('ol'), li, rootOl = ol;
+    var ol = document.createElement('ol'), li, rootOl = ol;
 
-	for (var i=0, h; h=headings[i++];) {
-		var level = hLevel(h);
+    for (var i=0, h; h=headings[i++];) {
+        var level = hLevel(h);
 
-		if (level > previousLevel) {
-			ol = li.appendChild(document.createElement('ol'));
-		}
-		else if (level < previousLevel) {
-			ol = ol.parentNode.parentNode;
-		}
+        if (level > previousLevel) {
+            ol = li.appendChild(document.createElement('ol'));
+        }
+        else if (level < previousLevel) {
+            ol = ol.parentNode.parentNode;
+        }
 
-		li = tocItem(h);
+        li = tocItem(h);
 
-		if (li) {
-			ol.appendChild(li);
-		}
+        if (li) {
+            ol.appendChild(li);
+        }
 
-		var previousLevel = level;
-	}
+        var previousLevel = level;
+    }
 
-	function tocItem(h) {
-		var li = document.createElement('li'),
-		    a = document.createElement('a');
+    function tocItem(h) {
+        var li = document.createElement('li'),
+            a = document.createElement('a');
 
-		var id, text;
+        var id, text;
 
-		var headline = h.querySelector('.mw-headline[id]');
+        var headline = h.querySelector('.mw-headline[id]');
 
-		if (headline) {
-			id = headline.id;
-			text = headline.textContent;
-		}
-		else {
-			id = h.id;
-			text = h.firstChild.textContent || h.textContent;
+        if (headline) {
+            id = headline.id;
+            text = headline.textContent;
+        }
+        else {
+            id = h.id;
+            text = h.firstChild.textContent || h.textContent;
 
-			if (!id) {
-				id = text.replace(/\s+/g, '-');
+            if (!id) {
+                id = text.replace(/\s+/g, '-');
 
-				if (document.getElementById(id)) {
-					// Id already exists
-					id += '-2';
-				}
+                if (document.getElementById(id)) {
+                    // Id already exists
+                    id += '-2';
+                }
 
-				h.id = id;
-			}
-		}
+                h.id = id;
+            }
+        }
 
-		a.textContent = text;
-		a.href = '#' + id;
+        a.textContent = text;
+        a.href = '#' + id;
 
-		li.appendChild(a);
+        li.appendChild(a);
 
-		return li;
-	}
+        return li;
+    }
 
-	function hLevel(h) {
-		return +h.nodeName.match(/h(\d)/i)[1];
-	}
+    function hLevel(h) {
+        return +h.nodeName.match(/h(\d)/i)[1];
+    }
 
-	var toc = document.createElement('aside');
-	toc.id = 'sidebar';
-	toc.className = 'custom-toc';
+    var toc = document.createElement('aside');
+    toc.id = 'sidebar';
+    toc.className = 'custom-toc';
 
-	var tocH = document.createElement('h2');
-	tocH.id = 'sidebar-title';
-	tocH.innerHTML = 'Contents';
+    var tocH = document.createElement('h2');
+    tocH.id = 'sidebar-title';
+    tocH.innerHTML = 'Contents';
 
-	toc.appendChild(tocH);
-	toc.appendChild(rootOl);
+    toc.appendChild(tocH);
+    toc.appendChild(rootOl);
 
-	mainContent.parentNode.insertBefore(toc, mainContent);
+    mainContent.parentNode.insertBefore(toc, mainContent);
 
-	/*var initialTop = $(toc).offset().top;
+    /*var initialTop = $(toc).offset().top;
 
-	var adjustTop = function(evt) {
-		if (window.innerWidth > 700) {
-			var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+    var adjustTop = function(evt) {
+        if (window.innerWidth > 700) {
+            var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
 
-			var maxTop = mainContent.offsetHeight - toc.offsetHeight - 40;
+            var maxTop = mainContent.offsetHeight - toc.offsetHeight - 40;
 
-			toc.style.top = Math.min(Math.max(0, scrollTop - initialTop), maxTop) + 'px';
-		}
-		else {
-			toc.style.top = '0';
-		}
-	};
+            toc.style.top = Math.min(Math.max(0, scrollTop - initialTop), maxTop) + 'px';
+        }
+        else {
+            toc.style.top = '0';
+        }
+    };
 
-	window.addEventListener('scroll', adjustTop);
+    window.addEventListener('scroll', adjustTop);
 
-	adjustTop();*/
+    adjustTop();*/
 });

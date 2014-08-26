@@ -6,7 +6,7 @@ abstract class AbstractCompatView
 
   const LONG_TITLE = '%s browser %s feature support';
 
-  const ERR_NO_COMPAT_FOUND = '<div class="note"><p>No compatibility data found for feature "<i>%s</i>"</p></div>';
+  const ERR_NO_COMPAT_FOUND = '<!-- Compatables: No compatibility data found for feature %s -->';
 
   /**
    * Selected Compatibility table

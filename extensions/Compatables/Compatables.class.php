@@ -101,39 +101,44 @@ class Compatables
 
     /**   *****************************   **/
     $data = self::getData();
-    $cached = self::memcacheRead($args['cacheKey'], $data['hash']);
-    if( $cached !== false ) {
-      $table = $cached['output'];
-    } else {
-      $generated = self::generateCompaTable( $data, $args );
+    if ( $data !== null ) {
 
-      if ( ( $wgUseTidy && $parser->getOptions()->getTidy() ) || $wgAlwaysUseTidy ) {
-        $generated['output'] = MWTidy::tidy( $generated['output'] );
+      $cached = self::memcacheRead($args['cacheKey'], $data['hash']);
+      if( $cached !== false ) {
+        $table = $cached['output'];
+      } else {
+        $generated = self::generateCompaTable( $data, $args );
+
+        if ( ( $wgUseTidy && $parser->getOptions()->getTidy() ) || $wgAlwaysUseTidy ) {
+          $generated['output'] = MWTidy::tidy( $generated['output'] );
+        }
+
+        self::memcacheSave( $args['cacheKey'], $generated );
+
+        $table = $generated['output'];
       }
+      /**   *****************************   * */
 
-      self::memcacheSave( $args['cacheKey'], $generated );
+      // We are ignoring <compatibility>input would be here</compatibility>
+      // because its useless for now.
+      //if ( $input != '' ) {
+      //  $out .= '<p>' . $input . '</p>';
+      //}
 
-      $table = $generated['output'];
-    }
-    /**   *****************************   * */
-
-    // We are ignoring <compatibility>input would be here</compatibility>
-    // because its useless for now.
-    //if ( $input != '' ) {
-    //  $out .= '<p>' . $input . '</p>';
-    //}
-
-    if ( $wgCompatablesUseESI === true ) {
-      $urlArgs['topic'] = $args['topic'];
-      $urlArgs['feature'] = $args['feature'];
-      $urlArgs['format']  = $args['format'];
-      $urlArgs['foresi']  = 1;
-      // @TODO: this breaks in ESI level if $url ends up http for https views
-      $urlHelper = SpecialPage::getTitleFor( 'Compatables' )->getFullUrl( $urlArgs );
-      $out .= self::applyEsiTags($table, wfExpandUrl( $urlHelper, PROTO_INTERNAL ));
+      if ( $wgCompatablesUseESI === true ) {
+        $urlArgs['topic'] = $args['topic'];
+        $urlArgs['feature'] = $args['feature'];
+        $urlArgs['format']  = $args['format'];
+        $urlArgs['foresi']  = 1;
+        // @TODO: this breaks in ESI level if $url ends up http for https views
+        $urlHelper = SpecialPage::getTitleFor( 'Compatables' )->getFullUrl( $urlArgs );
+        $out .= self::applyEsiTags($table, wfExpandUrl( $urlHelper, PROTO_INTERNAL ));
+      } else {
+        $out .= $table;
+        $parser->getOutput()->updateCacheExpiry( 6*3600 ); // worse cache hit rate
+      }
     } else {
-      $out .= $table;
-      $parser->getOutput()->updateCacheExpiry( 6*3600 ); // worse cache hit rate
+      $out = '<!-- Compatables: Could not generate table -->';
     }
 
     return $out;
@@ -237,7 +242,7 @@ class Compatables
    * @return array
    */
   public static function getData() {
-    global $wgCompatablesCssFileUrl;
+    global $wgCompatablesJsonFileUrl;
 
     $cache = wfGetCache( CACHE_ANYTHING );
     $key = wfMemcKey( 'webplatformdocs', 'compatables', 'data', 'full' );
@@ -247,10 +252,18 @@ class Compatables
     if ( $data !== false ) {
       wfDebugLog( 'CompaTables', 'Got compat/data.json contents from cache' );
     } else {
-      wfDebugLog( 'CompaTables', 'Made an HTTP request to ' . $wgCompatablesCssFileUrl );
-      $data = self::getJsonFile();
+      wfDebugLog( 'CompaTables', 'Made an HTTP request to ' . $wgCompatablesJsonFileUrl );
 
-      $cache->set( $key, $data, 60 * 60 * 12 );
+      try {
+        $data = self::getJsonFile();
+      } catch(Exception $e) {
+        wfDebugLog( 'CompaTables', 'Could not get compat data JSON file' );
+        $data = null;
+      }
+
+      if ( $data !== null ) {
+        $cache->set( $key, $data, 60 * 60 * 12 );
+      }
     }
 
     return $data;

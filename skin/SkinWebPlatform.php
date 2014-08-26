@@ -20,11 +20,12 @@ class SkinWebPlatform extends SkinTemplate {
 	 */
 	public function initPage( OutputPage $out ) {
 		global $wpdBundle;
+
 		parent::initPage($out);
-		$out->addHeadItem('html5shiv', '<!--[if lt IE 9]>'.$wpdBundle['uri'].'/skins/webplatform/html5shiv.js"></script><![endif]-->');
+		$out->addHeadItem('html5shiv', '<!--[if lt IE 9]>'.$wpdBundle['uri'].'/skin/html5shiv.js"></script><![endif]-->');
 		$out->addHeadItem('viewport', '<meta name="viewport" content="width=device-width">');
-		#$out->addHeadItem('ie8CSS', '<!--[if lt IE 9]><link rel="stylesheet" href="'.$wpdBundle['uri'].'/skins/webplatform/ie8.css"><![endif]-->');
-		$out->addHeadItem('ie7CSS', '<!--[if lt IE 8]><link rel="stylesheet" href="'.$wpdBundle['uri'].'/skins/webplatform/ie7.css"><![endif]-->');
+		#$out->addHeadItem('ie8CSS', '<!--[if lt IE 9]><link rel="stylesheet" href="'.$wpdBundle['uri'].'/skin/ie8.css"><![endif]-->');
+		$out->addHeadItem('ie7CSS', '<!--[if lt IE 8]><link rel="stylesheet" href="'.$wpdBundle['uri'].'/skin/ie7.css"><![endif]-->');
 		$out->addModuleScripts('skins.webplatform');
 	}
 
