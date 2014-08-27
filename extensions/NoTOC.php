@@ -8,7 +8,7 @@ $wgExtensionCredits['parserhook'][] = array(
   'version'     => '0.1.0',
   'author'      =>'[http://swiftlytilting.com Andrew Fitzgerald]',
   'url'         => 'http://www.mediawiki.org/wiki/Extension:NoTOC',
-  'description' => '[http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle WebPlatform Docs extension bundle]; Adjust how we display the tables of contents',
+  'description' => '[http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle WebPlatform Docs MediaWiki Extension bundle]; Adjust how we display the tables of contents',
 );
 
 $wgHooks['ParserClearState'][] = 'efMWNoTOC';

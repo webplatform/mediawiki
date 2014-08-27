@@ -10,7 +10,7 @@ $wgExtensionCredits["skin"][] = array(
   "path" => __FILE__,
   "name" => "WebPlatform",
   "version" => "1.1",
-  "description" => "[http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle WebPlatform Docs extension bundle]; WebPlatform.org MediaWiki skin",
+  "description" => "[http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle WebPlatform Docs MediaWiki Extension bundle]; WebPlatform.org MediaWiki skin",
   "url" => "http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle",
   "author" => array(
     "[https://renoirboulanger.com Renoir Boulanger]",

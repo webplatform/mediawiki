@@ -25,7 +25,7 @@ $wgExtensionCredits['other'][] = array(
                     '[https://renoirboulanger.com Renoir Boulanger]'
                   ),
   'url'         => 'http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle',
-  'description' => '[http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle WebPlatform Docs extension bundle]; Piwik Tracking'
+  'description' => '[http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle WebPlatform Docs MediaWiki Extension bundle]; Piwik Tracking'
 );
 
 $wgHooks['SkinAfterBottomScripts'][]  = 'PiwikHooks::PiwikSetup';

@@ -4,12 +4,10 @@
  * Debug settings for MediaWiki
  *
  * This file contains various MediaWiki configurations designed to assist
- * feature development, profiling, and debugging work. To enable these
- * settings, remove the '-example' suffix from this file's name. For an
- * overview of using settings.d/ to manage MediaWiki configurations, see the
- * README file in this folder. For a detailed description of the configuration
- * variables set below, and a survey of some common debugging techniques, see
- * <http://www.mediawiki.org/wiki/Manual:How_to_debug>.
+ * debugging on server during outages.
+ *
+ * If you are working inside a MediaWiki-Vagrant VM, you do NOT need to copy this file 
+ * as its there only for convinience purposes on the final production server.
  */
 
 error_reporting( E_ALL );

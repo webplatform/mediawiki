@@ -1,8 +1,16 @@
 # Deployment improvement notes
 
-What still needs to be done manually
+This is what has to be run to deploy on production servers.
+
+Note that what is commited here is what’s needed to run in production based off of the configuration we get from MediaWiki-Vagrant build.
+
+This is to have as less difference as possible between production and development configuration.
+
 
 ## Add this to VHost
+
+
+### In the MediaWiki-Vagrant VM
 
     Alias /w/skins/webplatform "/vagrant/mediawiki/extensions/WebPlatformDocs/skin"
     <Directory /vagrant/mediawiki/extensions/WebPlatformDocs/skin>
@@ -10,42 +18,21 @@ What still needs to be done manually
         AllowOverride None
     </Directory>
 
-## SMW issue #515 hack
+### In production
 
-Comment method body, lines 85, 125
+Look at WebPlatform’s deployment server in `/srv/salt/apache/docs` in WPD’s salt states. But it should already be managed, here is just notes for posterity.
 
-   vi extensions/SemanticMediaWiki/includes/datavalues/SMW_DV_WikiPage.php
+    Alias /w/skins/webplatform "/srv/webplatform/wiki/wpwiki/mediawiki/extensions/WebPlatformDocs/skin"
+    <Directory /srv/webplatform/wiki/wpwiki/mediawiki/extensions/WebPlatformDocs/skin>
+        Options FollowSymLinks
+        AllowOverride None
+        Require all granted
+    </Directory>
 
-
-## Make `mediawiki/LocalSettings.php` to contain only
-
-    ```php
-    <?php
-    require_once( "$IP/../LocalSettings.php" ); // Or TestSettings.php
-    ```
-
-## Related documentation
-
-* [SwiftCloudFiles](http://www.mediawiki.org/wiki/Extension:SwiftCloudFiles)
-
-# Various notes
+In production we have two wikis, `wpwiki` (for /wiki/) and `wptestwiki` (for /test/) for production and template tests purposes.
 
 
-## TODO
+## Copy a few files
 
-* Disable Talk pages? http://www.mediawiki.org/wiki/Extension%3aTalkright `$wgDisableAnonTalk = false;`
-* Cookie names and domain? see `$wgCookieExpiration`
-* See neat plugin how it does things https://git.wikimedia.org/summary/mediawiki%2Fextensions%2FDumpHTML
-* Notes tabs:
-  * https://gist.github.com/renoirb/2296a50a33910ef8936a
-  * https://gist.github.com/renoirb/9923697
-  * http://meta.wikimedia.org/wiki/Help:User_style
-  * http://www.mediawiki.org/wiki/Composer/Future_work
-  * http://www.mediawiki.org/wiki/Manual:Skin.php
-  * http://www.mediawiki.org/wiki/Manual:Skinning
-  * http://www.mediawiki.org/wiki/Manual:Skinning/Tutorial
-* Do not forget:
-  * WebPlatformSearchAutocomplete
-  * WebPlatformSectionCommentsSmw
-  * Comments WpdCaptcha
-* Code samples and GitHub extension?
+    cp -r mediawiki/extensions/WebPlatformDocs/resources/settings.d/ settings.d/
+

@@ -1,11 +1,12 @@
 {
-  "name": "mediawiki/webplatform-customizations",
+  "name": "webplatform/mediawiki-bundle",
   "type": "mediawiki-extension",
-  "description": "Set of adapted and custom MediaWiki extensions for webplatform.org",
+  "description": "WebPlatform Docs MediaWiki Extension Bundle",
   "keywords": [
     "MediaWiki",
     "WebPlatform",
-    "distribution"
+    "distribution",
+    "bundle"
   ],
   "homepage": "http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle",
   "authors": [
@@ -42,7 +43,10 @@
     }
   ],
   "support": {
-    "issues": "https://github.com/webplatform/mediawiki/issues"
+    "issues": "https://github.com/webplatform/mediawiki/issues",
+    "email":  "team-webplatform-systems@w3.org",
+    "irc":    "irc://irc.freenode.net/webplatform",
+    "source": "https://github.com/webplatform/mediawiki"
   },
   "require": {
     "composer/installers": ">=1.0.1"
