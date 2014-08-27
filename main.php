@@ -7,11 +7,14 @@ $wpdBundle["root_uri"] = str_replace('$1', '', $wgArticlePath);
 $wpdBundle["context"]  = basename(dirname(__FILE__));
 $wpdBundle["uri"]      = "{$wgScriptPath}/extensions/".$wpdBundle["context"];
 
-## Small customizations
+## Very-small extensions
 require_once(__DIR__."/extensions/TopicTitle.php");
 require_once(__DIR__."/extensions/EditSectionIcon.php");
-require_once(__DIR__."/extensions/Piwik.php");
 require_once(__DIR__."/extensions/NoTOC.php");
+
+## Piwik
+require_once(__DIR__."/extensions/Piwik.php");
+$wgPiwikURL = "stats.webplatform.org";
 
 ## Compatibility tables
 require_once(__DIR__."/extensions/Compatables/Compatables.php");
@@ -55,6 +58,9 @@ define("NS_STEWARDS", 3010);
 define("NS_STEWARDS_TALK", 3011);
 define("NS_META", 3020);
 define("NS_META_TALK", 3021);
+
+$wgEmergencyContact = "team-webplatform-systems@w3.org";
+$wgPasswordSender   = "team-webplatform-systems@w3.org";
 
 $wgExtraNamespaces[NS_WPD] = "WPD";
 $wgExtraNamespaces[NS_WPD_TALK] = "WPD_talk";
@@ -146,18 +152,3 @@ $wgRightsUrl  = "http://creativecommons.org/licenses/by/3.0/";
 $wgRightsText = "Creative Commons Attribution license";
 $wgRightsIcon = $wpdBundle["uri"]."/skin/images/cc-by-black.svg"; //{$wgStylePath}/common/images/cc-by.png";
 $wgLicenseTerms = "MediaWiki:Site-terms-of-service";
-
-
-/*
-## See DefaultSettings.php for details on each of them
-# wfFixSessionID() in GlobalFunctions
-$wgCookieExpiration = 180*86400;
-$wgCookieDomain = "";
-$wgCookiePath = "/";
-$wgCookieSecure = "detect";
-$wgDisableCookieCheck = false;
-$wgCookiePrefix = false;
-$wgCookieHttpOnly = true;
-$wgCacheVaryCookies = array();
-$wgSessionName = false;
-*/

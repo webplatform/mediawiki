@@ -40,15 +40,12 @@ $wgResourceModules["skins.webplatform"] = array(
   "scripts" => array(
     "prism.js",
     "webplatform.js",
-    //"tracking.js",
-    //"sso.js"  #RBx
+    //"tracking.js"
   ),
   "remoteBasePath" => $wpdBundle["uri"],
   "localBasePath"  => __DIR__
 );
 
-/*
 if(isset($wgWebPlatformAuth['client'])) {
   $wgResourceModules["skins.webplatform"]["scripts"][] = "sso.js"; # RBx
 }
-*/
