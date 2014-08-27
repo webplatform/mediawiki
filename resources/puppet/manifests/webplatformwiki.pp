@@ -3,7 +3,7 @@
 #
 # == Class: local::webplatformwiki
 #
-# See https://github.com/webplatform/VAGRANT.md for
+# See https://github.com/webplatform/mediawiki/VAGRANT.md for
 # installation instructions.
 #
 # This file is expected to be copied into a clone of MediaWiki-Vagrant,
@@ -163,6 +163,18 @@ class local::webplatformwiki {
     }
 
     ## ########## Semantic MediaWiki related ################ #
+    #
+    # This section should ensure compatible versions of SemanticMediaWiki
+    # components installed with this wmf build.
+    #
+    # Current situation is that SMW is at v2.0, but doesn’t yet work
+    # with MediaWiki 1.24. The peoplw at #wikimedia-operations do
+    # run SMW, but on very specific versions.
+    #
+    # To figure out if a version will work, you can check the
+    # installed versions they are using.
+    #
+    # https://wikitech.wikimedia.org/wiki/Special:Version
 
     mediawiki::extension { 'SemanticMediaWiki':
         branch      =>  '1.8.0.5',

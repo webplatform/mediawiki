@@ -31,10 +31,6 @@ if ( isset( $wgConfirmEditIP ) ) {
 
 require_once(__DIR__."/skin/main.php");
 
-## SemanticMediaWiki adjustment
-$sfgRenameEditTabs = true;
-enableSemantics("webplatform");
-
 ## Remove normal table of contents
 ## $wgDefaultUserOptions["showtoc"] = 0;
 
