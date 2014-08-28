@@ -70,6 +70,14 @@ Note that eventually this project will also be installed through Composer and a 
     git clone -b 201408-upgrade https://github.com/webplatform/mediawiki.git mediawiki/extensions/WebPlatformDocs
     ```
 
+  NOTE: This is in the meantime we get our own two MW extensions (WebPlatform MediaWiki Extension Bundle AND WebPlatform SSO Extension), in the meantime no commiteable code on deployment server anymore (!).
+
+* Clone the SSO project as `mediawiki/extensions/WebPlatformAuth/`
+
+    ```bash
+    git clone -b webplatform-sso https://github.com/webplatform/mediawiki-fxa-sso.git mediawiki/extensions/WebPlatformAuth
+    ```
+
 * Copy the `resources/settings.d/*.php` files from THIS project into our new MediaWiki-Vagrant clone `settings.d/` folder
 
     ```bash

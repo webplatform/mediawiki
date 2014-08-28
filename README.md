@@ -40,7 +40,8 @@ Do not forget to rebuild the data after an upgrade to take a look at [Repairing 
 ## Related documentation
 
 * [SwiftCloudFiles](http://www.mediawiki.org/wiki/Extension:SwiftCloudFiles)
-
+* [Wikimedia’s MediaWiki-Vagrant](http://www.mediawiki.org/wiki/MediaWiki-Vagrant), local workspace
+* [Wikimedia’s Labs-Vagrant](https://wikitech.wikimedia.org/wiki/Labs-vagrant), to control from a local VM, a remote one on wikitech OpenStack cluster
 
 
 # TODO

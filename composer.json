@@ -1,6 +1,7 @@
 {
   "name": "webplatform/mediawiki-bundle",
   "type": "mediawiki-extension",
+  "license": "MIT",
   "description": "WebPlatform Docs MediaWiki Extension Bundle",
   "keywords": [
     "MediaWiki",
@@ -12,11 +13,13 @@
   "authors": [
     {
       "name": "Renoir Boulanger",
+      "email": "renoir@w3.org",
       "role": "Maintainer",
       "homepage": "https://renoirboulanger.com"
     },
     {
       "name": "Doug Schepers",
+      "email": "schepers@w3.org",
       "role": "Project lead"
     },
     {
