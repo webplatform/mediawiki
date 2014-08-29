@@ -2743,43 +2743,53 @@ dl.compat-list dd {
 }
 
 .icon-accessibility {
-  background: url('/w/images/7/7b/WPD-Accessibility-32px.png');
+  /* Canonical of http://static.webplatform.org/w/public/7/7b/WPD-Accessibility-32px.png */
+  background: url('/w/extensions/WebPlatformDocs/skin/images/WPD-Accessibility-32px.png');
 }
 
 .icon-beginners {
-  background: url('/w/images/8/8a/WPD-Beginners-32px.png');
+  /* Canonical of http://static.webplatform.org/w/public/8/8a/WPD-Beginners-32px.png  */
+  background: url('/w/extensions/WebPlatformDocs/skin/images/WPD-Beginners-32px.png');
 }
 
 .icon-concept {
-  background: url('/w/images/8/83/WPD-Concepts-32px.png');
+  /* Canonical of http://static.webplatform.org/w/public/8/83/WPD-Concepts-32px.png  */
+  background: url('/w/extensions/WebPlatformDocs/skin/images/WPD-Concepts-32px.png');
 }
 
 .icon-css {
-  background: url('/w/images/7/74/WPD-CSS-32px.png');
+  /* Canonical of  http://static.webplatform.org/w/public/7/74/WPD-CSS-32px.png  */
+  background: url('/w/extensions/WebPlatformDocs/skin/images/WPD-CSS-32px.png');
 }
 
 .icon-dom {
-  background: url('/w/images/a/ae/WPD-DOM-32px.png');
+  /* Canonical of http://static.webplatform.org/w/public/a/ae/WPD-DOM-32px.png */
+  background: url('/w/extensions/WebPlatformDocs/skin/images/WPD-DOM-32px.png');
 }
 
 .icon-html {
-  background: url('/w/images/d/d1/WPD-HTML-B-32px.png');
+  /* Canonical of http://static.webplatform.org/w/public/d/d1/WPD-HTML-B-32px.png  */
+  background: url('/w/extensions/WebPlatformDocs/skin/images/WPD-HTML-B-32px.png');
 }
 
 .icon-html5 {
-  background: url('/w/images/2/26/WPD-HTML5-32px.png');
+  /* Canonical of http://static.webplatform.org/w/public/2/26/WPD-HTML5-32px.png  */
+  background: url('/w/extensions/WebPlatformDocs/skin/images/WPD-HTML5-32px.png');
 }
 
 .icon-js {
-  background: url('/w/images/4/4c/WPD-JS-32px.png');
+  /* Canonical of   */
+  background: url('/w/extensions/WebPlatformDocs/skin/images/WPD-JS-32px.png');
 }
 
 .icon-svg {
-  background: url('/w/images/d/db/WPD-SVG-32px.png');
+  /* Canonical of   */
+  background: url('/w/extensions/WebPlatformDocs/skin/images/WPD-SVG-32px.png');
 }
 
 .icon-api {
-  background: url('/w/images/d/d3/WPD-API-32px.png');
+  /* Canonical of   */
+  background: url('/w/extensions/WebPlatformDocs/skin/images/WPD-API-32px.png');
 }
 /* END layout rules for topic container boxes on landing page prototypes (chrisdavidmills) */
 
