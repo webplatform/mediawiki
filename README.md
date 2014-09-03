@@ -2,7 +2,7 @@
 
 This is [WebPlatform Docs MediaWiki Extension bundle](http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle), it contains the theme and various micro extensions we created to make [WebPlatform Docs](http://www.webplatform.org) pages w/ MediaWiki.
 
-[WebPlatform Docs](http://docs.webplatform.org/) wiki runs on Wikimedia Foundation build branch (`wmf/*`), see [the current MediaWiki version we are using](http://docs.webplatform.org/wiki/Special:Version#sv-software).
+[WebPlatform Docs](http://docs.webplatform.org/) wiki runs on Wikimedia Foundation [Wikipedia continuous deployment branch `wmf/*`](https://github.com/wikimedia/mediawiki-core/branches). You can see current release we are running on our [Special:Version page](http://docs.webplatform.org/wiki/Special:Version#sv-software).
 
 Use this repository as a reference to upgrade WebPlatform Docs MediaWiki packages. In order to work, refer to  **VAGRANT.md** which explains how to work locally. We are using [Wikimedia’s MediaWiki-Vagrant](http://www.mediawiki.org/wiki/MediaWiki-Vagrant) as a local workspace with [Vagrant](https://www.vagrantup.com/) and [VirtualBox "provider"](https://docs.vagrantup.com/v2/providers/).
 

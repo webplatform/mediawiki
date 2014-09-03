@@ -11,23 +11,20 @@ $wpdBundle["uri"]      = "{$wgScriptPath}/extensions/".$wpdBundle["context"];
 require_once(__DIR__."/extensions/TopicTitle.php");
 require_once(__DIR__."/extensions/EditSectionIcon.php");
 require_once(__DIR__."/extensions/NoTOC.php");
+require_once(__DIR__."/extensions/BreadcrumbMenu.php");
 
 ## Piwik
 require_once(__DIR__."/extensions/Piwik.php");
-$wgPiwikURL = "stats.webplatform.org";
+$wgPiwikURL = "tracking.webplatform.org";
 
 ## Compatibility tables
 require_once(__DIR__."/extensions/Compatables/Compatables.php");
 $wgCompatablesCssFileUrl = $wpdBundle["uri"]."/extensions/Compatables/compat.css";
 
-## Extension behavior changes
-if ( defined( 'SPL_VERSION' ) ) {
-  require_once(__DIR__."/extensions/BreadcrumbMenu.php"); // Dependency: SubPageList3
-}
-
-if ( isset( $wgConfirmEditIP ) ) {
-  require_once(__DIR__."/extensions/WpdCaptcha.php");   // Dependency: ConfirmEdit
-}
+## TODO: Fix
+#if ( isset( $wgConfirmEditIP ) ) {
+#  require_once(__DIR__."/extensions/WpdCaptcha.php");   // Dependency: ConfirmEdit
+#}
 
 require_once(__DIR__."/skin/main.php");
 
@@ -143,8 +140,8 @@ $wgLanguageCode = "en";
 ## appropriate copyright notice / icon. GNU Free Documentation
 ## License and Creative Commons licenses are supported so far.
 ## Set to the title of a wiki page that describes your license/copyright
-$wgRightsPage = "MediaWiki:Site-terms-of-service";
 $wgRightsUrl  = "http://creativecommons.org/licenses/by/3.0/";
 $wgRightsText = "Creative Commons Attribution license";
-$wgRightsIcon = $wpdBundle["uri"]."/skin/images/cc-by-black.svg"; //{$wgStylePath}/common/images/cc-by.png";
+$wgRightsIcon = $wpdBundle["uri"]."/skin/images/cc-by-black.svg";
+$wgRightsPage = "MediaWiki:Site-terms-of-service";
 $wgLicenseTerms = "MediaWiki:Site-terms-of-service";

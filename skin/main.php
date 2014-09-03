@@ -14,7 +14,7 @@ $wgExtensionCredits["skin"][] = array(
   "url" => "http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle",
   "author" => array(
     "[https://renoirboulanger.com Renoir Boulanger]",
-    "TODO, find authors for credits"
+    "TODO, find authors and add them here"
   )
 );
 
