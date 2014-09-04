@@ -21,14 +21,6 @@ $wgPiwikURL = "tracking.webplatform.org";
 require_once(__DIR__."/extensions/Compatables/Compatables.php");
 $wgCompatablesCssFileUrl = $wpdBundle["uri"]."/extensions/Compatables/compat.css";
 
-## TODO:
-## * Import comments; it only requires the Comments extension
-## * Remove SectionComments from this extension, it should not be enabled anymore (doesn’t work since update 2014-09-01)
-## * Remove .gitmodules requirement for Comments Extension
-#require_once("$IP/extensions/Comments/Comments.php");
-#$wgCommentsEnabledNS = array(NS_MAIN);
-#require_once("$IP/extensions/WebPlatformDocs/extensions/SectionComments/SectionComments.php");
-
 ## TODO: Fix
 #if ( isset( $wgConfirmEditIP ) ) {
 #  require_once(__DIR__."/extensions/WpdCaptcha.php");   // Dependency: ConfirmEdit
@@ -154,3 +146,11 @@ $wgRightsText = "Creative Commons Attribution license";
 $wgRightsIcon = $wpdBundle["uri"]."/skin/images/cc-by-black.svg";
 $wgRightsPage = "MediaWiki:Site-terms-of-service";
 $wgLicenseTerms = "MediaWiki:Site-terms-of-service";
+
+## TODO:
+## * Import comments; it only requires the Comments extension
+## * Remove SectionComments from this extension, it should not be enabled anymore (doesn’t work since update 2014-09-01)
+## * Remove .gitmodules requirement for Comments Extension
+#require_once("$IP/extensions/Comments/Comments.php");
+#$wgCommentsEnabledNS = array(NS_MAIN);
+#require_once("$IP/extensions/WebPlatformDocs/extensions/SectionComments/SectionComments.php");
