@@ -22,6 +22,9 @@ class SkinWebPlatform extends SkinTemplate {
 		global $wpdBundle;
 
 		parent::initPage($out);
+		$out->addHeadItem('ie7js-cond-ie7', '<!--[if lt IE 7]><script src="//www.webplatform.org/assets/bower_components/ie7-js/lib/IE7.js"></script><![endif]-->');
+		$out->addHeadItem('ie7js-cond-ie8', '<!--[if lt IE 8]><script src="//www.webplatform.org/assets/bower_components/ie7-js/lib/IE8.js"></script><![endif]-->');
+		$out->addHeadItem('ie7js-cond-ie9', '<!--[if lt IE 9]><script src="//www.webplatform.org/assets/bower_components/ie7-js/lib/IE9.js"></script><![endif]-->');
 		$out->addHeadItem('html5shiv', '<!--[if lt IE 9]>'.$wpdBundle['uri'].'/skin/html5shiv.js"></script><![endif]-->');
 		$out->addHeadItem('viewport', '<meta name="viewport" content="width=device-width">');
 		#$out->addHeadItem('ie8CSS', '<!--[if lt IE 9]><link rel="stylesheet" href="'.$wpdBundle['uri'].'/skin/ie8.css"><![endif]-->');
