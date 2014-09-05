@@ -67,9 +67,9 @@
   font-family: 'WPSymbols';
   src:url('//www.webplatform.org/assets/fonts/WPSymbols.eot');
   src:url('//www.webplatform.org/assets/fonts/WPSymbols.eot?#iefix') format('embedded-opentype'),
-    url('//www.webplatform.org/assets/fonts/WPSymbols.svg#WPSymbols') format('svg'),
     url('//www.webplatform.org/assets/fonts/WPSymbols.woff') format('woff'),
-    url('//www.webplatform.org/assets/fonts/WPSymbols.ttf') format('truetype');
+    url('//www.webplatform.org/assets/fonts/WPSymbols.ttf') format('truetype'),
+    url('//www.webplatform.org/assets/fonts/WPSymbols.svg#WPSymbols') format('svg');
 }
 
 header, footer{
