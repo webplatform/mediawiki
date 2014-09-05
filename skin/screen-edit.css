@@ -1,11 +1,11 @@
 /** TODO: Move to //www.webplatform.org/assets/fonts/ instead **/
 @font-face {
 	font-family: 'WPSymbols';
-	src:url('/w/extensions/WebPlatformDocs/skin/fonts/WPSymbols.eot');
-	src:url('/w/extensions/WebPlatformDocs/skin/fonts/WPSymbols.eot?#iefix') format('embedded-opentype'),
-		url('/w/extensions/WebPlatformDocs/skin/fonts/WPSymbols.svg#WPSymbols') format('svg'),
-		url('/w/extensions/WebPlatformDocs/skin/fonts/WPSymbols.woff') format('woff'),
-		url('/w/extensions/WebPlatformDocs/skin/fonts/WPSymbols.ttf') format('truetype');
+	src:url('//www.webplatform.org/assets/fonts/WPSymbols.eot');
+	src:url('//www.webplatform.org/assets/fonts/WPSymbols.eot?#iefix') format('embedded-opentype'),
+		url('//www.webplatform.org/assets/fonts/WPSymbols.svg#WPSymbols') format('svg'),
+		url('//www.webplatform.org/assets/fonts/WPSymbols.woff') format('woff'),
+		url('//www.webplatform.org/assets/fonts/WPSymbols.ttf') format('truetype');
 }
 
 #hierarchy-menu {
