@@ -1,8 +1,10 @@
-# WebPlaform Docs’ MediaWiki “distribution„
+# WebPlaform Docs’ MediaWiki "distribution"
 
-This is [WebPlatform Docs MediaWiki Extension bundle](http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle), it contains the theme and various micro extensions we created to make [WebPlatform Docs](http://www.webplatform.org) pages w/ MediaWiki.
+This is [WebPlatform Docs MediaWiki Extension bundle](http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle), it contains the theme and various micro extensions we created to make [WebPlatform Docs](http://www.webplatform.org) pages w/ [MediaWiki](https://github.com/wikimedia/mediawiki-core).
 
-[WebPlatform Docs](http://docs.webplatform.org/) wiki runs on Wikimedia Foundation [Wikipedia continuous deployment branch `wmf/*`](https://github.com/wikimedia/mediawiki-core/branches). You can see current release we are running on our [Special:Version page](http://docs.webplatform.org/wiki/Special:Version#sv-software).
+The [WebPlatform Project](http://www.webplatform.org/) [documentation pages is a wiki](http://docs.webplatform.org/wiki/) running with Wikimedia Foundation [Wikipedia continuous deployment branch `wmf/*`](https://github.com/wikimedia/mediawiki-core/branches).
+
+**NOTE**: You can see current release we are running on our [Special:Version page](http://docs.webplatform.org/wiki/Special:Version#sv-software).
 
 Use this repository as a reference to upgrade WebPlatform Docs MediaWiki packages. In order to work, refer to  **VAGRANT.md** which explains how to work locally. We are using [Wikimedia’s MediaWiki-Vagrant](http://www.mediawiki.org/wiki/MediaWiki-Vagrant) as a local workspace with [Vagrant](https://www.vagrantup.com/) and [VirtualBox "provider"](https://docs.vagrantup.com/v2/providers/).
 
@@ -26,7 +28,7 @@ If you have short memory, some helpers on how to find configuration switches.
 
 * http://www.semantic-mediawiki.org/wiki/Help:Configuration
 * in MediaWiki core `mediawiki/includes/DefaultSettings.php`
-
+* See publicly visible configuration parameters [in this gist](https://gist.github.com/WebPlatformDocs/9e79a3e6816063103649)
 
 
 ## Semantic Mediawik
@@ -37,30 +39,12 @@ Do not forget to rebuild the data after an upgrade to take a look at [Repairing 
 
 
 
-## Related documentation
+## Some Extensions documentation bookmarks
 
 * [SwiftCloudFiles](http://www.mediawiki.org/wiki/Extension:SwiftCloudFiles)
 * [Wikimedia’s MediaWiki-Vagrant](http://www.mediawiki.org/wiki/MediaWiki-Vagrant), local workspace
 * [Wikimedia’s Labs-Vagrant](https://wikitech.wikimedia.org/wiki/Labs-vagrant), to control from a local VM, a remote one on wikitech OpenStack cluster
 
+## Scratchpad
 
-# TODO
-
-Things that aren’t ready yet, or that we should not forget.
-
-* Disable Talk pages? http://www.mediawiki.org/wiki/Extension%3aTalkright `$wgDisableAnonTalk = false;`
-* Cookie names and domain? see `$wgCookieExpiration`
-* See neat plugin how it does things https://git.wikimedia.org/summary/mediawiki%2Fextensions%2FDumpHTML
-* Notes tabs:
-  * https://gist.github.com/renoirb/2296a50a33910ef8936a
-  * https://gist.github.com/renoirb/9923697
-  * http://meta.wikimedia.org/wiki/Help:User_style
-  * http://www.mediawiki.org/wiki/Composer/Future_work
-  * http://www.mediawiki.org/wiki/Manual:Skin.php
-  * http://www.mediawiki.org/wiki/Manual:Skinning
-  * http://www.mediawiki.org/wiki/Manual:Skinning/Tutorial
-* Do not forget:
-  * WebPlatformSearchAutocomplete
-  * WebPlatformSectionCommentsSmw
-  * Comments WpdCaptcha
-* Code samples and GitHub extension?
+See [the project wiki](https://github.com/webplatform/mediawiki/wiki)
