@@ -244,9 +244,9 @@ class Compatables
   public static function getData() {
     global $wgCompatablesJsonFileUrl;
 
+    // See https://github.com/webplatform/mediawiki/issues/16 #TODO
     $cache = wfGetCache( CACHE_ANYTHING );
     $key = wfMemcKey( 'webplatformdocs', 'compatables', 'data', 'full' );
-
     $data = $cache->get( $key );
 
     if ( $data !== false ) {
@@ -280,7 +280,7 @@ class Compatables
       // This prevents us to make two HTTP calls for last-modified
       // and adds a timestamp property for later use.
       $date = $req->getResponseHeader('Last-Modified');
-      $content = FormatJSON::decode( $req->getContent(), true );
+      $content = FormatJson::decode( $req->getContent(), true );
       $data = array_merge($content, array('timestamp'=> $date, 'hash'=>md5($date)));
 
       if ( !$content ) {

@@ -7,7 +7,7 @@ class SpecialCompatables extends UnlistedSpecialPage
 	}
 
 	public function execute( $par ) {
-		global $wgCompatablesUseESI, $wgUseTidy, $wgAlwaysUseTidy;
+		global $wgCompatablesUseESI, $wgUseTidy, $wgAlwaysUseTidy, $wgCompatablesJsonFileUrl;
 
 		$this->setHeaders();
 
@@ -21,9 +21,23 @@ class SpecialCompatables extends UnlistedSpecialPage
 		// (https://www.varnish-cache.org/docs/3.0/tutorial/esi.html)
 		// (https://www.varnish-cache.org/trac/wiki/Future_ESI)
 		if ( $this->getRequest()->getVal( 'action' ) === 'purge' ) {
-			if ( $wgCompatablesUseESI && $this->getUser()->isAllowed( 'purgecompatables' ) ) {
 
-				Compatables::memcacheRemove($args['cacheKey']);
+			// See https://github.com/webplatform/mediawiki/issues/16 #TODO
+			$cache = wfGetCache( CACHE_ANYTHING );
+			//$cache->setDebug( true );
+			$cache->delete( wfMemcKey( 'webplatformdocs', 'compatables', 'data', 'full' ) );
+			$cache->delete( $args['cacheKey'] );
+
+			try {
+				$req = MWHttpRequest::factory( $wgCompatablesJsonFileUrl, array( 'method' => 'PURGE' ) );
+				$status = $req->execute();
+				wfDebugLog( 'CompaTables', 'Purged "' . $wgCompatablesJsonFileUrl . '", status' . print_r( $status, 1 ) );
+			} catch( Exception $e ) {
+				wfDebugLog( 'CompaTables', 'Got problem with purging "' . $wgCompatablesJsonFileUrl . '", message ' . $e->getMessage() );
+				// Do nothing
+			}
+
+			if ( $wgCompatablesUseESI && $this->getUser()->isAllowed( 'purgecompatables' ) ) {
 
 				// Get the ESI URL prefix to purge
 				$urlPrefix = SpecialPage::getTitleFor( 'Compatables' )->getFullUrl();
