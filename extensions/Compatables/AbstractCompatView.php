@@ -6,7 +6,11 @@ abstract class AbstractCompatView
 
   const LONG_TITLE = '%s browser %s feature support';
 
-  const ERR_NO_COMPAT_FOUND = '<!-- Compatables: No compatibility data found for feature %s -->';
+  const ERR_BLOCK = 'There is no data available for topic "%s", feature "%s". If you think that there should be data available, consider <a href="%s">opening an issue</a>.';
+
+  const HTML_BLOCK = '<div class="note"><p>%s</p></div>';
+
+  const ISSUE_LINK = 'https://github.com/webplatform/compatibility-data/issues/new';
 
   /**
    * Selected Compatibility table
@@ -219,7 +223,19 @@ abstract class AbstractCompatView
 
   protected function noDataMessageBlock()
   {
-      $this->output = sprintf(self::ERR_NO_COMPAT_FOUND, $this->feature);
+    // same as CompatViewNoData::__construct, merge #TODO
+    // and watchout for the $text $this->feature === $meta['feature'], but depends
+    // where you are.
+    $qs = array();
+    $qs['title'] = sprintf( 'No data available for topic: %s, feature: %s', $meta['topic'], $meta['feature'] );
+    $qs['labels'] = 'missing';
+    //$qs['assignee'] = 'renoirb';
+    $qs['body'] = 'Insert details here';
+
+    $link = self::ISSUE_LINK . '?' . http_build_query( $qs, '', '&amp;' );
+    $text = sprintf( self::ERR_BLOCK, $this->topic, $this->feature, $link );
+
+    $this->output = sprintf( self::HTML_BLOCK, $text );
   }
 
   protected function tagHelper($in, $tagName='div')
@@ -270,7 +286,7 @@ abstract class AbstractCompatView
       'topic'     => $this->topic,
       'feature'   => $this->feature,
       'cacheKey'  => $this->cacheKey,
-      'output'    => '<!-- Generated --><nowiki>'.$this->getOutput().'</nowiki><!-- /Generated -->'
+      'output'    => '<nowiki>'.$this->getOutput().'</nowiki>'
     );
   }
 }

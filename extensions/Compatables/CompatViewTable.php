@@ -2,6 +2,12 @@
 
 class CompatViewTable extends AbstractCompatView
 {
+  const NOTICE_TEXT = 'Do you think this data can be improved? You can ask to add by <a href="%s">opening an issue</a> or <a href="%s">make a pull request</a>.';
+
+  const ISSUE_LINK = 'https://github.com/webplatform/compatibility-data/issues/new';
+
+  const REPO_LINK = 'https://github.com/webplatform/compatibility-data';
+
   /**
    * @inheritDoc
    */
@@ -84,7 +90,16 @@ class CompatViewTable extends AbstractCompatView
 
     //$out .= '<pre><tt>'.print_r($this->contents,1).'</tt></pre>';  // DEBUG
 
-    $this->output = $out;
+    $qs = array();
+    $qs['title'] = sprintf( 'Please improve data for topic: %s, feature: %s', $this->topic, $this->feature );
+    $qs['labels'] = 'missing';
+    //$qs['assignee'] = 'renoirb';
+    $qs['body'] = 'Insert description here';
+    $link = self::ISSUE_LINK . '?' . http_build_query( $qs, '', '&amp;' );
+
+    $help = sprintf( self::NOTICE_TEXT, $link, self::REPO_LINK );
+
+    $this->output = $help.$out;
 
     return true;
   }

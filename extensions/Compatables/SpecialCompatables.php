@@ -23,17 +23,15 @@ class SpecialCompatables extends UnlistedSpecialPage
 		if ( $this->getRequest()->getVal( 'action' ) === 'purge' ) {
 
 			// See https://github.com/webplatform/mediawiki/issues/16 #TODO
-			$cache = wfGetCache( CACHE_ANYTHING );
-			//$cache->setDebug( true );
-			$cache->delete( wfMemcKey( 'webplatformdocs', 'compatables', 'data', 'full' ) );
-			$cache->delete( $args['cacheKey'] );
+			Compatables::memcacheRemove( wfMemcKey( 'webplatformdocs', 'compatables', 'data', 'full' ) );
+			Compatables::memcacheRemove( $args['cacheKey'] );
 
 			try {
 				$req = MWHttpRequest::factory( $wgCompatablesJsonFileUrl, array( 'method' => 'PURGE' ) );
 				$status = $req->execute();
-				wfDebugLog( 'CompaTables', 'Purged "' . $wgCompatablesJsonFileUrl . '", status' . print_r( $status, 1 ) );
+				wfDebugLog( 'CompaTables', 'cURL PURGE done to "' . $wgCompatablesJsonFileUrl );
 			} catch( Exception $e ) {
-				wfDebugLog( 'CompaTables', 'Got problem with purging "' . $wgCompatablesJsonFileUrl . '", message ' . $e->getMessage() );
+				wfDebugLog( 'CompaTables', 'Had problems with cURL PURGE to "' . $wgCompatablesJsonFileUrl . '", message ' . $e->getMessage() );
 				// Do nothing
 			}
 

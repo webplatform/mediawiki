@@ -9,8 +9,8 @@ class Compatables
   protected static $allowed_formats = array('table','list');
 
   const TTL = 3600;
-  const MAX_AGE = 3600;
 
+  const MAX_AGE = 3600;
 
   /**
    * Serialize and save data to memcache
@@ -25,9 +25,10 @@ class Compatables
    */
   public static function memcacheSave($cacheKey, $data)
   {
-    global $wgMemc;
+    $cache = wfGetCache( CACHE_ANYTHING );
+    //$cache->setDebug( true ); // DEBUG
 
-    $wgMemc->set( $cacheKey, serialize($data), self::TTL );
+    $cache->set( $cacheKey, serialize($data), self::TTL );
   }
 
   /**
@@ -39,9 +40,11 @@ class Compatables
    */
   public static function memcacheRemove($cacheKey)
   {
-    global $wgMemc;
+    $cache = wfGetCache( CACHE_ANYTHING );
+    //$cache->setDebug( true ); // DEBUG
+    wfDebugLog( 'CompaTables', 'Deleted "' . $cacheKey .'"' );
 
-    $wgMemc->delete($cacheKey);
+    $cache->delete( $cacheKey );
   }
 
   /**
@@ -60,15 +63,17 @@ class Compatables
    */
   public static function memcacheRead($cacheKey, $hash=null)
   {
-    global $wgMemc;
+    $cache = wfGetCache( CACHE_ANYTHING );
+    //$cache->setDebug( true ); // DEBUG
 
-    $cachedView = $wgMemc->get($cacheKey);
+    $cachedView = $cache->get($cacheKey);
 
     if($cachedView !== false) {
       $unserialized = unserialize($cachedView);
       if(isset($unserialized['hash']) && isset($unserialized['output'])) {
         if( $unserialized['hash'] !== $hash && $hash !== null ) {
-          $wgMemc->delete($cacheKey);
+          $cache->delete( $cacheKey );
+          wfDebugLog( 'CompaTables', 'Attempted to read "' . $cacheKey .'" but the hash did not match, deleted it.');
 
           return false;
         }
@@ -126,7 +131,7 @@ class Compatables
       //}
 
       if ( $wgCompatablesUseESI === true ) {
-        $urlArgs['topic'] = $args['topic'];
+        $urlArgs['topic']   = $args['topic'];
         $urlArgs['feature'] = $args['feature'];
         $urlArgs['format']  = $args['format'];
         $urlArgs['foresi']  = 1;
@@ -138,7 +143,8 @@ class Compatables
         $parser->getOutput()->updateCacheExpiry( 6*3600 ); // worse cache hit rate
       }
     } else {
-      $out = '<!-- Compatables: Could not generate table -->';
+      wfDebugLog( 'CompaTables', 'Could not generate table, data is either empty or had problems.' );
+      $out = '<!-- Compatables: Could not generate table, data might be empty or had problems with caching -->';
     }
 
     return $out;
@@ -391,16 +397,27 @@ class Compatables
         }
     }
 
-    // Based on Format (e.g. list, table) will call
-    // a class (e.g. CompatViewList for format=list) to handle the
-    // HTML generation logic
-    if(in_array($viewArgs['format'], self::$allowed_formats)) {
-      // E.g.
-      // CompatViewList, CompatViewTable
+    if($tableData === null) {
+      $viewObject = new CompatViewNoData($contents, $viewArgs);
+      $logCtx = substr(str_replace('"', ' ', json_encode($viewArgs,true)),1,-1);
+      wfDebugLog( 'CompaTables', 'No compat data found for ' . $logCtx );
+    } elseif(in_array($viewArgs['format'], self::$allowed_formats)) {
+      // Based on Format (e.g. list, table) will call
+      // a class (e.g. CompatViewList for format=list) to handle the
+      // HTML generation logic
+      // E.g. CompatViewList, CompatViewTable
       $className = 'CompatView'.ucfirst($viewArgs['format']);
       $viewObject = new $className($contents, $viewArgs);
     } else {
       $viewObject = new CompatViewNotSupportedBlock($contents, $viewArgs);
+    }
+
+    try {
+      $logMsg = 'Finished generating';
+      $logCtx = substr(str_replace('"', ' ', json_encode($viewArgs,true)),1,-1);
+      wfDebugLog( 'CompaTables', $logMsg . $logCtx );
+    } catch( Exception $e ) {
+      // Will not fail here, make sure its fine to remove #TODO
     }
 
     return $viewObject->toArray();

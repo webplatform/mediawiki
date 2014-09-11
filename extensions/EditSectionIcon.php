@@ -12,7 +12,6 @@ if ( !defined( 'MEDIAWIKI' ) ) die( 'This file is a MediaWiki extension, it is n
 $wgExtensionCredits['parserhook'][] = array(
   'path'        => __FILE__,
   'name'        =>'Edit Section Link Icon',
-  'version'     =>'1.0',
   'author'      => array(
                     '[http://schepers.cc Doug Schepers]',
                     'Tim Laqua <t.laqua at gmail dot com>'

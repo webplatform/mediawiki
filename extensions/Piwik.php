@@ -17,7 +17,6 @@ if ( !defined( 'MEDIAWIKI' ) ) die( 'This file is a MediaWiki extension, it is n
 $wgExtensionCredits['other'][] = array(
   'path'        => __FILE__,
   'name'        => 'Piwik Integration',
-  'version'     => '2.2.2',
   'author'      => array(
                     'Isb1009',
                     '[http://www.daschmedia.de DaSch]',

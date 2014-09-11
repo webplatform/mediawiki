@@ -11,8 +11,6 @@
  * @author Doug Schepers <schepers@w3.org>
  * @author Aaron Schulz <aschulz4587@gmail.com>
  * @author Renoir Boulanger <renoir@w3.org>
- *
- * @version 2.0
  */
 
 /**
@@ -27,7 +25,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 // Extension credits that will show up on Special:Version
 $wgExtensionCredits['parserHook'][] = array(
 	'name'         => 'Compatibility',
-	'version'      => '2.0',
 	'author'       => array(
 		'[http://schepers.cc Doug Schepers]',
 		'Aaron Schulz',
@@ -46,6 +43,7 @@ require_once( __DIR__ . '/AbstractCompatView.php' );
 require_once( __DIR__ . '/CompatViewList.php' );
 require_once( __DIR__ . '/CompatViewTable.php' );
 require_once( __DIR__ . '/CompatViewNotSupportedBlock.php' );
+require_once( __DIR__ . '/CompatViewNoData.php' );
 
 # Main i18n file and special page alias file
 $wgExtensionMessagesFiles['Compatables'] = __DIR__. "/Compatables.i18n.php";

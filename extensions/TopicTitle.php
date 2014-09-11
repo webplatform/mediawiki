@@ -11,7 +11,6 @@ if ( !defined( 'MEDIAWIKI' ) ) die( 'This file is a MediaWiki extension, it is n
 $wgExtensionCredits['other'][] = array(
   'path'        => __FILE__,
   'name'        => 'Topic Title',
-  'version'     => '0.1',
   'author'      => '[http://schepers.cc Doug Schepers]',
   'url'         => 'http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle',
   'description' => '[http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle WebPlatform Docs MediaWiki Extension bundle]; Adds common keywords to document title',
