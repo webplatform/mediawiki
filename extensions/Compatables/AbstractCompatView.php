@@ -172,7 +172,7 @@ abstract class AbstractCompatView
                     break;
                   case 'a':
                     $out[] = array(
-                              'inner'=>'Partial support (almost)'
+                              'inner'=>'Partial support'
                             );
                     break;
                   case 'x':
