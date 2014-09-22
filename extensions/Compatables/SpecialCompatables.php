@@ -89,7 +89,12 @@ class SpecialCompatables extends UnlistedSpecialPage
 
 			$table = $generated['output'];
 		}
+
     /**   *****************************   **/
+
+    $this->getOutput()->addHtml('<h1>Compatibility data</h1>');
+
+    //$this->getOutput()->addHtml('<pre><nowiki>'.print_r($data,1).'</nowiki></pre>');
 
 		if ( $this->getRequest()->getBool( 'foresi' ) ) {
 			$this->getOutput()->addHtml($table);

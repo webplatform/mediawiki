@@ -139,7 +139,7 @@ abstract class AbstractCompatView
           $a['dataAttribs']['data-'.$p] = $this->{$p};
         }
       }
-      $a['dataAttribs']['data-canonical'] = $wgCompatablesSpecialUrl.'?'.http_build_query($b);
+      $a['dataAttribs']['data-canonical'] = $wgCompatablesSpecialUrl.'?format=table&'.http_build_query($b);
 
       return $this->tagHelper($a, 'div');
   }
