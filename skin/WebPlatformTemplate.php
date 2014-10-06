@@ -232,6 +232,16 @@ class WebPlatformTemplate extends BaseTemplate {
         </footer>
         <!-- /footer -->
 
+<?php if(isset($GLOBALS['wgWebPlatformAuth']['client'])) { ?>
+        <script>
+        $.ajax({
+          url: 'https://notes.webplatform.org/embed.js',
+          dataType: 'script',
+          cache: true
+        });
+        </script>
+<?php } ?>
+
     <?php
     $this->printTrail();
     echo Html::closeElement( 'body' );
