@@ -161,6 +161,12 @@ jQuery('body').on('click', '#pt-logout a', function(evt){
         var received,
             self = this;
 
+        // As suggested in https://github.com/webplatform/notes-server/commit/49c1c04d49a5015ba3a5a68d7104ef2eeb10c60b
+        // and reported in https://github.com/webplatform/notes-server/issues/17
+        if (self.tunnel.contentWindow !== input.source) {
+            return;
+        }
+
         if (!!input.data) {
             received = input.data;
             self.state.recoveryPayload += received.recoveryPayload || "";
