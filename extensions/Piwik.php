@@ -195,7 +195,7 @@ PIWIK;
 }
 
 $wgPiwikIDSite = "1";
-$wgPiwikURL = "tracking.webplatform.org";
+$wgPiwikURL = "stats.webplatform.org";
 $wgPiwikIgnoreSysops = true;
 $wgPiwikIgnoreBots = true;
 $wgPiwikCustomJS = "";

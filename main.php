@@ -15,7 +15,7 @@ require_once(__DIR__."/extensions/BreadcrumbMenu.php");
 
 ## Piwik
 require_once(__DIR__."/extensions/Piwik.php");
-$wgPiwikURL = "tracking.webplatform.org";
+$wgPiwikURL = "stats.webplatform.org";
 
 ## Compatibility tables
 require_once(__DIR__."/extensions/Compatables/Compatables.php");
