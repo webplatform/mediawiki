@@ -227,7 +227,7 @@ abstract class AbstractCompatView
     // and watchout for the $text $this->feature === $meta['feature'], but depends
     // where you are.
     $qs = array();
-    $qs['title'] = sprintf( 'No data available for topic: %s, feature: %s', $meta['topic'], $meta['feature'] );
+    $qs['title'] = sprintf( 'No data available for topic: %s, feature: %s', $this->topic, $this->feature );
     $qs['labels'] = 'missing';
     //$qs['assignee'] = 'renoirb';
     $qs['body'] = 'Insert details here';
