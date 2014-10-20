@@ -53,8 +53,8 @@ define("NS_STEWARDS_TALK", 3011);
 define("NS_META", 3020);
 define("NS_META_TALK", 3021);
 
-$wgEmergencyContact = "team-webplatform-systems@w3.org";
-$wgPasswordSender   = "team-webplatform-systems@w3.org";
+$wgEmergencyContact = "notifier-docs@webplatform.org";
+$wgPasswordSender   = "notifier-docs@webplatform.org";
 
 $wgExtraNamespaces[NS_WPD] = "WPD";
 $wgExtraNamespaces[NS_WPD_TALK] = "WPD_talk";
