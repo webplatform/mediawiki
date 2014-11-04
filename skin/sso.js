@@ -182,7 +182,7 @@ jQuery('body').on('click', '#pt-logout a', function(evt){
         }
     }
 
-    /** @namespace */
+    /* @namespace */
     function SsoHandlerClass(configObject) {
 
         if (window.ssoOptions.logging === false) {
@@ -287,7 +287,9 @@ jQuery('body').on('click', '#pt-logout a', function(evt){
 
         self.tunnel = createTunnel();
         try {
-            window.mw.notify("Syncing with central account server, the page might reload.", {title: "WebPlatform SSO"});
+          window.mw.notify('Syncing with central account server, the page might reload.', {
+            title: 'WebPlatform SSO'
+          });
         } catch (ignore) {}
         console.debug("SsoHandler.init; state:", self.state);
     };
