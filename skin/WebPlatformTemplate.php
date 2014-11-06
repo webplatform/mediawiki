@@ -86,7 +86,7 @@ class WebPlatformTemplate extends BaseTemplate {
           <div class="container">
             <!-- logo -->
             <div id="p-logo">
-              <a href="//www.webplatform.org/" <?php echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs(
+              <a href="//www.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/" <?php echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs(
               'p-logo' ) ) ?>></a>
             </div><!-- /logo -->
             <?php $this->renderHeaderMenu(); ?>
@@ -102,8 +102,8 @@ class WebPlatformTemplate extends BaseTemplate {
               </li>
               <li><?php echo Linker::link(Title::newFromText('WPD:Community'), 'CONNECT'); ?></li>
               <li><?php echo Linker::link(Title::newFromText('WPD:Contributors_Guide'), 'CONTRIBUTE'); ?></li>
-              <li><a href="//blog.webplatform.org/">BLOG</a></li>
-              <li><a href="//project.webplatform.org/">ISSUES</a></li>
+              <li><a href="//blog.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/">BLOG</a></li>
+              <li><a href="//project.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/">ISSUES</a></li>
             </ul>
           </div>
         </nav>
@@ -114,7 +114,7 @@ class WebPlatformTemplate extends BaseTemplate {
             <div class="tool-area">
               <div id="hierarchy-menu">
                 <ol id="breadcrumb-info" class="breadcrumbs">
-                  <li><a href="//www.webplatform.org/">HOME</a></li>
+                  <li><a href="//www.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/">HOME</a></li>
                   <li><a href="<?php echo htmlspecialchars($this->data['nav_urls']['mainpage']['href']) ?>">DOCS</a></li>
                   <?php wfRunHooks('SkinBreadcrumb', array(&$this)); ?>
                 </ol>
@@ -214,19 +214,19 @@ class WebPlatformTemplate extends BaseTemplate {
               <a href="<?php echo $wpdBundle['root_uri']; ?>Template:CC-by-3.0" class="license">
                 <img src="<?php echo $wgRightsIcon; ?>" width="120" height="42" alt="Content available under CC-BY, except where otherwise noted." />
               </a>
-              <a href="//www.webplatform.org/"><span id="footer-title">WebPlatform<span id="footer-title-light">.org</span></span></a>
+              <a href="//www.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/"><span id="footer-title">WebPlatform<span id="footer-title-light">.org</span></span></a>
             </div>
             <ul class="stewards">
-              <li class="steward-w3c"><a href="//www.webplatform.org/stewards/w3c">W3C</a></li>
-              <li class="steward-adobe"><a href="//www.webplatform.org/stewards/adobe">Adobe</a></li>
-              <li class="steward-facebook"><a href="//www.webplatform.org/stewards/facebook">facebook</a></li>
-              <li class="steward-google"><a href="//www.webplatform.org/stewards/google">Google</a></li>
-              <li class="steward-hp"><a href="//www.webplatform.org/stewards/hp">HP</a></li>
-              <li class="steward-intel"><a href="//www.webplatform.org/stewards/intel">Intel</a></li>
-              <li class="steward-microsoft"><a href="//www.webplatform.org/stewards/microsoft">Microsoft</a></li>
-              <li class="steward-mozilla"><a href="//www.webplatform.org/stewards/mozilla">Mozilla</a></li>
-              <li class="steward-nokia"><a href="//www.webplatform.org/stewards/nokia">Nokia</a></li>
-              <li class="steward-opera"><a href="//www.webplatform.org/stewards/opera">Opera</a></li>
+              <li class="steward-w3c"><a href="//www.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/stewards/w3c">W3C</a></li>
+              <li class="steward-adobe"><a href="//www.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/stewards/adobe">Adobe</a></li>
+              <li class="steward-facebook"><a href="//www.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/stewards/facebook">facebook</a></li>
+              <li class="steward-google"><a href="//www.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/stewards/google">Google</a></li>
+              <li class="steward-hp"><a href="//www.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/stewards/hp">HP</a></li>
+              <li class="steward-intel"><a href="//www.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/stewards/intel">Intel</a></li>
+              <li class="steward-microsoft"><a href="//www.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/stewards/microsoft">Microsoft</a></li>
+              <li class="steward-mozilla"><a href="//www.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/stewards/mozilla">Mozilla</a></li>
+              <li class="steward-nokia"><a href="//www.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/stewards/nokia">Nokia</a></li>
+              <li class="steward-opera"><a href="//www.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/stewards/opera">Opera</a></li>
             </ul>
           </div>
         </footer>
@@ -235,7 +235,7 @@ class WebPlatformTemplate extends BaseTemplate {
 <?php if(isset($GLOBALS['wgWebPlatformAuth']['client'])) { ?>
         <script>
         $.ajax({
-          url: 'https://notes.webplatform.org/embed.js',
+          url: 'https://notes.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/embed.js',
           dataType: 'script',
           cache: true
         });
@@ -373,7 +373,7 @@ class WebPlatformTemplate extends BaseTemplate {
     ?><!-- renderToolMenu --><div class="dropdown">
       <a class="tools button">Tools</a>
       <ul>
-        <li><a href="//code.webplatform.org/" target="_blank" title="Use this to add code examples">Code sample editor</a></li>
+        <li><a href="//code.<?php echo $GLOBALS['siteTopLevelDomain'] ?>/" target="_blank" title="Use this to add code examples">Code sample editor</a></li>
         <?php
         if (isset($sb['TOOLBOX']['content']['whatlinkshere'])) { echo $this->makeListItem( 'whatlinkshere', $sb['TOOLBOX']['content']['whatlinkshere'] ); }
         if (isset( $sb['TOOLBOXEND']['content'] )) { echo '<li>' . preg_replace('#^<ul.+?>|</ul>#', '', $sb['TOOLBOXEND']['content']); }
