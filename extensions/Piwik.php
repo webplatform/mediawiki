@@ -198,8 +198,13 @@ PIWIK;
   }
 }
 
-$wgPiwikIDSite = "1";
-$wgPiwikURL = "stats.".$GLOBALS['siteTopLevelDomain'];
+if(!isset($wgPiwikIDSite)) {
+  $wgPiwikIDSite = "1";
+}
+if(!isset($wgPiwikURL)) {
+  $wgPiwikURL = "stats.".$GLOBALS['siteTopLevelDomain'];
+}
+
 $wgPiwikIgnoreSysops = true;
 $wgPiwikIgnoreBots = true;
 $wgPiwikCustomJS = "";
