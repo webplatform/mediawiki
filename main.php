@@ -2,6 +2,10 @@
 
 if ( !defined( "MEDIAWIKI" ) ) die( 'This file is a MediaWiki extension, it is not a valid entry point' );
 
+if (!isset($GLOBALS['siteTopLevelDomain'])) {
+  $GLOBALS['siteTopLevelDomain'] = 'webplatform.org';
+}
+
 $wpdBundle["path"]     = __DIR__;
 $wpdBundle["root_uri"] = str_replace('$1', '', $wgArticlePath);
 $wpdBundle["context"]  = basename(dirname(__FILE__));
@@ -15,7 +19,7 @@ require_once(__DIR__."/extensions/BreadcrumbMenu.php");
 
 ## Piwik
 require_once(__DIR__."/extensions/Piwik.php");
-$wgPiwikURL = "stats.webplatform.org";
+$wgPiwikURL = 'stats.'.$GLOBALS['siteTopLevelDomain'];
 
 ## Compatibility tables
 require_once(__DIR__."/extensions/Compatables/Compatables.php");
@@ -53,8 +57,8 @@ define("NS_STEWARDS_TALK", 3011);
 define("NS_META", 3020);
 define("NS_META_TALK", 3021);
 
-$wgEmergencyContact = "notifier-docs@webplatform.org";
-$wgPasswordSender   = "notifier-docs@webplatform.org";
+$wgEmergencyContact = "notifier-docs@".$GLOBALS['siteTopLevelDomain'];
+$wgPasswordSender   = "notifier-docs@".$GLOBALS['siteTopLevelDomain'];
 
 $wgExtraNamespaces[NS_WPD] = "WPD";
 $wgExtraNamespaces[NS_WPD_TALK] = "WPD_talk";
@@ -89,8 +93,6 @@ $wgGroupPermissions["user"]["createpage"] = false;
 $wgGroupPermissions["autoconfirmed"]["createpage"] = true;
 $wgAutoConfirmAge = 1*3600*24; // 1 day
 $wgAutoConfirmCount = 10;
-
-$wgWhitelistRead = array("Special:RequestAccount","Main Page");
 
 $wgRCMaxAge = 365*24*3600; // 10 years
 

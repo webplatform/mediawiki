@@ -19,7 +19,7 @@
  *
  * @var string Location of compatability JSON file
  */
-$wgCompatablesJsonFileUrl = (isset($GLOBALS['wgCompatablesJsonFileUrl']))?$GLOBALS['wgCompatablesJsonFileUrl']:'http://docs.webplatform.org/compat/data.json';
+$wgCompatablesJsonFileUrl = (isset($GLOBALS['wgCompatablesJsonFileUrl']))?$GLOBALS['wgCompatablesJsonFileUrl']:'https://docs.'.$GLOBALS['siteTopLevelDomain'].'/compat/data.json';
 
 /**
  * `$wgCompatablesUseESI`: Enable ESI tags support

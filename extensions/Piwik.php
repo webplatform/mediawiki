@@ -125,6 +125,10 @@ JS;
     //  return "<!-- Piwik tracking is disabled for users with 'protect' rights (i.e., sysops) -->";
     //}
 
+    if($wgPiwikIDSite === 0) {
+      return '';
+    }
+
     // Missing configuration parameters
     if ( empty( $wgPiwikIDSite ) || empty( $wgPiwikURL ) ) {
       return "<!-- You need to set the settings for Piwik -->";
@@ -195,7 +199,7 @@ PIWIK;
 }
 
 $wgPiwikIDSite = "1";
-$wgPiwikURL = "stats.webplatform.org";
+$wgPiwikURL = "stats.".$GLOBALS['siteTopLevelDomain'];
 $wgPiwikIgnoreSysops = true;
 $wgPiwikIgnoreBots = true;
 $wgPiwikCustomJS = "";
