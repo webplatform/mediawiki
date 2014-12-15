@@ -37,7 +37,9 @@ require_once(__DIR__."/skin/main.php");
 ## $wgDefaultUserOptions["showtoc"] = 0;
 
 // Defaults is that we do not want to be indexed
-$wgDefaultRobotPolicy = 'noindex,nofollow';
+if(!isset($wgDefaultRobotPolicy)){
+  $wgDefaultRobotPolicy = 'noindex,nofollow';
+}
 
 $wgCrossSiteAJAXdomains = "*";
 
@@ -73,8 +75,13 @@ $wgNamespacesWithSubpages[NS_WPD] = true;
 $wgNamespacesWithSubpages[NS_STEWARDS] = true;
 $wgNamespacesWithSubpages[NS_META] = true;
 
-$wgContentNamespaces = array(NS_MAIN, NS_WPD, NS_STEWARDS);
+$wgContentNamespaces[] = NS_MAIN;
 $wgContentNamespaces[] = NS_WPD;
+
+# https://www.mediawiki.org/wiki/Manual:$wgDefaultRobotPolicy
+#$wgNamespaceRobotPolicies[NS_WPD_TALK] = 'noindex,nofollow';
+#$wgNamespaceRobotPolicies[NS_META] = 'noindex,nofollow';
+#$wgNamespaceRobotPolicies[NS_META_TALK] = 'noindex,nofollow';
 
 ## Allow lowercase page titles
 $wgCapitalLinks = false;
