@@ -3,3 +3,17 @@
     width: auto;
 }
 
+    body > .readiness-state {
+      top:0;
+      left:0;
+      width: 100%;
+      transform: rotate(0deg);
+      position: relative;
+      border-radius: 0;
+      padding: 0 45px 0 10px;
+    }
+    body > .readiness-state p {
+      background: transparent;
+      text-align: left;
+      padding: 5px 0 5px 0;
+    }

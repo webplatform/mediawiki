@@ -101,6 +101,7 @@ function init() {
 $(document).ready(init);
 
 $(document).ready(function(){
+    $('#bodyContent .readiness-state').remove().prependTo('body'); // Move readiness-state to body
     var mainContent = document.getElementById('main-content');
 
     if (mainContent === null) {

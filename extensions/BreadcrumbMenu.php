@@ -16,8 +16,8 @@ $wgExtensionCredits['other'][] = array(
    'path'        => __FILE__,
    'name'        => 'Breadcrumb Menu',
    'author'      => '[http://schepers.cc Doug Schepers]',
-   'url'         => 'http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle',
-   'description' => '[http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle WebPlatform Docs MediaWiki Extension bundle]; Generates breadcrumbs on the top of every pages'
+   'url'         => 'http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformMediaWikiExtensionBundle',
+   'description' => '[http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformMediaWikiExtensionBundle WebPlatform Docs MediaWiki Extension bundle]; Generates breadcrumbs on the top of every pages'
 );
 
 $wgHooks['SkinBreadcrumb'][] = 'BreadcrumbMenu::fnDisplay';

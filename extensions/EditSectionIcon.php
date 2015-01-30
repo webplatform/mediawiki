@@ -16,8 +16,8 @@ $wgExtensionCredits['parserhook'][] = array(
                     '[http://schepers.cc Doug Schepers]',
                     'Tim Laqua <t.laqua at gmail dot com>'
                 ),
-  'url'         =>'http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle',
-  'description' =>'[http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle WebPlatform Docs MediaWiki Extension bundle]; Removes the edit link beside each page sections'
+  'url'         =>'http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformMediaWikiExtensionBundle',
+  'description' =>'[http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformMediaWikiExtensionBundle WebPlatform Docs MediaWiki Extension bundle]; Removes the edit link beside each page sections'
 );
 
 $wgHooks['OutputPageBeforeHTML'][]  = 'wfEditSectionLinkTransform';

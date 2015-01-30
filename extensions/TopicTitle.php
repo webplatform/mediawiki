@@ -12,8 +12,8 @@ $wgExtensionCredits['other'][] = array(
   'path'        => __FILE__,
   'name'        => 'Topic Title',
   'author'      => '[http://schepers.cc Doug Schepers]',
-  'url'         => 'http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle',
-  'description' => '[http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle WebPlatform Docs MediaWiki Extension bundle]; Adds common keywords to document title',
+  'url'         => 'http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformMediaWikiExtensionBundle',
+  'description' => '[http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformMediaWikiExtensionBundle WebPlatform Docs MediaWiki Extension bundle]; Adds common keywords to document title',
 );
 
 $wgHooks['BeforePageDisplay'][] = 'TopicTitle::insertTitle';

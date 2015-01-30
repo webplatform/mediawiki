@@ -25,11 +25,6 @@ $wgPiwikURL = 'stats.'.$GLOBALS['siteTopLevelDomain'];
 require_once(__DIR__."/extensions/Compatables/Compatables.php");
 $wgCompatablesCssFileUrl = $wpdBundle["uri"]."/extensions/Compatables/compat.css";
 
-## TODO: Fix
-#if ( isset( $wgConfirmEditIP ) ) {
-#  require_once(__DIR__."/extensions/WpdCaptcha.php");   // Dependency: ConfirmEdit
-#}
-
 ## The skin
 require_once(__DIR__."/skin/main.php");
 

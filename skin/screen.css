@@ -2789,3 +2789,8 @@ dl.compat-list dd {
 /* END layout rules for topic container boxes on landing page prototypes (chrisdavidmills) */
 
 @media screen { /* Balance added } */
+
+.skin-webplatform .suggestions {
+  display: none !important;
+}
+

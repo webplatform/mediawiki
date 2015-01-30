@@ -31,7 +31,7 @@ $wgExtensionCredits['parserHook'][] = array(
 		'[https://renoirboulanger.com Renoir Boulanger]'
 	),
 	'url'          => 'http://docs.webplatform.org/wiki/WPD:Infrastructure/Extensions/CompaTables',
-	'description'  => '[http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle Part of WebPlatformDocs extension bundle];  Adds browser compatability table to article based on arguments. To use, insert <code><nowiki><compatibility feature="border-radius" format="table" topic="css"></compatibility></nowiki></code> to a page where the data is read from an external JSON file and generates an HTML representation of it.'
+	'description'  => '[http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformMediaWikiExtensionBundle Part of WebPlatformDocs extension bundle];  Adds browser compatability table to article based on arguments. To use, insert <code><nowiki><compatibility feature="border-radius" format="table" topic="css"></compatibility></nowiki></code> to a page where the data is read from an external JSON file and generates an HTML representation of it.'
 );
 
 require( __DIR__ . '/Compatables.config.php' );
