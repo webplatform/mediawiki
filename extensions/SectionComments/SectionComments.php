@@ -45,7 +45,7 @@ function onOutputPageBeforeHtml( &$out, &$text ) {
  */
 function onAddCommentsFormDiv( &$sHtml ) {
   global $sfgFormPrinter, $wgArticle, $webplatformSectionCommentsSMW;
-  $sHtml .= '<a id="comments-flag-link">'.wfMsg('comments-flag-link').'</a>';
+  $sHtml .= '<a id="comments-flag-link">'.wfMessage('comments-flag-link')->text().'</a>';
   $sHtml .= '<div id="comment-flags">';
   $sFormName = $webplatformSectionCommentsSMW['form'];
   //$sPageName = 'Comments';

@@ -12,57 +12,52 @@ class WebPlatformTemplate extends BaseTemplate {
 
   protected $nav;
 
+  protected function t( $str ) {
+    return $this->translator->translate( $str );
+  }
+
   protected function init() {
-    global $wgVectorUseIconWatch;
+    $navIterator = $this->data['content_navigation'];
+    $newNav = array();
 
-    // Build additional attributes for navigation urls
-    $this->nav = $this->data['content_navigation'];
-    if ( $wgVectorUseIconWatch ) {
-      $mode = $this->getSkin()->getTitle()->userIsWatching() ? 'unwatch' : 'watch';
-      if ( isset( $this->nav['actions'][$mode] ) ) {
-        $this->nav['views'][$mode] = $this->nav['actions'][$mode];
-        $this->nav['views'][$mode]['class'] = rtrim( 'icon ' . $this->nav['views'][$mode]['class'], ' ' );
-        $this->nav['views'][$mode]['primary'] = true;
-        unset( $this->nav['actions'][$mode] );
-      }
+    if ( isset( $navIterator['views']['form_edit'] )) {
+      $newNav['form_edit'] = $navIterator['views']['form_edit'];
+      unset($navIterator['views']['form_edit']);
     }
 
-    $xmlID = '';
-    foreach ( $this->nav as $section => $links ) {
-      foreach ( $links as $key => $link ) {
-        if ( $section == 'views' && !( isset( $link['primary'] ) && $link['primary'] ) ) {
-          $link['class'] = rtrim( 'collapsible ' . $link['class'], ' ' );
-        }
-        $xmlID = isset( $link['id'] ) ? $link['id'] : 'ca-' . $xmlID;
-        $this->nav[$section][$key]['attributes'] =
-                  ' id="' . Sanitizer::escapeId( $xmlID ) . '"';
-        if ( $link['class'] ) {
-          $this->nav[$section][$key]['attributes'] .=
-                      ' class="' . htmlspecialchars( $link['class'] ) . '"';
-          unset( $this->nav[$section][$key]['class'] );
-        }
-        if ( isset( $link['tooltiponly'] ) && $link['tooltiponly'] ) {
-          $this->nav[$section][$key]['key'] =
-                      Linker::tooltip( $xmlID );
-        } else {
-          $this->nav[$section][$key]['key'] =
-                      Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( $xmlID ) );
-        }
-      }
+    if ( isset( $navIterator['views']['edit'] )) {
+      $newNav['edit'] = $navIterator['views']['edit'];
+      unset($navIterator['views']['edit']);
     }
-    $this->data['namespace_urls'] = $this->nav['namespaces'];
-    $this->data['view_urls'] = $this->nav['views'];
-    $this->data['action_urls'] = $this->nav['actions'];
-    $this->data['variant_urls'] = $this->nav['variants'];
-    // Reverse horizontally rendered navigation elements
-    if ( $this->data['rtl'] ) {
-      $this->data['view_urls'] =
-              array_reverse( $this->data['view_urls'] );
-      $this->data['namespace_urls'] =
-              array_reverse( $this->data['namespace_urls'] );
-      $this->data['personal_urls'] =
-              array_reverse( $this->data['personal_urls'] );
+
+    if ( in_array('bureaucrat', $this->getSkin()->getUser()->getGroups() ) === false ) {
+      unset($newNav['edit']);
     }
+
+    $sb = $this->getSidebar();
+    if ( isset( $sb['TOOLBOX']['content']['upload'] ) ) {
+      $newNav['upload'] = $sb['TOOLBOX']['content']['upload'];
+    }
+
+    $watchMode = $this->getSkin()->getTitle()->userIsWatching() ? 'unwatch' : 'watch';
+    if ( isset( $this->nav['actions'][$watchMode] ) ) {
+      $newNav[$watchMode] = $this->nav['actions'][$watchMode];
+      $newNav[$watchMode]['class'] = rtrim( 'icon ' . $newNav[$watchMode]['class'], ' ' );
+      $newNav[$watchMode]['primary'] = true;
+    }
+
+    if ( isset( $navIterator['views']['view'] )) {
+      unset($navIterator['views']['view']);
+    }
+
+    if ( isset( $navIterator['views']['history'] ) ) {
+      $navIterator['views']['info'] = $navIterator['views']['history'];
+      $navIterator['views']['info']['href'] = str_replace('history', 'info', $navIterator['views']['info']['href']);
+      unset($navIterator['views']['rel'], $navIterator['views']['info']['id']);
+      $navIterator['views']['info']['text'] = $this->t('pageinfo-toolboxlink');
+    }
+
+    $this->nav = array_merge($newNav, $navIterator['views'], $navIterator['actions']);
   }
 
   /**
@@ -74,36 +69,34 @@ class WebPlatformTemplate extends BaseTemplate {
    * @access private
    */
   public function execute() {
-    global $wgArticlePath, $wpdBundle, $wgRightsIcon;
+    global $wgArticlePath, $wpdBundle, $wgRightsIcon, $siteTopLevelDomain, $wgWebPlatformAuth;
+
+    $this->init(); // Because its too early at __construct time
 
     // Suppress warnings to prevent notices about missing indexes in $this->data
     wfSuppressWarnings();
     $this->html('headelement'); ?>
         <div id="mw-page-base" class="noprint"></div>
         <div id="mw-head-base" class="noprint"></div>
-
         <header id="mw-head" class="noprint">
           <div class="container">
             <!-- logo -->
             <div id="p-logo">
-              <a href="//www.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/" <?php echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs(
+              <a href="//www.<?php echo $siteTopLevelDomain; ?>/" <?php echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs(
               'p-logo' ) ) ?>></a>
             </div><!-- /logo -->
-            <?php $this->renderHeaderMenu(); ?>
-            <?php $this->renderSearch(); ?>
+            <?php echo $this->renderHeaderMenu(); ?>
+            <?php echo $this->renderSearch(); ?>
           </div>
         </header>
         <nav id="sitenav">
           <div class="container">
             <ul class="links">
-              <li>
-                <a href="<?php echo htmlspecialchars($this->data['nav_urls']['mainpage']['href']) ?>"
-                class="active">THE DOCS</a>
-              </li>
+              <li><a href="<?php echo htmlspecialchars($this->data['nav_urls']['mainpage']['href']) ?>" class="active">THE DOCS</a></li>
               <li><?php echo Linker::link(Title::newFromText('WPD:Community'), 'CONNECT'); ?></li>
               <li><?php echo Linker::link(Title::newFromText('WPD:Contributors_Guide'), 'CONTRIBUTE'); ?></li>
-              <li><a href="//blog.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/">BLOG</a></li>
-              <li><a href="//project.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/">ISSUES</a></li>
+              <li><a href="//blog.<?php echo $siteTopLevelDomain; ?>/">BLOG</a></li>
+              <li><a href="//project.<?php echo $siteTopLevelDomain; ?>/">ISSUES</a></li>
             </ul>
           </div>
         </nav>
@@ -114,15 +107,14 @@ class WebPlatformTemplate extends BaseTemplate {
             <div class="tool-area">
               <div id="hierarchy-menu">
                 <ol id="breadcrumb-info" class="breadcrumbs">
-                  <li><a href="//www.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/">HOME</a></li>
+                  <li><a href="//www.<?php echo $siteTopLevelDomain; ?>/">HOME</a></li>
                   <li><a href="<?php echo htmlspecialchars($this->data['nav_urls']['mainpage']['href']) ?>">DOCS</a></li>
                   <?php wfRunHooks('SkinBreadcrumb', array(&$this)); ?>
                 </ol>
               </div>
               <div class="toolbar">
-                <?php $this->renderEditButton(); ?>
-                <?php $this->renderWatchButton(); ?>
-                <?php $this->renderToolMenu(); ?>
+                <?php echo $this->renderEditButton(); ?>
+                <?php echo $this->renderToolMenu(); ?>
               </div>
             </div>
             <div id="page">
@@ -213,39 +205,38 @@ class WebPlatformTemplate extends BaseTemplate {
               <a href="<?php echo $wpdBundle['root_uri']; ?>Template:CC-by-3.0" class="license">
                 <img src="<?php echo $wgRightsIcon; ?>" width="120" height="42" alt="Content available under CC-BY, except where otherwise noted." />
               </a>
-              <a href="//www.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/"><span id="footer-title">WebPlatform<span id="footer-title-light">.org</span></span></a>
+              <a href="//www.<?php echo $siteTopLevelDomain; ?>/"><span id="footer-title">WebPlatform<span id="footer-title-light">.org</span></span></a>
             </div>
             <ul class="stewards">
-              <li class="steward-w3c"><a href="//www.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/stewards/w3c">W3C</a></li>
-              <li class="steward-adobe"><a href="//www.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/stewards/adobe">Adobe</a></li>
-              <li class="steward-facebook"><a href="//www.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/stewards/facebook">facebook</a></li>
-              <li class="steward-google"><a href="//www.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/stewards/google">Google</a></li>
-              <li class="steward-hp"><a href="//www.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/stewards/hp">HP</a></li>
-              <li class="steward-intel"><a href="//www.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/stewards/intel">Intel</a></li>
-              <li class="steward-microsoft"><a href="//www.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/stewards/microsoft">Microsoft</a></li>
-              <li class="steward-mozilla"><a href="//www.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/stewards/mozilla">Mozilla</a></li>
-              <li class="steward-nokia"><a href="//www.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/stewards/nokia">Nokia</a></li>
-              <li class="steward-opera"><a href="//www.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/stewards/opera">Opera</a></li>
+              <li class="steward-w3c"><a href="//www.<?php echo $siteTopLevelDomain; ?>/stewards/w3c">W3C</a></li>
+              <li class="steward-adobe"><a href="//www.<?php echo $siteTopLevelDomain; ?>/stewards/adobe">Adobe</a></li>
+              <li class="steward-facebook"><a href="//www.<?php echo $siteTopLevelDomain; ?>/stewards/facebook">facebook</a></li>
+              <li class="steward-google"><a href="//www.<?php echo $siteTopLevelDomain; ?>/stewards/google">Google</a></li>
+              <li class="steward-hp"><a href="//www.<?php echo $siteTopLevelDomain; ?>/stewards/hp">HP</a></li>
+              <li class="steward-intel"><a href="//www.<?php echo $siteTopLevelDomain; ?>/stewards/intel">Intel</a></li>
+              <li class="steward-microsoft"><a href="//www.<?php echo $siteTopLevelDomain; ?>/stewards/microsoft">Microsoft</a></li>
+              <li class="steward-mozilla"><a href="//www.<?php echo $siteTopLevelDomain; ?>/stewards/mozilla">Mozilla</a></li>
+              <li class="steward-nokia"><a href="//www.<?php echo $siteTopLevelDomain; ?>/stewards/nokia">Nokia</a></li>
+              <li class="steward-opera"><a href="//www.<?php echo $siteTopLevelDomain; ?>/stewards/opera">Opera</a></li>
             </ul>
           </div>
         </footer>
         <!-- /footer -->
-
-<?php if(isset($GLOBALS['wgWebPlatformAuth']['client'])) { ?>
+<?php if(isset($wgWebPlatformAuth['client'])) { ?>
         <script>
         $.ajax({
-          url: 'https://notes.<?php echo $GLOBALS['siteTopLevelDomain']; ?>/embed.js',
+          url: 'https://notes.<?php echo $siteTopLevelDomain; ?>/embed.js',
           dataType: 'script',
           cache: true
         });
         </script>
-<?php } ?>
+<?php }
 
-    <?php
     $this->printTrail();
     echo Html::closeElement( 'body' );
     echo Html::closeElement( 'html' );
     wfRestoreWarnings();
+
   } // end of execute() method
 
 
@@ -253,156 +244,130 @@ class WebPlatformTemplate extends BaseTemplate {
 
 
   private function renderHeaderMenu() {
-    ?><!-- renderHeaderMenu --><div id="p-personal" class="dropdown <?php if ( count( $this->data['personal_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
-      <?php
-        foreach( $this->getPersonalTools() as $key => $item ) {
-          if ($key == 'userpage' || $key == 'login') {
-            $link = $item['links'][0];
-            $attribs['href'] = $link['href'];
-            $attribs['id'] = $link['single-id'];
-            if(isset($link['class'])){
-              $attribs['class'] = $link['class'];
-            }
-            echo Html::rawElement('a', $attribs, $link['text']);
-            unset($attribs);
-          }
+    $tools = $this->getPersonalTools();
+
+    $template = '<div id="p-personal" class="dropdown%s">%s%s</div>';
+
+    $template_arg_1 = ( count( $this->data['personal_urls'] ) == 0 ) ? ' emptyPortlet' : '';
+    $template_arg_2 = '%s';
+    $template_arg_3 = '<ul class="user-dropdown">%s</ul>';
+
+    $template_arg_2_array = array();
+    $template_arg_3_array = array();
+
+    if ( isset( $tools['mytalk'] ) ) {
+      unset( $tools['mytalk'] );
+    }
+
+    foreach( $tools as $key => $item ) {
+      if ( $key === 'userpage' || $key === 'login' ) {
+        $link = $item['links'][0];
+        $attribs['href'] = $link['href'];
+        $attribs['id'] = $link['single-id'];
+        if( isset( $link['class'] ) ) {
+          $attribs['class'] = $link['class'];
         }
-      ?>
-      <ul class="user-dropdown">
-        <?php
-          foreach( $this->getPersonalTools() as $key => $item ) {
-            if ($key !== 'userpage' && $key !== 'login') {
-              echo $this->makeListItem( $key, $item );
-            }
-          }
-        ?>
-      </ul>
-    </div><!-- /renderHeaderMenu --><?php
+        $template_arg_2_array[] = Html::rawElement( 'a', $attribs, $link['text'] );
+        unset( $attribs );
+      } else {
+        $template_arg_3_array[] = $this->makeListItem( $key, $item );
+      }
+    }
+
+    $template_arg_2 = sprintf( $template_arg_2, join( '', $template_arg_2_array ) );
+    $template_arg_3 = sprintf( $template_arg_3, join( '', $template_arg_3_array ) );
+
+    return sprintf( $template, $template_arg_1, $template_arg_2, $template_arg_3 );
+
   } // end of renderHeaderMenu() method
 
 
   /*************************************************************************************************/
 
 
-  private function renderWatchButton() {
-    if (isset($this->data['action_urls']['watch'])) {
-      $link = $this->data['action_urls']['watch'];
+  private function renderToolMenu() {
+
+    $sb    = $this->getSidebar();
+    $label = 'Tools';
+    $iter  = array();
+
+    $iter[] = '<li><a href="//code.'.$GLOBALS['siteTopLevelDomain'].'/" target="_blank" title="Use this to add code examples">Code sample editor</a></li>';
+
+    if ( isset( $sb['TOOLBOX']['content']['whatlinkshere'] ) ) {
+      $iter[] = $this->makeListItem( 'whatlinkshere', $sb['TOOLBOX']['content']['whatlinkshere'] );
     }
-    else if (isset($this->data['action_urls']['unwatch'])) {
-      $link = $this->data['action_urls']['unwatch'];
+    if ( isset( $sb['TOOLBOXEND']['content'] ) ) {
+      $iter[] = '<li>' . preg_replace( '#^<ul.+?>|</ul>#', '', $sb['TOOLBOXEND']['content']);
     }
-    else {
-      return;
+    if ( isset( $sb['TOOLBOX']['content']['recentchangeslinked'] ) ) {
+      $iter[] = $this->makeListItem( 'recentchangeslinked', $sb['TOOLBOX']['content']['recentchangeslinked'] );
+    }
+    if ( isset( $sb['navigation']['content'][3] ) ) {
+      $iter[] = $this->makeListItem( 3, $sb['navigation']['content'][3] );
+    }
+    if ( isset( $sb['TOOLBOX']['content']['specialpages'] ) ) {
+      $iter[] = $this->makeListItem( 'specialpages', $sb['TOOLBOX']['content']['specialpages'] );
+    }
+    if ( isset( $sb['navigation']['content'][5] ) ) {
+      $iter[] = $this->makeListItem( 5, $sb['navigation']['content'][5] );
     }
 
-    $pt = $this->data['personal_urls'];
+    $listItems = join('', $iter);
 
-    ?><!-- renderWatchButton --><div class="dropdown">
-      <a href="<?php echo htmlspecialchars( $link['href'] ) ?>"
-        <?php $this->html( 'userlangattributes' ) ?>
-        <?php echo $link['key'] ?>
-        <?php
-          if (strpos($link['attributes'], 'class=') > 0) {
-            echo str_replace('class="', 'class="watch button ', $link['attributes']);
-          }
-          else {
-            echo 'class="watch button"';
-          }
-        ?>>
-        <?php echo htmlspecialchars( $link['text'] ) ?>
-      </a>
-      <ul>
-        <?php
-        if (isset($pt['watchlist']['href'])) { echo $this->makeListItem( 'href', $pt['watchlist'] ); }
-        ?>
-      </ul>
-    </div><!-- /renderWatchButton --><?
-  } // end of renderWatchButton() method
+    return sprintf('<div class="dropdown"><a class="tools button">%s</a><ul>%s</ul></div>', $label, $listItems);
+
+  } // end of renderToolMenu() method
+
+
+  /*************************************************************************************************/
+
+
+  private function renderSearch() {
+
+    $searchLabel = $this->t( 'search' );
+    $action      = $this->t( 'wgScript' );
+
+    $inputs      = $this->makeSearchInput( array( 'id' => 'searchInput', 'type' => 'input', 'placeholder' => $searchLabel.'...') );
+    $inputs     .= $this->makeSearchButton( 'fulltext', array( 'id' => 'mw-searchButton', 'class' => 'searchButton', 'value' => ' ' ) );
+
+    $searchtitle = $this->t( 'searchtitle' );
+
+    return <<<HEREDOC
+      <div id="p-search">
+        <form action="{$action}" id="searchform">
+          <div id="search">{$inputs}
+            <input type='hidden' name="title" value="{$searchtitle}"/>
+          </div>
+        </form>
+      </div>
+HEREDOC;
+
+  } // end of renderSearch() method
 
 
   /*************************************************************************************************/
 
 
   private function renderEditButton() {
-    global $wpdBundle;
 
-    $cn = $this->data['content_navigation'];
-    $sb = $this->getSidebar();
+    $navItems = $this->nav;
+    $templateMenu = '<div class="dropdown">%s<ul>%s</ul></div>';
 
-    // The Default edit link
-    $link = $cn['views']['edit'];
-    $title = $this->getSkin()->getTitle();
+    $firstLink = array_shift($navItems);
+    $firstLink['class'] = 'highlighted edit button';
+    $link = Html::rawElement('a', $firstLink, $this->t('edit'));
 
-    if ($title->quickUserCan( 'edit' ) === true) {
-      // If formedit exists, all the better
-      if (isset($cn['views']['form_edit'])) {
-        $link = $cn['views']['form_edit'];
-      }
-    } else {
-      // Oops, no session, lets ensure we are logged in
-      $link = array( "href" => $wpdBundle['root_uri'] . "Special:UserLogin", "id" => "ca-edit", "text" => "Edit");
+    $list = array();
+    foreach($navItems as $k => $menuItem) {
+      $list[] = $this->makeListItem( $k, $menuItem );
     }
 
-    ?><!-- renderEditButton --><div class="dropdown">
-      <a href="<?php echo $link['href'] ?>" id="<?php echo $link['id'] ?>" class="highlighted edit button">
-        <?php echo $link['text'] ?>
-      </a>
-      <ul><?php
-        //if (isset($cn['views']['form_edit'])) { echo $this->makeListItem( 'form_edit', $cn['views']['form_edit'] ); }
-        if (isset($cn['views']['edit'])) { echo $this->makeListItem( 'edit', $cn['views']['edit'] ); }
-        if (isset($sb['TOOLBOX']['content']['upload'])) { echo $this->makeListItem( 'upload', $sb['TOOLBOX']['content']['upload'] ); }
-        if (isset($cn['views']['history'])) { echo $this->makeListItem( 'history', $cn['views']['history'] ); }
-        if (isset($cn['views']['view'])) { echo $this->makeListItem( 'view', $cn['views']['view'] ); }
-        if (isset($cn['actions']['move'])) { echo $this->makeListItem( 'move', $cn['actions']['move'] ); }
-        if (isset($cn['actions']['protect'])) { echo $this->makeListItem( 'protect', $cn['actions']['protect'] ); }
-        if (isset($cn['actions']['unprotect'])) { echo $this->makeListItem( 'unprotect', $cn['actions']['unprotect'] ); }
-        if (isset($cn['actions']['delete'])) { echo $this->makeListItem( 'delete', $cn['actions']['delete'] ); }
-        if (isset($cn['actions']['purge'])) { echo $this->makeListItem( 'purge', $cn['actions']['purge'] ); }
-        ?></ul>
-    </div><!-- /renderEditButton --><?php
-  } // end of renderEditButton() method
+    if ( count( $list ) === 0 ) {
+      return '';
+    }
 
+    return sprintf($templateMenu, $link, join('',$list));
 
-  /*************************************************************************************************/
-
-
-  private function renderToolMenu() {
-    $cn = $this->data['content_navigation'];
-    $sb = $this->getSidebar();
-    ?><!-- renderToolMenu --><div class="dropdown">
-      <a class="tools button">Tools</a>
-      <ul>
-        <li><a href="//code.<?php echo $GLOBALS['siteTopLevelDomain'] ?>/" target="_blank" title="Use this to add code examples">Code sample editor</a></li>
-        <?php
-        if (isset($sb['TOOLBOX']['content']['whatlinkshere'])) { echo $this->makeListItem( 'whatlinkshere', $sb['TOOLBOX']['content']['whatlinkshere'] ); }
-        if (isset( $sb['TOOLBOXEND']['content'] )) { echo '<li>' . preg_replace('#^<ul.+?>|</ul>#', '', $sb['TOOLBOXEND']['content']); }
-        if (isset($sb['TOOLBOX']['content']['recentchangeslinked'])) { echo $this->makeListItem( 'recentchangeslinked', $sb['TOOLBOX']['content']['recentchangeslinked'] ); }
-        if (isset($sb['navigation']['content'][3])) { echo $this->makeListItem( 3, $sb['navigation']['content'][3] ); }
-        if (isset($sb['TOOLBOX']['content']['specialpages'])) { echo $this->makeListItem( 'specialpages', $sb['TOOLBOX']['content']['specialpages'] ); }
-        if (isset($sb['navigation']['content'][5])) { echo $this->makeListItem( 5, $sb['navigation']['content'][5] ); }
-        ?>
-      </ul>
-    </div><!-- /renderToolMenu --><?php
-  } // end of renderToolMenu() method
-
-
-  /*************************************************************************************************/
-
-  private function renderSearch() {
-    ?><!-- renderSearch --><div id="p-search">
-      <h5<?php $this->html( 'userlangattributes' ) ?>><label for="searchInput"><?php $this->msg( 'search' ) ?></label></h5>
-      <form action="<?php $this->text( 'wgScript' ) ?>" id="searchform">
-        <div id="search">
-          <?php echo $this->makeSearchInput( array( 'id' => 'searchInput', 'type' => 'input', 'placeholder' => 'Search...')); ?>
-          <?php echo $this->makeSearchButton( 'fulltext', array( 'id' => 'mw-searchButton', 'class' => 'searchButton', 'value' => ' ' ) ); ?>
-          <input type='hidden' name="title" value="<?php $this->text( 'searchtitle' ) ?>"/>
-        </div>
-      </form>
-    </div><!-- /renderSearch --><?php
-  } // end of renderSearch() method
-
-
-  /*************************************************************************************************/
-
+  }
 
 } // end of class

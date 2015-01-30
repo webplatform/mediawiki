@@ -23,6 +23,6 @@ $wgExtensionCredits['parserhook'][] = array(
 $wgHooks['OutputPageBeforeHTML'][]  = 'wfEditSectionLinkTransform';
 
 function wfEditSectionLinkTransform(&$parser, &$text) {
-    $text = preg_replace("/<span class=\"editsection\">\[<a href=\"(.+)\" title=\"(.+)\">".wfMsg('editsection')."<\/a>\]<\/span>/i", "<span class=\"editsection\"><a href=\"$1\" title=\"$2\">&nbsp;</a></span>",$text);
+    $text = preg_replace("/<span class=\"editsection\">\[<a href=\"(.+)\" title=\"(.+)\">".wfMessage('editsection')->text()."<\/a>\]<\/span>/i", "<span class=\"editsection\"><a href=\"$1\" title=\"$2\">&nbsp;</a></span>",$text);
     return true;
 }
