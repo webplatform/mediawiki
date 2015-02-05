@@ -9,7 +9,7 @@ if ( !defined( "MEDIAWIKI" ) ) die( 'This file is a MediaWiki extension, it is n
 $wgExtensionCredits["skin"][] = array(
   "path" => __FILE__,
   "name" => "WebPlatform",
-  "version" => "1.1.4",
+  "version" => "1.1.5",
   "description" => "[http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformMediaWikiExtensionBundle WebPlatform Docs MediaWiki Extension bundle]; WebPlatform.org MediaWiki skin",
   "url" => "http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformMediaWikiExtensionBundle",
   "author" => array(
