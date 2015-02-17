@@ -23,8 +23,8 @@ $wgExtensionCredits['other'][] = array(
                     '[https://github.com/YOUR1 Youri van den Bogert]',
                     '[https://renoirboulanger.com Renoir Boulanger]'
                   ),
-  'url'         => 'http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle',
-  'description' => '[http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformDocsExtensionBundle WebPlatform Docs MediaWiki Extension bundle]; Piwik Tracking'
+  "description" => "[http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformMediaWikiExtensionBundle WebPlatform Docs MediaWiki Extension bundle]; Piwik Analytics tracking",
+  "url" => "http://docs.webplatform.org/wiki/WPD:Infrastructure/Components/WebPlatformMediaWikiExtensionBundle"
 );
 
 $wgHooks['SkinAfterBottomScripts'][]  = 'PiwikHooks::PiwikSetup';
@@ -177,20 +177,20 @@ JS;
         <!-- Piwik -->
         <script type="text/javascript">
           var _paq = _paq || [];{$disableCookiesStr}{$customJs}
+          _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+          _paq.push(["setCookieDomain", "*.webplatform.org"]);
           _paq.push(['trackPageView']);
           _paq.push(['enableLinkTracking']);
           (function() {
-            var u=(("https:" == document.location.protocol) ? "https" : "http") + "://{$wgPiwikURL}/"
-            _paq.push(['setTrackerUrl', u+'js/']);
+            var u="//{$wgPiwikURL}/";
+            _paq.push(['setTrackerUrl', u+'piwik.php']);
             _paq.push(['setSiteId', {$wgPiwikIDSite}]);
-            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
-            g.defer=true; g.async=true; g.src=u+'js/'; s.parentNode.insertBefore(g,s);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
           })();
         </script>
+        <noscript><p><img src="//{$wgPiwikURL}/piwik.php?idsite={$wgPiwikIDSite}" style="border:0;" alt="" /></p></noscript>
         <!-- End Piwik Code -->
-<!-- Piwik Image Tracker -->
-<noscript><img src="//{$wgPiwikURL}/piwik.php?idsite={$wgPiwikIDSite}&amp;rec=1" style="border:0" alt="" /></noscript>
-<!-- End Piwik -->
 PIWIK;
 
     return $script;
