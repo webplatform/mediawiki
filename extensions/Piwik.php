@@ -182,14 +182,14 @@ JS;
           _paq.push(['trackPageView']);
           _paq.push(['enableLinkTracking']);
           (function() {
-            var u="//{$wgPiwikURL}/";
+            var u="https://{$wgPiwikURL}/";
             _paq.push(['setTrackerUrl', u+'piwik.php']);
             _paq.push(['setSiteId', {$wgPiwikIDSite}]);
             var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
             g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
           })();
         </script>
-        <noscript><p><img src="//{$wgPiwikURL}/piwik.php?idsite={$wgPiwikIDSite}" style="border:0;" alt="" /></p></noscript>
+        <noscript><p><img src="https://{$wgPiwikURL}/piwik.php?idsite={$wgPiwikIDSite}" style="border:0;" alt="" /></p></noscript>
         <!-- End Piwik Code -->
 PIWIK;
 
