@@ -1,75 +1,75 @@
 } /* Close added @media screen { */
 
-/** TODO: Move to //www.webplatform.org/assets/fonts/ instead **/
+/** TODO: Move to /extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/ instead **/
 @font-face{
   font-family: 'Gudea';
   font-weight: normal;
-  src: url('//www.webplatform.org/assets/fonts/gudea-regular-webfont.eot');
-  src: url('//www.webplatform.org/assets/fonts/gudea-regular-webfont.eot?#iefix') format('embedded-opentype'),
-     url('//www.webplatform.org/assets/fonts/gudea-regular-webfont.woff') format('woff'),
-     url('//www.webplatform.org/assets/fonts/gudea-regular-webfont.ttf') format('truetype'),
-     url('//www.webplatform.org/assets/fonts/gudea-regular-webfont.svg#GudeaRegular') format('svg');
+  src: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/gudea-regular-webfont.eot');
+  src: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/gudea-regular-webfont.eot?#iefix') format('embedded-opentype'),
+     url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/gudea-regular-webfont.woff') format('woff'),
+     url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/gudea-regular-webfont.ttf') format('truetype'),
+     url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/gudea-regular-webfont.svg#GudeaRegular') format('svg');
 }
 
 @font-face{
   font-family: 'Gudea';
   font-weight: bold;
-  src: url('//www.webplatform.org/assets/fonts/gudea-bold-webfont.eot');
-  src: url('//www.webplatform.org/assets/fonts/gudea-bold-webfont.eot?#iefix') format('embedded-opentype'),
-     url('//www.webplatform.org/assets/fonts/gudea-bold-webfont.woff') format('woff'),
-     url('//www.webplatform.org/assets/fonts/gudea-bold-webfont.ttf') format('truetype'),
-     url('//www.webplatform.org/assets/fonts/gudea-bold-webfont.svg#GudeaRegular') format('svg');
+  src: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/gudea-bold-webfont.eot');
+  src: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/gudea-bold-webfont.eot?#iefix') format('embedded-opentype'),
+     url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/gudea-bold-webfont.woff') format('woff'),
+     url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/gudea-bold-webfont.ttf') format('truetype'),
+     url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/gudea-bold-webfont.svg#GudeaRegular') format('svg');
 }
 
 @font-face{
   font-family: 'Gudea';
   font-weight: normal;
   font-style: italic;
-  src: url('//www.webplatform.org/assets/fonts/gudea-italic-webfont.eot');
-  src: url('//www.webplatform.org/assets/fonts/gudea-italic-webfont.eot?#iefix') format('embedded-opentype'),
-     url('//www.webplatform.org/assets/fonts/gudea-italic-webfont.woff') format('woff'),
-     url('//www.webplatform.org/assets/fonts/gudea-italic-webfont.ttf') format('truetype'),
-     url('//www.webplatform.org/assets/fonts/gudea-italic-webfont.svg#GudeaRegular') format('svg');
+  src: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/gudea-italic-webfont.eot');
+  src: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/gudea-italic-webfont.eot?#iefix') format('embedded-opentype'),
+     url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/gudea-italic-webfont.woff') format('woff'),
+     url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/gudea-italic-webfont.ttf') format('truetype'),
+     url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/gudea-italic-webfont.svg#GudeaRegular') format('svg');
 }
 
 @font-face{
   font-family: 'Bitter';
   font-weight: normal;
-  src: url('//www.webplatform.org/assets/fonts/bitter-regular-webfont.eot');
-  src: url('//www.webplatform.org/assets/fonts/bitter-regular-webfont.eot?#iefix') format('embedded-opentype'),
-     url('//www.webplatform.org/assets/fonts/bitter-regular-webfont.woff') format('woff'),
-     url('//www.webplatform.org/assets/fonts/bitter-regular-webfont.ttf') format('truetype'),
-     url('//www.webplatform.org/assets/fonts/bitter-regular-webfont.svg#BitterRegular') format('svg');
+  src: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/bitter-regular-webfont.eot');
+  src: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/bitter-regular-webfont.eot?#iefix') format('embedded-opentype'),
+     url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/bitter-regular-webfont.woff') format('woff'),
+     url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/bitter-regular-webfont.ttf') format('truetype'),
+     url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/bitter-regular-webfont.svg#BitterRegular') format('svg');
 }
 
 @font-face{
   font-family: 'Bitter';
   font-weight: bold;
-  src: url('//www.webplatform.org/assets/fonts/bitter-bold-webfont.eot');
-  src: url('//www.webplatform.org/assets/fonts/bitter-bold-webfont.eot?#iefix') format('embedded-opentype'),
-     url('//www.webplatform.org/assets/fonts/bitter-bold-webfont.woff') format('woff'),
-     url('//www.webplatform.org/assets/fonts/bitter-bold-webfont.ttf') format('truetype'),
-     url('//www.webplatform.org/assets/fonts/bitter-bold-webfont.svg#BitterBold') format('svg');
+  src: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/bitter-bold-webfont.eot');
+  src: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/bitter-bold-webfont.eot?#iefix') format('embedded-opentype'),
+     url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/bitter-bold-webfont.woff') format('woff'),
+     url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/bitter-bold-webfont.ttf') format('truetype'),
+     url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/bitter-bold-webfont.svg#BitterBold') format('svg');
 }
 
 @font-face{
   font-family: 'Bitter';
   font-weight: normal;
   font-style: italic;
-  src: url('//www.webplatform.org/assets/fonts/bitter-italic-webfont.eot');
-  src: url('//www.webplatform.org/assets/fonts/bitter-italic-webfont.eot?#iefix') format('embedded-opentype'),
-     url('//www.webplatform.org/assets/fonts/bitter-italic-webfont.woff') format('woff'),
-     url('//www.webplatform.org/assets/fonts/bitter-italic-webfont.ttf') format('truetype'),
-     url('//www.webplatform.org/assets/fonts/bitter-italic-webfont.svg#BitterBold') format('svg');
+  src: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/bitter-italic-webfont.eot');
+  src: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/bitter-italic-webfont.eot?#iefix') format('embedded-opentype'),
+     url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/bitter-italic-webfont.woff') format('woff'),
+     url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/bitter-italic-webfont.ttf') format('truetype'),
+     url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/bitter-italic-webfont.svg#BitterBold') format('svg');
 }
 
 @font-face {
   font-family: 'WPSymbols';
-  src:url('//www.webplatform.org/assets/fonts/WPSymbols.eot');
-  src:url('//www.webplatform.org/assets/fonts/WPSymbols.eot?#iefix') format('embedded-opentype'),
-    url('//www.webplatform.org/assets/fonts/WPSymbols.woff') format('woff'),
-    url('//www.webplatform.org/assets/fonts/WPSymbols.ttf') format('truetype'),
-    url('//www.webplatform.org/assets/fonts/WPSymbols.svg#WPSymbols') format('svg');
+  src:url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/WPSymbols.eot');
+  src:url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/WPSymbols.eot?#iefix') format('embedded-opentype'),
+    url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/WPSymbols.woff') format('woff'),
+    url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/WPSymbols.ttf') format('truetype'),
+    url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/fonts/WPSymbols.svg#WPSymbols') format('svg');
 }
 
 header, footer{
@@ -87,7 +87,7 @@ body {
   margin: 0;
   padding: 0;
   background: #ece5d7;
-  background-image: url('//www.webplatform.org/assets/bg-pattern.png');
+  background-image: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/bg-pattern.png');
   widows: 2;
   orphans: 2;
 }
@@ -271,7 +271,7 @@ a:hover {
 a.external{
   padding-right: 15px;
   margin-right: 5px;
-  background-image: url('//www.webplatform.org/assets/link-external.png');
+  background-image: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/link-external.png');
   background-repeat: no-repeat;
   background-position: right 3px;
 }
@@ -583,8 +583,8 @@ table.floatleft {
     border: none;
     cursor: pointer;
     font-family: Gudea, Arial, sans-serif;
-    background: url('//www.webplatform.org/assets/btn-search.png');
-    background: rgba(0,0,0,0) url('//www.webplatform.org/assets/btn-search.svg');
+    background: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/btn-search.png');
+    background: rgba(0,0,0,0) url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/btn-search.svg');
     background-repeat: no-repeat;
     /* background: none; */
   }
@@ -644,7 +644,7 @@ input:focus
   }
 
     #p-personal > a:before {
-      content: url('//www.webplatform.org/assets/icon-head.svg');
+      content: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/icon-head.svg');
       margin-right: .3em;
     }
 
@@ -691,8 +691,8 @@ input:focus
     border-radius: 0 0 7px 7px;
     border: 1px solid white;
     border-top: none;
-    background: #f9f7f3 url('//www.webplatform.org/assets/logo.png');
-    background: hsl(40, 29%, 96%) url('//www.webplatform.org/assets/logo.svg');
+    background: #f9f7f3 url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/logo.png');
+    background: hsl(40, 29%, 96%) url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/logo.svg');
     background-repeat: no-repeat;
     background-position: center;
     box-shadow: 1px 1px 1px #cbc6ba;
@@ -700,7 +700,7 @@ input:focus
 
 #sitenav {
   background-color: #ece5d7;
-  background-image: url('//www.webplatform.org/assets/nav-bg.png');
+  background-image: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/nav-bg.png');
   background-position: bottom;
   background-repeat: repeat-x;
   padding: 30px 0px 35px;
@@ -714,7 +714,7 @@ input:focus
 
 .mediawiki ul li {
   margin-bottom: 10px;
-  list-style-image: url('//www.webplatform.org/assets/bullet.svg');
+  list-style-image: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/bullet.svg');
 }
 
 ul.links{
@@ -1215,7 +1215,7 @@ ol.breadcrumbs {
   margin-top: -2px;
   width: 5px;
   height: 5px;
-  background-image: url('//www.webplatform.org/assets/arrow-down.svg');
+  background-image: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/arrow-down.svg');
   background-repeat: no-repeat;
   background-position: right center;
 }
@@ -1313,7 +1313,7 @@ body:not(.mediawiki) #sidebar + #main-content {
     height: 22px;
     border-radius: 50%;
     margin-left: -11px;
-    background: #B4E1E4 url('//www.webplatform.org/assets/bg-pattern.png');
+    background: #B4E1E4 url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/bg-pattern.png');
     box-shadow: 0 3px 7px -3px #81c7e1;
     color: #7BCCD1;
     text-align: center;
@@ -1417,43 +1417,43 @@ html.with-doc #main-content {
   padding-left: 20px;
   background-position: left center;
   background-repeat: no-repeat;
-  background-image: url('//www.webplatform.org/assets/icon-head.svg');
+  background-image: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/icon-head.svg');
 }
 
 /* icons for buttons*/
 #ca-protect .icon{
-  background-image: url('//www.webplatform.org/assets/icon-protect.svg');
+  background-image: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/icon-protect.svg');
 }
 
 #ca-delete .icon{
-  background-image: url('//www.webplatform.org/assets/icon-delete.svg');
+  background-image: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/icon-delete.svg');
 }
 
 #ca-move .icon{
-  background-image: url('//www.webplatform.org/assets/icon-move.svg');
+  background-image: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/icon-move.svg');
 }
 
 #ca-edit .icon{
-  background-image: url('//www.webplatform.org/assets/icon-edit.svg');
+  background-image: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/icon-edit.svg');
 }
 
 #ca-view .icon{
-  background-image: url('//www.webplatform.org/assets/icon-view.svg');
+  background-image: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/icon-view.svg');
 }
 
 #ca-history .icon{
-  background-image: url('//www.webplatform.org/assets/icon-history.svg');
+  background-image: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/icon-history.svg');
 }
 
 
 
 /* watch button */
 #ca-watch .icon{
-  background-image: url('//www.webplatform.org/assets/icon-watch.svg');
+  background-image: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/mages/icon-watch.svg');
 }
 
 #ca-unwatch .icon{
-  background-image: url('//www.webplatform.org/assets/icon-unwatch.svg');
+  background-image: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/icon-unwatch.svg');
 }
 
 #ca-watch > span#watch_label,
@@ -1475,7 +1475,7 @@ html.with-doc #main-content {
 
 
 span.editsection a {
-  background-image: url('//www.webplatform.org/assets/icon-edit.svg');
+  background-image: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/icon-edit.svg');
   display: inline-block;
   width: 17px;
   height: 22px;
@@ -1492,7 +1492,7 @@ span.editsection a {
   width: 13px;
   height: 13px;
   padding: 15px;
-  background: url('//www.webplatform.org/assets/standardization-status.svg')
+  background: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/standardization-status.svg')
               hsl(40, 34%, 88%);
   background-size: 100% 700%;
   margin: 13px 0 15px 10px;
@@ -1553,7 +1553,7 @@ span.editsection a {
   }
 
     .standardization_status:before {
-      content: url('//www.webplatform.org/assets/w3c-small.svg');
+      content: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/w3c-small.svg');
       position: absolute;
       top: 13px;
       left: 10px;
@@ -1968,7 +1968,7 @@ footer ul.stewards {
       vertical-align: middle;
       width: 124px;
       height: 60px;
-      background: url('//www.webplatform.org/assets/footer-images.png') no-repeat 0 0;
+      background: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/footer-images.png') no-repeat 0 0;
       text-indent: 200px;
       overflow: hidden;
       color: gray;
@@ -2491,7 +2491,7 @@ dl.compat-list dt {
   display: inline-block;
   width: 36px;
   height: 36px;
-  background: url('//www.webplatform.org/assets/cloud.svg') no-repeat center;
+  background: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/cloud.svg') no-repeat center;
   margin: 0;
 }
 
@@ -2560,42 +2560,42 @@ dl.compat-list dt {
 
   dl.compat-list dt.chrome:before,
   dl.compat-list dt.and_chr:before {
-    background-image: url('//www.webplatform.org/assets/browsers/chrome.png');
+    background-image: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/browsers/chrome.png');
   }
 
   dl.compat-list dt.firefox:before,
   dl.compat-list dt.and_ff:before {
-    background-image: url('//www.webplatform.org/assets/browsers/firefox.png');
+    background-image: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/browsers/firefox.png');
   }
 
 
   dl.compat-list dt.ie:before,
   dl.compat-list dt.ie_mob:before {
-    background-image: url('//www.webplatform.org/assets/browsers/ie.png');
+    background-image: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/browsers/ie.png');
     background-position: 40% 50%;
   }
 
   dl.compat-list dt.opera:before,
   dl.compat-list dt.op_mini:before,
   dl.compat-list dt.op_mob:before {
-    background-image: url('//www.webplatform.org/assets/browsers/opera.png');
+    background-image: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/browsers/opera.png');
   }
 
   dl.compat-list dt.safari:before,
   dl.compat-list dt.ios_saf:before {
-    background-image: url('//www.webplatform.org/assets/browsers/safari.png');
+    background-image: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/browsers/safari.png');
   }
 
   dl.compat-list dt.mobiles:before {
-    background-image: url('//www.webplatform.org/assets/browsers/mobile.png');
+    background-image: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/browsers/mobile.png');
   }
 
   dl.compat-list dt.android:before {
-    background-image: url('//www.webplatform.org/assets/browsers/android.png');
+    background-image: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/browsers/android.png');
   }
 
   dl.compat-list dt.bb:before {
-    background-image: url('//www.webplatform.org/assets/browsers/blackberry.png');
+    background-image: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/browsers/blackberry.png');
   }
 
 dl.compat-list dd {
@@ -2608,7 +2608,7 @@ dl.compat-list dd {
   border-radius: 50%;
   box-shadow: 1px 1px 3px rgba(0,0,0,.3), 0 1px 1px white inset;
   background: #f9f7f3 no-repeat center;
-  background-image: url('//www.webplatform.org/assets/questionmark.svg');
+  background-image: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/questionmark.svg');
   background-size: 8px auto;
   font-size: 0; line-height: 0;
   color: transparent;
@@ -2619,15 +2619,15 @@ dl.compat-list dd {
   }
 
   dl.compat-list dd.Unsupported {
-    background-image: url('//www.webplatform.org/assets/x.svg');
+    background-image: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/x.svg');
   }
 
   dl.compat-list dd.Partial {
-    background-image: url('//www.webplatform.org/assets/warning.svg');
+    background-image: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/warning.svg');
   }
 
   dl.compat-list dd.Supported {
-    background-image: url('//www.webplatform.org/assets/checkmark.svg');
+    background-image: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/checkmark.svg');
   }
 
 .ui-sortable .multipleTemplateInstance {
@@ -2742,49 +2742,49 @@ dl.compat-list dd {
 
 .icon-accessibility {
   /* Canonical of http://static.webplatform.org/w/public/7/7b/WPD-Accessibility-32px.png */
-  background: url('//www.webplatform.org/assets/ornaments/accessibility-32px.png');
+  background: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/ornaments/accessibility-32px.png');
 }
 
 .icon-beginners {
   /* Canonical of http://static.webplatform.org/w/public/8/8a/WPD-Beginners-32px.png  */
-  background: url('//www.webplatform.org/assets/ornaments/beginners-32px.png');
+  background: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/ornaments/beginners-32px.png');
 }
 
 .icon-concept {
   /* Canonical of http://static.webplatform.org/w/public/8/83/WPD-Concepts-32px.png  */
-  background: url('//www.webplatform.org/assets/ornaments/concepts-32px.png');
+  background: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/ornaments/concepts-32px.png');
 }
 
 .icon-css {
   /* Canonical of  http://static.webplatform.org/w/public/7/74/WPD-CSS-32px.png  */
-  background: url('//www.webplatform.org/assets/ornaments/css-32px.png');
+  background: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/ornaments/css-32px.png');
 }
 
 .icon-dom {
   /* Canonical of http://static.webplatform.org/w/public/a/ae/WPD-DOM-32px.png */
-  background: url('//www.webplatform.org/assets/ornaments/dom-32px.png');
+  background: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/ornaments/dom-32px.png');
 }
 
 .icon-html {
   /* Canonical of http://static.webplatform.org/w/public/d/d1/WPD-HTML-B-32px.png  */
-  background: url('//www.webplatform.org/assets/ornaments/html-32px.png');
+  background: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/ornaments/html-32px.png');
 }
 
 .icon-html5 {
   /* Canonical of http://static.webplatform.org/w/public/2/26/WPD-HTML5-32px.png  */
-  background: url('//www.webplatform.org/assets/ornaments/html5-32px.png');
+  background: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/ornaments/html5-32px.png');
 }
 
 .icon-js {
-  background: url('//www.webplatform.org/assets/ornaments/js-32px.png');
+  background: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/ornaments/js-32px.png');
 }
 
 .icon-svg {
-  background: url('//www.webplatform.org/assets/ornaments/svg-32px.png');
+  background: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/ornaments/svg-32px.png');
 }
 
 .icon-api {
-  background: url('//www.webplatform.org/assets/ornaments/api-32px.png');
+  background: url('/extensions/WebPlatformMediaWikiExtensionBundle/skin/images/ornaments/api-32px.png');
 }
 /* END layout rules for topic container boxes on landing page prototypes (chrisdavidmills) */
 
